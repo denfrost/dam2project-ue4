@@ -7,18 +7,3 @@ bool ARacingCharacter::Respawn()
 {
 	return false;
 }
-
-bool ARacingCharacter::PrimaryAbility()
-{
-	return false;
-}
-
-bool ARacingCharacter::SecondaryAbility()
-{
-	return false;
-}
-
-bool ARacingCharacter::UltimateAbility()
-{
-	return false;
-}

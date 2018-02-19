@@ -14,14 +14,6 @@ class ARCHITECTURETEST_API ARacingCharacter : public AGameCharacter
 {
 	GENERATED_BODY()
 	
-	
 public:
-	bool Respawn() override;
-
-	virtual bool PrimaryAbility() override;
-
-	virtual bool SecondaryAbility() override;
-
-	virtual bool UltimateAbility() override;
-	
+	bool Respawn() override;	
 };

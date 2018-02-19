@@ -30,21 +30,3 @@ int AArenaCharacter::Improve()
 {
 	return Weapon.GetDefaultObject()->Improve();
 }
-
-bool AArenaCharacter::PrimaryAbility()
-{
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
-}
-
-bool AArenaCharacter::SecondaryAbility()
-{
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
-}
-
-bool AArenaCharacter::UltimateAbility()
-{
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
-}

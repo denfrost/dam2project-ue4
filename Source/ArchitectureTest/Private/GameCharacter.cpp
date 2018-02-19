@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameCharacter.h"
+#include "Ability.h"
 
 // Called when the game starts or when spawned
 void AGameCharacter::BeginPlay()
@@ -31,21 +32,18 @@ bool AGameCharacter::Respawn()
 	return false;
 }
 
-bool AGameCharacter::PrimaryAbility()
+bool AGameCharacter::ExecutePrimaryAbility()
 {
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
+	return PrimaryAbility.GetDefaultObject()->InternalExecute();
 }
 
-bool AGameCharacter::SecondaryAbility()
+bool AGameCharacter::ExecuteSecondaryAbility()
 {
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
+	return SecondaryAbility.GetDefaultObject()->InternalExecute();
 }
 
-bool AGameCharacter::UltimateAbility()
+bool AGameCharacter::ExecuteUltimateAbility()
 {
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
+	return UltimateAbility.GetDefaultObject()->InternalExecute();
 }
 

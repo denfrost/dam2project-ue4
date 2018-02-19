@@ -18,7 +18,7 @@ class ARCHITECTURETEST_API AArenaCharacter : public AGameCharacter
 
 private:
 
-	UPROPERTY( EditAnywhere )
+	UPROPERTY( EditAnywhere, Category = "Character Setup")
 	TSubclassOf<AWeapon> Weapon = nullptr;
 
 protected:
@@ -27,13 +27,9 @@ protected:
 	
 public:
 
-	virtual bool PrimaryAbility() override;
-
-	virtual bool SecondaryAbility() override;
-
-	virtual bool UltimateAbility() override;
-
 	bool Respawn() override;
+
+	// TODO change methods for Ability calls
 
 	// Delegate method for Weapon$PrimaryAttack()
 	int PrimaryAttack();
