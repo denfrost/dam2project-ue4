@@ -18,10 +18,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere)
-		int32 Health;
+	int32 Health;
 
 	UPROPERTY(EditAnywhere)
-		int32 Armor;
+	int32 Armor;
 	
 	AGameController* Controller = nullptr;
 
