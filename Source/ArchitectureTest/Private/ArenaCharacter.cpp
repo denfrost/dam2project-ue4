@@ -2,6 +2,7 @@
 
 #include "ArenaCharacter.h"
 #include "Weapon.h"
+#include "Ability.h"
 
 void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 {
@@ -45,6 +46,12 @@ void AArenaCharacter::BeginPlay()
 		return;
 	}
 	SetWeapon(Weapon); // To call Weapon->SetOwningCharacter(this)
+
+	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
+	GetWeapon()->GetPrimaryAttack()->SetLastUse(-GetWeapon()->GetPrimaryAttack()->GetCooldown());
+	GetWeapon()->GetSecondaryAttack()->SetLastUse(-GetWeapon()->GetSecondaryAttack()->GetCooldown());
+
+	// Spawn the Weapon and attach it to the player
 	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
 	Spawned->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform, GRAB_POINT_SOCKET_NAME);
 }

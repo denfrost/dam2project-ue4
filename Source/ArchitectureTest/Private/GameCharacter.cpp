@@ -22,6 +22,11 @@ void AGameCharacter::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
 	}
+
+	// Set Abilities last use to -Cooldown to be able to cast them instantly at the beginning of the match
+	PrimaryAbility.GetDefaultObject()->SetLastUse(-PrimaryAbility.GetDefaultObject()->GetCooldown());
+	SecondaryAbility.GetDefaultObject()->SetLastUse(-SecondaryAbility.GetDefaultObject()->GetCooldown());
+	UltimateAbility.GetDefaultObject()->SetLastUse(-UltimateAbility.GetDefaultObject()->GetCooldown());
 }
 
 // Called every frame

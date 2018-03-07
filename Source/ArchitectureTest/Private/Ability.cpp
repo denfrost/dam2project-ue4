@@ -4,6 +4,12 @@
 #include "Engine/World.h"
 #include "Misc/DateTime.h"
 
+void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ENDPLAY"));
+	LastUse = 0.f;
+}
+
 int32 AAbility::GetDamage()
 {
 	return Damage;
@@ -24,6 +30,16 @@ void AAbility::SetCooldown(float NewCooldown)
 	this->Cooldown = NewCooldown;
 }
 
+float AAbility::GetLastUse()
+{
+	return LastUse;
+}
+
+void AAbility::SetLastUse(float NewLastUse)
+{
+	LastUse = NewLastUse;
+}
+
 void AAbility::InternalExecute(AActor* executor)
 {
 	if (CanBeExecuted(executor))
@@ -36,6 +52,8 @@ void AAbility::InternalExecute(AActor* executor)
 bool AAbility::CanBeExecuted(const AActor* executor)
 {
 	float Now = executor->GetWorld()->TimeSeconds;
+	UE_LOG(LogTemp, Warning, TEXT("Time seconds: %f"), Now);
+	UE_LOG(LogTemp, Warning, TEXT("Last use: %f"), LastUse);
 	if (Now - LastUse > Cooldown)
 	{
 		return true;

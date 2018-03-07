@@ -28,9 +28,11 @@ private:
 	UPROPERTY( EditDefaultsOnly )
 	float Cooldown;
 
-	float LastUse = 0.f;
+	float LastUse;
 
 public:
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetDamage();
@@ -43,6 +45,11 @@ public:
 
 	UFUNCTION( BlueprintCallable )
 	void SetCooldown(float NewCooldown);
+
+	UFUNCTION( BlueprintCallable )
+	float GetLastUse();
+
+	void SetLastUse(float NewLastUse);
 
 	// This defines the behaviour the ability will have if it can be casted
 	UFUNCTION(BlueprintImplementableEvent)
