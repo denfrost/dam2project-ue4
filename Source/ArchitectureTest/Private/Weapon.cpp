@@ -62,7 +62,7 @@ void AWeapon::ExecutePrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
 		return;
 	}
-	PrimaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter); // TODO check this works
+	PrimaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter);
 }
 
 void AWeapon::ExecuteSecondaryAttack()
@@ -72,7 +72,7 @@ void AWeapon::ExecuteSecondaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
 		return;
 	}
-	SecondaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter); // TODO check this works
+	SecondaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter);
 }
 
 void AWeapon::ExecuteImprove()

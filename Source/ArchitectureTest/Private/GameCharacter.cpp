@@ -62,7 +62,7 @@ void AGameCharacter::ExecutePrimaryAbility()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
 		return;
 	}
-	PrimaryAbility.GetDefaultObject()->InternalExecute(this); // TODO check this works
+	PrimaryAbility.GetDefaultObject()->InternalExecute(this);
 }
 
 void AGameCharacter::ExecuteSecondaryAbility()
