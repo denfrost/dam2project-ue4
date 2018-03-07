@@ -7,6 +7,21 @@
 void AGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (PrimaryAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
+	}
+
+	if (SecondaryAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a secondary ability!"), *GetName());
+	}
+
+	if (UltimateAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
+	}
 }
 
 // Called every frame
@@ -19,6 +34,9 @@ void AGameCharacter::Tick(float DeltaTime)
 void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction("PrimaryAbility", IE_Pressed, this, &AGameCharacter::ExecutePrimaryAbility);
+	PlayerInputComponent->BindAction("SecondaryAbility", IE_Pressed, this, &AGameCharacter::ExecuteSecondaryAbility);
+	PlayerInputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AGameCharacter::ExecuteUltimateAbility);
 }
 
 void AGameCharacter::OnDeath()
@@ -32,18 +50,33 @@ bool AGameCharacter::Respawn()
 	return false;
 }
 
-bool AGameCharacter::ExecutePrimaryAbility()
+void AGameCharacter::ExecutePrimaryAbility()
 {
-	return PrimaryAbility.GetDefaultObject()->InternalExecute();
+	if (PrimaryAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
+		return;
+	}
+	PrimaryAbility.GetDefaultObject()->InternalExecute(this); // TODO check this works
 }
 
-bool AGameCharacter::ExecuteSecondaryAbility()
+void AGameCharacter::ExecuteSecondaryAbility()
 {
-	return SecondaryAbility.GetDefaultObject()->InternalExecute();
+	if (SecondaryAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a secondary ability!"), *GetName());
+		return;
+	}
+	SecondaryAbility.GetDefaultObject()->InternalExecute(this);
 }
 
-bool AGameCharacter::ExecuteUltimateAbility()
+void AGameCharacter::ExecuteUltimateAbility()
 {
-	return UltimateAbility.GetDefaultObject()->InternalExecute();
+	if (UltimateAbility == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
+		return;
+	}
+	UltimateAbility.GetDefaultObject()->InternalExecute(this);
 }
 

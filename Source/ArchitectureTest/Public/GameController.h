@@ -6,6 +6,8 @@
 #include "GameFramework/Controller.h"
 #include "GameController.generated.h"
 
+//class FGameplayTagContainer;
+
 /**
  * 
  */
@@ -14,5 +16,5 @@ class ARCHITECTURETEST_API AGameController : public AController
 {
 	GENERATED_BODY()
 
-
+	// TODO implement FGameplayTagContainer Team;
 };

@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Weapon.h"
-
+#include "ArenaCharacter.h"
+#include "Ability.h"
 
 // Sets default values
 AWeapon::AWeapon()
@@ -11,11 +12,40 @@ AWeapon::AWeapon()
 
 }
 
+AArenaCharacter* AWeapon::GetOwningCharacter()
+{
+	return OwningCharacter;
+}
+
+void AWeapon::SetOwningCharacter(AArenaCharacter * NewOwningCharacter)
+{
+	OwningCharacter = NewOwningCharacter;
+}
+
+AAbility* AWeapon::GetPrimaryAttack()
+{
+	return PrimaryAttack.GetDefaultObject();
+}
+
+AAbility* AWeapon::GetSecondaryAttack()
+{
+	return SecondaryAttack.GetDefaultObject();
+}
+
 // Called when the game starts or when spawned
 void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (PrimaryAttack == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
+	}
+
+	if (SecondaryAttack == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
+	}
 }
 
 // Called every frame
@@ -25,18 +55,28 @@ void AWeapon::Tick(float DeltaTime)
 
 }
 
-int AWeapon::PrimaryAttack()
+void AWeapon::ExecutePrimaryAttack()
 {
-	return 0;
+	if (PrimaryAttack == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
+		return;
+	}
+	PrimaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter); // TODO check this works
 }
 
-int AWeapon::SecondaryAttack()
+void AWeapon::ExecuteSecondaryAttack()
 {
-	return 0;
+	if (SecondaryAttack == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
+		return;
+	}
+	SecondaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter); // TODO check this works
 }
 
-int AWeapon::Improve()
+void AWeapon::ExecuteImprove()
 {
-	return 0;
+	// TODO implement
 }
 

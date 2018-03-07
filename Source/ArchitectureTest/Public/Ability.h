@@ -10,7 +10,7 @@
  * Extend this class with a Blueprint to define the damage, cooldown
  * and behaviour of an ability executed on a Character, aka
  * PrimaryAbility(), SecondaryAbility(), UltimateAbility()
- * or an Attack from a Weapon. Override ExecuteAbility in the blueprint
+ * or an Attack from a Weapon. Override ExecuteAbility in the Ability BP
  * to define the Ability behaviour.
  */
 UCLASS( Blueprintable )
@@ -20,23 +20,35 @@ class ARCHITECTURETEST_API AAbility : public AActor
 	
 private:
 
+	// The damage caused by this Ability
 	UPROPERTY( EditDefaultsOnly )
 	int32 Damage;
 	
+	// The cooldown of this Ability. Note that the cooldown is managed internally so you don't have to worry about it in the behaviour implementation
 	UPROPERTY( EditDefaultsOnly )
-	int32 Cooldown;
+	float Cooldown;
 
-	int32 LastUse = 0;
+	float LastUse = 0.f;
 
 public:
 
-	// TODO podria tener sentido pasarle una referencia al jugador que lanza la ability
+	UFUNCTION( BlueprintCallable )
+	int32 GetDamage();
+
+	UFUNCTION( BlueprintCallable )
+	void SetDamage(int32 NewDamage);
+
+	UFUNCTION( BlueprintCallable )
+	float GetCooldown();
+
+	UFUNCTION( BlueprintCallable )
+	void SetCooldown(float NewCooldown);
 
 	// This defines the behaviour the ability will have if it can be casted
 	UFUNCTION(BlueprintImplementableEvent)
-	void ExecuteAbility();
+	void ExecuteAbility(AActor* executor);
 
-	bool InternalExecute();
+	void InternalExecute(AActor* executor);
 
-	bool CanBeExecuted();
+	bool CanBeExecuted(const AActor* executor);
 };

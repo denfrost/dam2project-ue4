@@ -1,22 +1,41 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Ability.h"
+#include "Engine/World.h"
+#include "Misc/DateTime.h"
 
-bool AAbility::InternalExecute()
+int32 AAbility::GetDamage()
 {
-	int32 Now = FDateTime::UtcNow().GetMillisecond();
-	if (Now - LastUse > Cooldown)
-	{
-		ExecuteAbility();
-		LastUse = Now;
-		return true;
-	}
-	return false;
+	return Damage;
 }
 
-bool AAbility::CanBeExecuted()
+void AAbility::SetDamage(int32 NewDamage)
 {
-	int32 Now = FDateTime::UtcNow().GetMillisecond();
+	this->Damage = NewDamage;
+}
+
+float AAbility::GetCooldown()
+{
+	return Cooldown;
+}
+
+void AAbility::SetCooldown(float NewCooldown)
+{
+	this->Cooldown = NewCooldown;
+}
+
+void AAbility::InternalExecute(AActor* executor)
+{
+	if (CanBeExecuted(executor))
+	{
+		ExecuteAbility(executor);
+		LastUse = executor->GetWorld()->TimeSeconds;
+	}
+}
+
+bool AAbility::CanBeExecuted(const AActor* executor)
+{
+	float Now = executor->GetWorld()->TimeSeconds;
 	if (Now - LastUse > Cooldown)
 	{
 		return true;

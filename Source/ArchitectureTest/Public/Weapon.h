@@ -6,15 +6,24 @@
 #include "GameFramework/Actor.h"
 #include "Weapon.generated.h"
 
+class AAbility;
+class AArenaCharacter;
+
 UCLASS( abstract )
 class ARCHITECTURETEST_API AWeapon : public AActor
 {
 	GENERATED_BODY()
 	
 private:	
+	// The primary attack of this Weapon, which will be executed when the owner pawn receives the PrimaryAttack input
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
+	TSubclassOf<AAbility> PrimaryAttack = nullptr;
 
-	UPROPERTY( EditAnywhere )
-	int32 Damage;
+	// The secondary attack of this Weapon, which will be executed when the owner pawn receives the SecondaryAttack input
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
+	TSubclassOf<AAbility> SecondaryAttack = nullptr;
+
+	AArenaCharacter* OwningCharacter;
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,15 +33,23 @@ public:
 	// Sets default values for this actor's properties
 	AWeapon();
 
+	UFUNCTION( BlueprintCallable )
+	AArenaCharacter* GetOwningCharacter();
+
+	void SetOwningCharacter(AArenaCharacter* NewOwningCharacter);
+
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetPrimaryAttack();
+
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetSecondaryAttack();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	inline int32 GetDamage() { return Damage; }
-	inline void SetDamage(int32 Damage) { this->Damage = Damage;  }
+	virtual void ExecutePrimaryAttack();
 
-	virtual int PrimaryAttack();
+	virtual void ExecuteSecondaryAttack();
 
-	virtual int SecondaryAttack();
-
-	virtual int Improve();
+	virtual void ExecuteImprove();
 };

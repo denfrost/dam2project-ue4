@@ -7,6 +7,7 @@
 #include "ArenaCharacter.generated.h"
 
 class AWeapon;
+class AAbility;
 
 /**
  * The base class for all characters of the arena battle.
@@ -17,7 +18,7 @@ class ARCHITECTURETEST_API AArenaCharacter : public AGameCharacter
 	GENERATED_BODY()
 
 private:
-
+	// The character's Weapon (holy fuck man descriptive AF feels like if this shit was created by Epic themselves)
 	UPROPERTY( EditAnywhere, Category = "Character Setup")
 	TSubclassOf<AWeapon> Weapon = nullptr;
 
@@ -26,17 +27,33 @@ protected:
 	virtual void BeginPlay() override;
 	
 public:
+	FName GRAB_POINT_SOCKET_NAME = FName("GrabPoint");
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	UFUNCTION( BlueprintCallable )
+	AWeapon* GetWeapon();
+
+	UFUNCTION( BlueprintCallable )
+	void SetWeapon(TSubclassOf<AWeapon> NewWeapon);
+
+	// Returns the primary attack of this Character's Weapon
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetPrimaryAttack();
+
+	// Returns the secondary attack of this Character's Weapon
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetSecondaryAttack();
 
 	bool Respawn() override;
 
-	// TODO change methods for Ability calls
-
 	// Delegate method for Weapon$PrimaryAttack()
-	int PrimaryAttack();
+	void PrimaryAttack();
 
 	// Delegate method for Weapon$SecondaryAttack()
-	int SecondaryAttack();
+	void SecondaryAttack();
 
 	// Delegate method for Weapon$Improve()
-	int Improve();
+	void Improve();
 };

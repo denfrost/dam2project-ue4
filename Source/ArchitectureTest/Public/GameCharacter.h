@@ -15,7 +15,7 @@ class ARCHITECTURETEST_API AGameCharacter : public ACharacter
 	GENERATED_BODY()
 
 protected:
-	// Called when the game starts or when spawned
+	// Called when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
@@ -25,15 +25,13 @@ protected:
 	int32 Armor;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup")
-	TSubclassOf<AAbility> PrimaryAbility;
+	TSubclassOf<AAbility> PrimaryAbility = nullptr;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup")
-	TSubclassOf<AAbility> SecondaryAbility;
+	TSubclassOf<AAbility> SecondaryAbility = nullptr;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup")
-	TSubclassOf<AAbility> UltimateAbility;
-	
-	AGameController* Controller = nullptr;
+	TSubclassOf<AAbility> UltimateAbility = nullptr;
 
 public:	
 	// Called every frame
@@ -46,9 +44,9 @@ public:
 
 	virtual bool Respawn();
 
-	virtual bool ExecutePrimaryAbility();
+	virtual void ExecutePrimaryAbility();
 
-	virtual bool ExecuteSecondaryAbility();
+	virtual void ExecuteSecondaryAbility();
 
-	virtual bool ExecuteUltimateAbility();
+	virtual void ExecuteUltimateAbility();
 };

@@ -3,11 +3,50 @@
 #include "ArenaCharacter.h"
 #include "Weapon.h"
 
+void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AArenaCharacter::PrimaryAttack);
+	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AArenaCharacter::SecondaryAttack);
+}
+
+AWeapon* AArenaCharacter::GetWeapon()
+{
+	ensure(Weapon != nullptr);
+	return Weapon.GetDefaultObject();
+}
+
+void AArenaCharacter::SetWeapon(TSubclassOf<AWeapon> NewWeapon)
+{
+	Weapon = NewWeapon;
+	NewWeapon.GetDefaultObject()->SetOwningCharacter(this);
+}
+
+AAbility* AArenaCharacter::GetPrimaryAttack()
+{
+	ensure(Weapon != nullptr);
+	return GetWeapon()->GetPrimaryAttack();
+}
+
+AAbility* AArenaCharacter::GetSecondaryAttack()
+{
+	ensure(Weapon != nullptr);
+	return GetWeapon()->GetSecondaryAttack();
+}
+
 // Called when the game starts or when spawned
 void AArenaCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	ensure(Weapon != nullptr);
+
+	if (Weapon == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
+		return;
+	}
+	SetWeapon(Weapon); // To call Weapon->SetOwningCharacter(this)
+	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
+	Spawned->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform, GRAB_POINT_SOCKET_NAME);
 }
 
 bool AArenaCharacter::Respawn()
@@ -16,17 +55,27 @@ bool AArenaCharacter::Respawn()
 	return false;
 }
 
-int AArenaCharacter::PrimaryAttack()
+void AArenaCharacter::PrimaryAttack()
 {
-	return Weapon.GetDefaultObject()->PrimaryAttack();
+	if (Weapon == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
+		return;
+	}
+	return Weapon.GetDefaultObject()->ExecutePrimaryAttack();
 }
 
-int AArenaCharacter::SecondaryAttack()
+void AArenaCharacter::SecondaryAttack()
 {
-	return Weapon.GetDefaultObject()->SecondaryAttack();
+	if (Weapon == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
+		return;
+	}
+	return Weapon.GetDefaultObject()->ExecuteSecondaryAttack();
 }
 
-int AArenaCharacter::Improve()
+void AArenaCharacter::Improve()
 {
-	return Weapon.GetDefaultObject()->Improve();
+	return Weapon.GetDefaultObject()->ExecuteImprove();
 }
