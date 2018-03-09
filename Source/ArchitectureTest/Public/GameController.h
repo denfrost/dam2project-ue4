@@ -3,16 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameUtils.h"
 #include "GameFramework/Controller.h"
 #include "GameController.generated.h"
-
-UENUM( BlueprintType )
-enum class ETeam : uint8
-{
-	Red		UMETA( DisplayName="Red Team" ),
-	Blue	UMETA( DisplayName="Blue Team" )
-	// TODO implementar Neutral y mover a otra clase para utilizarlo en CapturableVolume
-};
 
 /**
  * 
