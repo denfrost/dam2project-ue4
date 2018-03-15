@@ -6,7 +6,6 @@
 
 void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ENDPLAY"));
 	LastUse = 0.f;
 }
 
@@ -52,8 +51,6 @@ void AAbility::InternalExecute(AActor* executor)
 bool AAbility::CanBeExecuted(const AActor* executor)
 {
 	float Now = executor->GetWorld()->TimeSeconds;
-	UE_LOG(LogTemp, Warning, TEXT("Time seconds: %f"), Now);
-	UE_LOG(LogTemp, Warning, TEXT("Last use: %f"), LastUse);
 	if (Now - LastUse > Cooldown)
 	{
 		return true;

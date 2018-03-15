@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameUtils.h"
+#include "GameUtils/TeamUtils.h"
 #include "Engine/TriggerBox.h"
 #include "CapturableVolume.generated.h"
 
@@ -33,7 +33,7 @@ private:
 
 	int32 CaptureState = 0;
 
-	ETeam LastCapturingTeam = ETeam::Neutral;
+	ETeam LastCapturingTeam;
 
 protected:
 

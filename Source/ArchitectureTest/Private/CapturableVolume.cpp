@@ -2,7 +2,7 @@
 
 #include "CapturableVolume.h"
 #include "ArenaCharacter.h"
-#include "GameUtils.h"
+#include "GameUtils/TeamUtils.h"
 
 #define OUT
 

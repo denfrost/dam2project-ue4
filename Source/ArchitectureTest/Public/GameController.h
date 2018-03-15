@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameUtils.h"
+#include "GameUtils/TeamUtils.h"
 #include "GameFramework/Controller.h"
 #include "GameController.generated.h"
 

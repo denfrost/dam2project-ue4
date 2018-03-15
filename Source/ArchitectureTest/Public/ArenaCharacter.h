@@ -27,7 +27,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 public:
-	FName GRAB_POINT_SOCKET_NAME = FName("GrabPoint");
+	const FName GRAB_POINT_SOCKET_NAME = FName("GrabPoint");
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
