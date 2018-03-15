@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameUtils.h"
 #include "GameFramework/Character.h"
 #include "GameCharacter.generated.h"
 
@@ -39,6 +40,12 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION( BlueprintCallable )
+	ETeam GetTeam() const;
+
+	UFUNCTION( BlueprintCallable )
+	void SetTeam(ETeam Team);
 
 	void OnDeath();
 

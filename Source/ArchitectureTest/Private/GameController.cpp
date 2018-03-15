@@ -2,7 +2,7 @@
 
 #include "GameController.h"
 
-ETeam AGameController::GetTeam()
+ETeam AGameController::GetTeam() const
 {
 	return Team;
 }

@@ -11,7 +11,7 @@
  * 
  */
 UCLASS( Blueprintable )
-class ARCHITECTURETEST_API AGameController : public AController
+class ARCHITECTURETEST_API AGameController : public APlayerController
 {
 	GENERATED_BODY()
 
@@ -21,7 +21,7 @@ private:
 
 public:
 	UFUNCTION( BlueprintCallable )
-	ETeam GetTeam();
+	ETeam GetTeam() const;
 
 	UFUNCTION( BlueprintCallable )
 	void SetTeam(ETeam NewTeam);

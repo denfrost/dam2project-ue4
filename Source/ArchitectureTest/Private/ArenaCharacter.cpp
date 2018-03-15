@@ -11,7 +11,7 @@ void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCom
 	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AArenaCharacter::SecondaryAttack);
 }
 
-AWeapon* AArenaCharacter::GetWeapon()
+AWeapon* AArenaCharacter::GetWeapon() const
 {
 	ensure(Weapon != nullptr);
 	return Weapon.GetDefaultObject();
@@ -23,13 +23,13 @@ void AArenaCharacter::SetWeapon(TSubclassOf<AWeapon> NewWeapon)
 	NewWeapon.GetDefaultObject()->SetOwningCharacter(this);
 }
 
-AAbility* AArenaCharacter::GetPrimaryAttack()
+AAbility* AArenaCharacter::GetPrimaryAttack() const
 {
 	ensure(Weapon != nullptr);
 	return GetWeapon()->GetPrimaryAttack();
 }
 
-AAbility* AArenaCharacter::GetSecondaryAttack()
+AAbility* AArenaCharacter::GetSecondaryAttack() const
 {
 	ensure(Weapon != nullptr);
 	return GetWeapon()->GetSecondaryAttack();

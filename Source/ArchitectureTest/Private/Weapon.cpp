@@ -12,22 +12,22 @@ AWeapon::AWeapon()
 
 }
 
-AArenaCharacter* AWeapon::GetOwningCharacter()
+AArenaCharacter* AWeapon::GetOwningCharacter() const
 {
 	return OwningCharacter;
 }
 
-void AWeapon::SetOwningCharacter(AArenaCharacter * NewOwningCharacter)
+void AWeapon::SetOwningCharacter(AArenaCharacter* NewOwningCharacter)
 {
 	OwningCharacter = NewOwningCharacter;
 }
 
-AAbility* AWeapon::GetPrimaryAttack()
+AAbility* AWeapon::GetPrimaryAttack() const
 {
 	return PrimaryAttack.GetDefaultObject();
 }
 
-AAbility* AWeapon::GetSecondaryAttack()
+AAbility* AWeapon::GetSecondaryAttack() const
 {
 	return SecondaryAttack.GetDefaultObject();
 }

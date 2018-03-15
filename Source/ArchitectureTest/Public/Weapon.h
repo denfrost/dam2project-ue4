@@ -34,15 +34,15 @@ public:
 	AWeapon();
 
 	UFUNCTION( BlueprintCallable )
-	AArenaCharacter* GetOwningCharacter();
+	AArenaCharacter* GetOwningCharacter() const;
 
 	void SetOwningCharacter(AArenaCharacter* NewOwningCharacter);
 
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetPrimaryAttack();
+	AAbility* GetPrimaryAttack() const;
 
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetSecondaryAttack();
+	AAbility* GetSecondaryAttack() const;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

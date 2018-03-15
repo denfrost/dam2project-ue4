@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameCharacter.h"
+#include "GameController.h"
 #include "Ability.h"
 
 // Called when the game starts or when spawned
@@ -42,6 +43,20 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("PrimaryAbility", IE_Pressed, this, &AGameCharacter::ExecutePrimaryAbility);
 	PlayerInputComponent->BindAction("SecondaryAbility", IE_Pressed, this, &AGameCharacter::ExecuteSecondaryAbility);
 	PlayerInputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AGameCharacter::ExecuteUltimateAbility);
+}
+
+ETeam AGameCharacter::GetTeam() const
+{
+	AGameController* Controller = Cast<AGameController>(GetController());
+	if (Controller == nullptr) return ETeam::Neutral;
+	return Controller->GetTeam();
+}
+
+void AGameCharacter::SetTeam(ETeam Team)
+{
+	AGameController* Controller = Cast<AGameController>(GetController());
+	if (Controller == nullptr) return;
+	Controller->SetTeam(Team);
 }
 
 void AGameCharacter::OnDeath()

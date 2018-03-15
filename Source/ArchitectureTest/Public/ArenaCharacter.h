@@ -33,18 +33,18 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	UFUNCTION( BlueprintCallable )
-	AWeapon* GetWeapon();
+	AWeapon* GetWeapon() const;
 
 	UFUNCTION( BlueprintCallable )
 	void SetWeapon(TSubclassOf<AWeapon> NewWeapon);
 
 	// Returns the primary attack of this Character's Weapon
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetPrimaryAttack();
+	AAbility* GetPrimaryAttack() const;
 
 	// Returns the secondary attack of this Character's Weapon
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetSecondaryAttack();
+	AAbility* GetSecondaryAttack() const;
 
 	bool Respawn() override;
 

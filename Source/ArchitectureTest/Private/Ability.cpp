@@ -10,7 +10,7 @@ void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	LastUse = 0.f;
 }
 
-int32 AAbility::GetDamage()
+int32 AAbility::GetDamage() const
 {
 	return Damage;
 }
@@ -20,7 +20,7 @@ void AAbility::SetDamage(int32 NewDamage)
 	this->Damage = NewDamage;
 }
 
-float AAbility::GetCooldown()
+float AAbility::GetCooldown() const
 {
 	return Cooldown;
 }
@@ -30,7 +30,7 @@ void AAbility::SetCooldown(float NewCooldown)
 	this->Cooldown = NewCooldown;
 }
 
-float AAbility::GetLastUse()
+float AAbility::GetLastUse() const
 {
 	return LastUse;
 }
