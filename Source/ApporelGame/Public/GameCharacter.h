@@ -11,7 +11,7 @@ class AGameController;
 class AAbility;
 
 UCLASS( abstract )
-class ARCHITECTURETEST_API AGameCharacter : public ACharacter
+class APPORELGAME_API AGameCharacter : public ACharacter
 {
 	GENERATED_BODY()
 

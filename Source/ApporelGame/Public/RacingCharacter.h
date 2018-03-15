@@ -10,7 +10,7 @@
  * 
  */
 UCLASS( abstract )
-class ARCHITECTURETEST_API ARacingCharacter : public AGameCharacter
+class APPORELGAME_API ARacingCharacter : public AGameCharacter
 {
 	GENERATED_BODY()
 	

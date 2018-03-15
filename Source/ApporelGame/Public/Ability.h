@@ -14,7 +14,7 @@
  * to define the Ability behavior.
  */
 UCLASS( Blueprintable )
-class ARCHITECTURETEST_API AAbility : public AActor
+class APPORELGAME_API AAbility : public AActor
 {
 	GENERATED_BODY()
 	

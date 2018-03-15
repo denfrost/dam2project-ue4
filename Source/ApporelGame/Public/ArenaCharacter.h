@@ -13,7 +13,7 @@ class AAbility;
  * The base class for all characters of the arena battle.
  */
 UCLASS( abstract )
-class ARCHITECTURETEST_API AArenaCharacter : public AGameCharacter
+class APPORELGAME_API AArenaCharacter : public AGameCharacter
 {
 	GENERATED_BODY()
 

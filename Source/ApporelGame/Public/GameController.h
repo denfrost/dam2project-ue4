@@ -11,7 +11,7 @@
  * 
  */
 UCLASS( Blueprintable )
-class ARCHITECTURETEST_API AGameController : public APlayerController
+class APPORELGAME_API AGameController : public APlayerController
 {
 	GENERATED_BODY()
 

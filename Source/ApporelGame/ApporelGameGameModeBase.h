@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "ArchitectureTestGameModeBase.generated.h"
+#include "ApporelGameGameModeBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ARCHITECTURETEST_API AArchitectureTestGameModeBase : public AGameModeBase
+class APPORELGAME_API AApporelGameGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	

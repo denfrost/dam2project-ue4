@@ -18,7 +18,7 @@ enum class ETeam : uint8
 * Class containing diverse utility methods for Teams
 */
 UCLASS(abstract)
-class ARCHITECTURETEST_API UTeamUtils : public UObject
+class APPORELGAME_API UTeamUtils : public UObject
 {
 	GENERATED_BODY()
 

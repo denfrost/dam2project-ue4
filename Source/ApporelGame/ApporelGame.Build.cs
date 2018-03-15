@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class ArchitectureTest : ModuleRules
+public class ApporelGame : ModuleRules
 {
-	public ArchitectureTest(ReadOnlyTargetRules Target) : base(Target)
+	public ApporelGame(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	

@@ -15,7 +15,7 @@
  * - When CaptureState changes sign after having been captured: Neutral
  */
 UCLASS( Blueprintable )
-class ARCHITECTURETEST_API ACapturableVolume : public ATriggerBox
+class APPORELGAME_API ACapturableVolume : public ATriggerBox
 {
 	GENERATED_BODY()
 	

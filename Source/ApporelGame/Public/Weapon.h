@@ -10,7 +10,7 @@ class AAbility;
 class AArenaCharacter;
 
 UCLASS( abstract )
-class ARCHITECTURETEST_API AWeapon : public AActor
+class APPORELGAME_API AWeapon : public AActor
 {
 	GENERATED_BODY()
 	
