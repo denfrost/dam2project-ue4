@@ -74,5 +74,4 @@ void ACapturableVolume::Tick(float DeltaTime)
 
 	CaptureState += TeamFactor;
 	CaptureState = FMath::Clamp(CaptureState, -CaptureThreshold, CaptureThreshold);
-	UE_LOG(LogTemp, Warning, TEXT("CaptureState: %d"), CaptureState);
 }
