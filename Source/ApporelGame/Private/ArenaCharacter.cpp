@@ -3,36 +3,24 @@
 #include "ArenaCharacter.h"
 #include "Weapon.h"
 #include "Ability.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework//SpringArmComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 
-void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
+AArenaCharacter::AArenaCharacter()
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AArenaCharacter::PrimaryAttack);
-	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AArenaCharacter::SecondaryAttack);
-}
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
 
-AWeapon* AArenaCharacter::GetWeapon() const
-{
-	ensure(Weapon != nullptr);
-	return Weapon.GetDefaultObject();
-}
+	SprinArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
+	SprinArmComp->bUsePawnControlRotation = true;
+	SprinArmComp->SetupAttachment(RootComponent);
 
-void AArenaCharacter::SetWeapon(TSubclassOf<AWeapon> NewWeapon)
-{
-	Weapon = NewWeapon;
-	NewWeapon.GetDefaultObject()->SetOwningCharacter(this);
-}
+	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
 
-AAbility* AArenaCharacter::GetPrimaryAttack() const
-{
-	ensure(Weapon != nullptr);
-	return GetWeapon()->GetPrimaryAttack();
-}
+	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
+	CameraComp->SetupAttachment(SprinArmComp);
 
-AAbility* AArenaCharacter::GetSecondaryAttack() const
-{
-	ensure(Weapon != nullptr);
-	return GetWeapon()->GetSecondaryAttack();
 }
 
 // Called when the game starts or when spawned
@@ -54,6 +42,69 @@ void AArenaCharacter::BeginPlay()
 	// Spawn the Weapon and attach it to the player
 	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
 	Spawned->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform, GRAB_POINT_SOCKET_NAME);
+}
+
+AWeapon* AArenaCharacter::GetWeapon() const
+{
+	ensure(Weapon != nullptr);
+	return Weapon.GetDefaultObject();
+}
+
+void AArenaCharacter::SetWeapon(TSubclassOf<AWeapon> NewWeapon)
+{
+	Weapon = NewWeapon;
+	NewWeapon.GetDefaultObject()->SetOwningCharacter(this);
+}
+
+void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AArenaCharacter::PrimaryAttack);
+	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AArenaCharacter::SecondaryAttack);
+
+	//Setup basic movement
+	PlayerInputComponent->BindAxis("MoveForward", this, &AArenaCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AArenaCharacter::MoveRight);
+
+	PlayerInputComponent->BindAxis("LookUp", this, &AArenaCharacter::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("Turn", this, &AArenaCharacter::AddControllerYawInput);
+
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AArenaCharacter::BeginCrouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AArenaCharacter::EndCrouch);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+}
+
+void AArenaCharacter::MoveForward(float value)
+{
+	AddMovementInput(GetActorForwardVector() * value);
+}
+
+void AArenaCharacter::MoveRight(float value)
+{
+	AddMovementInput(GetActorRightVector() * value);
+}
+
+void AArenaCharacter::BeginCrouch()
+{
+	Crouch();
+}
+
+void AArenaCharacter::EndCrouch()
+{
+	UnCrouch();
+}
+
+AAbility* AArenaCharacter::GetPrimaryAttack() const
+{
+	ensure(Weapon != nullptr);
+	return GetWeapon()->GetPrimaryAttack();
+}
+
+AAbility* AArenaCharacter::GetSecondaryAttack() const
+{
+	ensure(Weapon != nullptr);
+	return GetWeapon()->GetSecondaryAttack();
 }
 
 bool AArenaCharacter::Respawn()
@@ -85,4 +136,13 @@ void AArenaCharacter::SecondaryAttack()
 void AArenaCharacter::Improve()
 {
 	return Weapon.GetDefaultObject()->ExecuteImprove();
+}
+
+FVector AArenaCharacter::GetPawnViewLocation() const
+{
+	if (CameraComp)
+	{
+		return CameraComp->GetComponentLocation();
+	}
+	return Super::GetPawnViewLocation();
 }
