@@ -8,6 +8,7 @@
 
 class AAbility;
 class AArenaCharacter;
+class USkeletalMeshComponent;
 
 UCLASS( abstract )
 class APPORELGAME_API AWeapon : public AActor
@@ -29,6 +30,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	USkeletalMeshComponent* MeshComp;
+
 public:	
 	// Sets default values for this actor's properties
 	AWeapon();
@@ -36,7 +40,7 @@ public:
 	UFUNCTION( BlueprintCallable )
 	AArenaCharacter* GetOwningCharacter() const;
 
-	void SetOwningCharacter(AArenaCharacter* NewOwningCharacter);
+	void SetOwningCharacter(AArenaCharacter* NewOwningCharacter);	
 
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetPrimaryAttack() const;

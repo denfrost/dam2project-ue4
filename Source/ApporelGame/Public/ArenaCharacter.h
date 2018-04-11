@@ -25,14 +25,15 @@ private:
 	TSubclassOf<AWeapon> Weapon = nullptr;
 
 protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* CameraComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SprinArmComp;
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 	void MoveForward(float value);
 
@@ -45,7 +46,7 @@ protected:
 public:
 	AArenaCharacter();
 
-	const FName GRAB_POINT_SOCKET_NAME = FName("GrabPoint");
+	const FName GRAB_POINT_SOCKET_NAME = FName("WeaponSocket");
 
 	UFUNCTION( BlueprintCallable )
 	AWeapon* GetWeapon() const;

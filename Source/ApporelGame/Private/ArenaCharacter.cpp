@@ -35,13 +35,20 @@ void AArenaCharacter::BeginPlay()
 	}
 	SetWeapon(Weapon); // To call Weapon->SetOwningCharacter(this)
 
+	if (GetWeapon()->GetPrimaryAttack() == nullptr || GetWeapon()->GetSecondaryAttack() == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have some ability!"), *GetName());
+		return;
+	}
+
 	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
 	GetWeapon()->GetPrimaryAttack()->SetLastUse(-GetWeapon()->GetPrimaryAttack()->GetCooldown());
 	GetWeapon()->GetSecondaryAttack()->SetLastUse(-GetWeapon()->GetSecondaryAttack()->GetCooldown());
 
 	// Spawn the Weapon and attach it to the player
 	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
-	Spawned->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform, GRAB_POINT_SOCKET_NAME);
+
+	Spawned->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
 }
 
 AWeapon* AArenaCharacter::GetWeapon() const
