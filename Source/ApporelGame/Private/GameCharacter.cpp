@@ -45,6 +45,21 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AGameCharacter::ExecuteUltimateAbility);
 }
 
+int32 AGameCharacter::GetMaxHealth() const
+{
+	return MaxHealth;
+}
+
+int32 AGameCharacter::GetCurrentHealth() const
+{
+	return CurrentHealth;
+}
+
+float AGameCharacter::GetNormalisedHealth() const
+{
+	return MaxHealth / (float)CurrentHealth;
+}
+
 ETeam AGameCharacter::GetTeam() const
 {
 	AGameController* Controller = Cast<AGameController>(GetController());

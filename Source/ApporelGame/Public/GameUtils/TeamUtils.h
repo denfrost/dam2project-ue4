@@ -22,6 +22,13 @@ class APPORELGAME_API UTeamUtils : public UObject
 {
 	GENERATED_BODY()
 
-	// TODO add some kinky methods
-};
+	// Set this to a valid world right after creation
+	UPROPERTY(Transient)
+	UWorld* World;
 
+	// Begin UObject interface
+	virtual class UWorld* GetWorld() const override;
+
+	// Returns all the game characters from a given team
+	//TArray<class AGameCharacter*> GetCharactersFromTeam(ETeam Team);
+};

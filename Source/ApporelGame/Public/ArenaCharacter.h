@@ -76,8 +76,6 @@ public:
 	// Delegate method for Weapon$Improve()
 	void Improve();
 
-	/**
-	* Override a la funcion de pawn para definir la vista del pawn en la camara y no en la cabeza del pawn.
-	*/
+	// Pawn function override to define the character's view point on the camera instead of on the pawn's head
 	virtual FVector GetPawnViewLocation() const override;
 };
