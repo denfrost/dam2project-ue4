@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "RespawnVolume.h"
+#include "GameCharacter.h"
+#include "GameUtils/TeamUtils.h"
 
 #define OUT
 
@@ -15,14 +17,18 @@ void ARespawnVolume::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// TODO
-	// get all players from team (this respawn team)
-	// for each player
-		// add the respawn as OnDeath listener
+	UTeamUtils* TeamUtils = NewObject<UTeamUtils>();
+	TArray<AGameCharacter*> Characters = TeamUtils->FindCharactersFromTeam(GetWorld(), Team);
+
+	for (AGameCharacter* Character : Characters)
+	{
+		Character->OnDeathDelegate.AddUniqueDynamic(this, &ARespawnVolume::Respawn);
+	}
 }
 
-void ARespawnVolume::Respawn(class AGameCharacter* GameCharacter)
+void ARespawnVolume::Respawn(AGameCharacter* GameCharacter)
 {
+	UE_LOG(LogTemp, Warning, TEXT("%s RESPAWN"), *GameCharacter->GetName());
 	// TODO
 	// invalidate dead player
 	// start a timer with TimeToRespawn

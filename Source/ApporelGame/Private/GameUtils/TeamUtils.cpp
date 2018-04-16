@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#define OUT
-
+#include "TeamUtils.h"
 #include "GameCharacter.h"
 #include "Runtime/Engine/Public/EngineUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/Actor.h"
-#include "TeamUtils.h"
+
+#define OUT
 
 UWorld* UTeamUtils::GetWorld() const
 {
@@ -24,11 +24,11 @@ void UTeamUtils::FindAllActors(UWorld* World, TArray<T*>& Out)
 	}
 }
 
-TArray<class AGameCharacter*> UTeamUtils::FindCharactersFromTeam(ETeam Team)
+TArray<class AGameCharacter*> UTeamUtils::FindCharactersFromTeam(UWorld* World, ETeam Team)
 {
 	TArray<AGameCharacter*>		CharactersFromTeam;
 	TArray<AGameCharacter*>		Characters;
-	FindAllActors( GetWorld(), OUT Characters );
+	FindAllActors( World, OUT Characters );
 
 	for (AGameCharacter* Character : Characters)
 	{

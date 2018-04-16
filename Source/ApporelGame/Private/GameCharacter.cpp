@@ -34,6 +34,11 @@ void AGameCharacter::BeginPlay()
 void AGameCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (GetActorLocation().Z < -100)
+	{
+		OnDeathDelegate.Broadcast(this);
+	}
 }
 
 // Called to bind functionality to input

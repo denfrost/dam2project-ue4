@@ -25,7 +25,8 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	float TimeToRespawn;
 
-	void Respawn(class AGameCharacter* GameCharacter);
+	UFUNCTION()
+	void Respawn(AGameCharacter* GameCharacter);
 
 protected:
 

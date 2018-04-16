@@ -7,10 +7,9 @@
 #include "GameFramework/Character.h"
 #include "GameCharacter.generated.h"
 
-class AGameController;
 class AAbility;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeath, AGameCharacter*, GameCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeathDelegate, AGameCharacter*, GameCharacter);
 
 UCLASS( abstract )
 class APPORELGAME_API AGameCharacter : public ACharacter
@@ -20,8 +19,6 @@ class APPORELGAME_API AGameCharacter : public ACharacter
 protected:
 	// Called when spawned
 	virtual void BeginPlay() override;
-
-	FOnDeath OnDeathEvent;
 
 	// The initial health of the character (could be modified in game)
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
@@ -42,6 +39,11 @@ protected:
 	TSubclassOf<AAbility> UltimateAbility = nullptr;
 
 public:	
+
+	// The receiver of this character's death event
+	UPROPERTY( BlueprintAssignable )
+	FOnDeathDelegate OnDeathDelegate;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

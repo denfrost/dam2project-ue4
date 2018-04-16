@@ -17,10 +17,12 @@ enum class ETeam : uint8
 /**
 * Class containing diverse utility methods for Teams
 */
-UCLASS(abstract)
+UCLASS()
 class APPORELGAME_API UTeamUtils : public UObject
 {
 	GENERATED_BODY()
+
+private:
 
 	// Set this to a valid world right after creation
 	UPROPERTY(Transient)
@@ -29,10 +31,12 @@ class APPORELGAME_API UTeamUtils : public UObject
 	// UObject interface
 	virtual class UWorld* GetWorld() const override;
 
-	// Returns an array of T subclass of Actor
+public:
+
+	// Returns an array of all spawned actors of a class T
 	template<typename T>
 	void FindAllActors(UWorld* World, TArray<T*>& Out);
 
-	// Returns all the game characters from a given team
-	TArray<class AGameCharacter*> FindCharactersFromTeam(ETeam Team);
+	// Returns all the spawned game characters from a given team
+	TArray<class AGameCharacter*> FindCharactersFromTeam(UWorld* World, ETeam Team);
 };
