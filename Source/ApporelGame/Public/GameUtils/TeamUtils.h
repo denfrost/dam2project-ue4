@@ -26,9 +26,13 @@ class APPORELGAME_API UTeamUtils : public UObject
 	UPROPERTY(Transient)
 	UWorld* World;
 
-	// Begin UObject interface
+	// UObject interface
 	virtual class UWorld* GetWorld() const override;
 
+	// Returns an array of T subclass of Actor
+	template<typename T>
+	void FindAllActors(UWorld* World, TArray<T*>& Out);
+
 	// Returns all the game characters from a given team
-	//TArray<class AGameCharacter*> GetCharactersFromTeam(ETeam Team);
+	TArray<class AGameCharacter*> FindCharactersFromTeam(ETeam Team);
 };

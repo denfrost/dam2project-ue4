@@ -43,6 +43,10 @@ public:
 	UFUNCTION( BlueprintCallable )
 	float GetCooldown() const;
 
+	// Returns the remaining cooldown for this ability
+	UFUNCTION(BlueprintCallable)
+	float GetNormalisedRemainingCooldown() const;
+
 	UFUNCTION( BlueprintCallable )
 	void SetCooldown(float NewCooldown);
 
@@ -57,5 +61,5 @@ public:
 
 	void InternalExecute(AActor* executor);
 
-	bool CanBeExecuted(const AActor* executor);
+	bool CanBeExecuted(const AActor* executor) const;
 };

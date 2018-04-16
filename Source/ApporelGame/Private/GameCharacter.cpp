@@ -57,7 +57,7 @@ int32 AGameCharacter::GetCurrentHealth() const
 
 float AGameCharacter::GetNormalisedHealth() const
 {
-	return MaxHealth / (float)CurrentHealth;
+	return CurrentHealth / (float)MaxHealth;
 }
 
 ETeam AGameCharacter::GetTeam() const
