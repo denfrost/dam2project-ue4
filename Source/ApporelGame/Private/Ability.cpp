@@ -51,6 +51,11 @@ void AAbility::NotifyBlueprintCouldNotExecute()
 	bCanBlueprintExecute = false;
 }
 
+void AAbility::ExecuteAbility_Implementation(ACharacter* executor)
+{
+
+}
+
 void AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
