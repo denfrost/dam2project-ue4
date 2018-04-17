@@ -14,6 +14,5 @@ class APPORELGAME_API ARacingCharacter : public AGameCharacter
 {
 	GENERATED_BODY()
 	
-public:
-	bool Respawn() override;	
+		// TODO 2.0 racing
 };

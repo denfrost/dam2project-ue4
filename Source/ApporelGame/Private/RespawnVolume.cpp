@@ -3,6 +3,7 @@
 #include "RespawnVolume.h"
 #include "GameCharacter.h"
 #include "GameUtils/TeamUtils.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 
 #define OUT
 
@@ -22,15 +23,30 @@ void ARespawnVolume::BeginPlay()
 
 	for (AGameCharacter* Character : Characters)
 	{
-		Character->OnDeathDelegate.AddUniqueDynamic(this, &ARespawnVolume::Respawn);
+		Character->OnDeathDelegate.AddUniqueDynamic(this, &ARespawnVolume::ReceiveDeadCharacter);
 	}
 }
 
-void ARespawnVolume::Respawn(AGameCharacter* GameCharacter)
+void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* GameCharacter)
 {
 	UE_LOG(LogTemp, Warning, TEXT("%s RESPAWN"), *GameCharacter->GetName());
-	// TODO
-	// invalidate dead player
-	// start a timer with TimeToRespawn
-	// on timer finish teleport dead player to a random point of the volume
+	//GameCharacter->StartSpectatingOnly();
+	CharactersToRespawn.Add(GameCharacter);
+
+	FTimerHandle TimerHandle;
+	GetWorldTimerManager().SetTimer
+	(
+		TimerHandle,
+		this,
+		&ARespawnVolume::RespawnCharacter,
+		TimeToRespawn,
+		false
+	);
+}
+
+void ARespawnVolume::RespawnCharacter()
+{
+	auto CharacterToRespawn = CharactersToRespawn.Pop();
+	CharacterToRespawn->Dead = false; // TODO remove, respawn testing
+	CharacterToRespawn->SetActorLocation(GetActorLocation());
 }

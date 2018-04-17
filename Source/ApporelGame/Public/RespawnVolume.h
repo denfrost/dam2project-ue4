@@ -26,7 +26,12 @@ private:
 	float TimeToRespawn;
 
 	UFUNCTION()
-	void Respawn(AGameCharacter* GameCharacter);
+	void ReceiveDeadCharacter(AGameCharacter* GameCharacter);
+
+	UFUNCTION()
+	void RespawnCharacter();
+
+	TArray<AGameCharacter*> CharactersToRespawn;
 
 protected:
 

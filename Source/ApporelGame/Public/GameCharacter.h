@@ -50,6 +50,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Delegate method for PlayerController#StartSpectatingOnly
+	virtual void StartSpectatingOnly();
+
 	UFUNCTION( BlueprintCallable )
 	int32 GetMaxHealth() const;
 
@@ -66,13 +69,11 @@ public:
 	UFUNCTION( BlueprintCallable )
 	void SetTeam(ETeam Team);
 
-	void OnDeath();
-
-	virtual bool Respawn();
-
 	virtual void ExecutePrimaryAbility();
 
 	virtual void ExecuteSecondaryAbility();
 
 	virtual void ExecuteUltimateAbility();
+
+	bool Dead = false; // TODO remove, respawn testing
 };

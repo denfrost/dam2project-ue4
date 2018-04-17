@@ -34,7 +34,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SprinArmComp;
 
-
 	void MoveForward(float value);
 
 	void MoveRight(float value);
@@ -64,8 +63,6 @@ public:
 	// Returns the secondary attack of this Character's Weapon
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetSecondaryAttack() const;
-
-	bool Respawn() override;
 
 	// Delegate method for Weapon$PrimaryAttack()
 	void PrimaryAttack();

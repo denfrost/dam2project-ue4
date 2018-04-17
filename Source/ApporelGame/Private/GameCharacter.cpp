@@ -2,6 +2,7 @@
 
 #include "GameCharacter.h"
 #include "GameController.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
 
 // Called when the game starts or when spawned
@@ -35,8 +36,10 @@ void AGameCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GetActorLocation().Z < -100)
+	// TODO remove, respawn testing
+	if (GetActorLocation().Z < -100 && !Dead)
 	{
+		Dead = true;
 		OnDeathDelegate.Broadcast(this);
 	}
 }
@@ -48,6 +51,13 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("PrimaryAbility", IE_Pressed, this, &AGameCharacter::ExecutePrimaryAbility);
 	PlayerInputComponent->BindAction("SecondaryAbility", IE_Pressed, this, &AGameCharacter::ExecuteSecondaryAbility);
 	PlayerInputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AGameCharacter::ExecuteUltimateAbility);
+}
+
+void AGameCharacter::StartSpectatingOnly()
+{
+	// TODO remove technical debt here when AI is implemented, otherwise it won't be able to use this class
+	AGameController* GameController = Cast<AGameController>(GetController());
+	GameController->StartSpectatingOnly();
 }
 
 int32 AGameCharacter::GetMaxHealth() const
@@ -77,17 +87,6 @@ void AGameCharacter::SetTeam(ETeam Team)
 	AGameController* Controller = Cast<AGameController>(GetController());
 	if (Controller == nullptr) return;
 	Controller->SetTeam(Team);
-}
-
-void AGameCharacter::OnDeath()
-{
-	// TODO set events and shit
-}
-
-bool AGameCharacter::Respawn()
-{
-	UE_LOG(LogTemp, Error, TEXT("This is a pure virtual method"));
-	return false;
 }
 
 void AGameCharacter::ExecutePrimaryAbility()
