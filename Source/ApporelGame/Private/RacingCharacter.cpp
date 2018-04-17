@@ -2,8 +2,4 @@
 
 #include "RacingCharacter.h"
 
-// TODO implement mehtods
-bool ARacingCharacter::Respawn()
-{
-	return false;
-}
+// TODO 2.0 racing

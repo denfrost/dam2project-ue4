@@ -34,7 +34,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SprinArmComp;
 
-
 	void MoveForward(float value);
 
 	void MoveRight(float value);
@@ -65,8 +64,6 @@ public:
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetSecondaryAttack() const;
 
-	bool Respawn() override;
-
 	// Delegate method for Weapon$PrimaryAttack()
 	void PrimaryAttack();
 
@@ -76,8 +73,6 @@ public:
 	// Delegate method for Weapon$Improve()
 	void Improve();
 
-	/**
-	* Override a la funcion de pawn para definir la vista del pawn en la camara y no en la cabeza del pawn.
-	*/
+	// Pawn function override to define the character's view point on the camera instead of on the pawn's head
 	virtual FVector GetPawnViewLocation() const override;
 };

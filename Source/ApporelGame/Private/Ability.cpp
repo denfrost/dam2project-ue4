@@ -24,6 +24,12 @@ float AAbility::GetCooldown() const
 	return Cooldown;
 }
 
+float AAbility::GetNormalisedRemainingCooldown() const
+{
+	// TODO implement
+	return 0.0;
+}
+
 void AAbility::SetCooldown(float NewCooldown)
 {
 	this->Cooldown = NewCooldown;
@@ -48,7 +54,7 @@ void AAbility::InternalExecute(AActor* executor)
 	}
 }
 
-bool AAbility::CanBeExecuted(const AActor* executor)
+bool AAbility::CanBeExecuted(const AActor* executor) const
 {
 	float Now = executor->GetWorld()->TimeSeconds;
 	if (Now - LastUse > Cooldown)

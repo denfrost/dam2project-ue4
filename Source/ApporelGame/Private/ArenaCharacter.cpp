@@ -114,12 +114,6 @@ AAbility* AArenaCharacter::GetSecondaryAttack() const
 	return GetWeapon()->GetSecondaryAttack();
 }
 
-bool AArenaCharacter::Respawn()
-{
-	// TODO implement
-	return false;
-}
-
 void AArenaCharacter::PrimaryAttack()
 {
 	if (Weapon == nullptr)
