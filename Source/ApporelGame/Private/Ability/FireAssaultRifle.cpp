@@ -25,7 +25,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(AActor* executor)
 		return;
 	}
 
-	auto* AsssaultRiffle = Character->GetWeapon();
+	AAssaultRifle* AsssaultRiffle = Cast<AAssaultRifle>(Character->GetWeapon());
 	if (!AsssaultRiffle)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No weapon"));
@@ -56,7 +56,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(AActor* executor)
 	//El siguiente metodo traza una linea desde el punto de vista del propietario del arma hasta 100 metros en esa direccion.
 	//Se le pasa el struct hit que sera llenado en caso de encontrar un actor con los parametros de condicion especificados
 	//en el query params y retornara true si ha encontrado dicho actor.
-	if (WorldContext->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+	if (WorldContext->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
 	{
 		//Blocking hit! Process Damage
 
@@ -70,4 +70,14 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(AActor* executor)
 	}
 	DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 3.0f, 0, 3.0f);
 
+
+// 	if (TracerEffect)
+// 	{
+// 		FVector MuzzleLocation = MeshComp->GetSocketLocation(AsssaultRiffle->GetMuzzleSocketName());
+// 		UParticleSystemComponent* TracerComp = UGameplayStatics::SpawnEmitterAtLocation(WorldContext, TracerEffect, MuzzleLocation);
+// 		if (TracerComp)
+// 		{
+// 			TracerComp->SetVectorParameter(TracerTargetName, TracerEndPoint);
+// 		}
+// 	}
 }
