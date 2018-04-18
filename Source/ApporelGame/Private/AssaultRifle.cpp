@@ -5,6 +5,9 @@
 #include "Particles/ParticleSystem.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "ArenaCharacter.h"
+#include "Engine/World.h"
+//TODO remove this Above Shit 
 
 AAssaultRifle::AAssaultRifle()
 {
@@ -27,7 +30,13 @@ void AAssaultRifle::ExecutePrimaryAttack()
 
 	if (MuzzleEffect)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *MeshComp->GetFName().ToString());
+		
+		UWorld* World = GetOwningCharacter()->GetWorld();
+		if (!World)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAAAAAAA"));
+
+		}
 		//Mostramos efecto en cañon del arma
 		UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, MeshComp, MuzzleSocketName);
 	}
