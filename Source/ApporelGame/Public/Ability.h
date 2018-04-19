@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
 #include "Ability.generated.h"
+
+class ACharacter;
 
 /**
  * Extend this class with a Blueprint to define the damage, cooldown
@@ -57,9 +58,9 @@ public:
 
 	// This defines the behavior the ability will have if it can be casted
 	UFUNCTION( BlueprintImplementableEvent )
-	void ExecuteAbility(AActor* executor);
+	void ExecuteAbility(ACharacter* executor);
 
-	void InternalExecute(AActor* executor);
+	void InternalExecute(ACharacter* executor);
 
-	bool CanBeExecuted(const AActor* executor) const;
+	bool CanBeExecuted(const ACharacter* executor) const;
 };
