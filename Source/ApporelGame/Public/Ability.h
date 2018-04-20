@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
 #include "Ability.generated.h"
+
+class ACharacter;
 
 /**
  * Extend this class with a Blueprint to define the damage, cooldown
@@ -30,6 +31,8 @@ private:
 
 	float LastUse;
 
+	bool bCanBlueprintExecute;
+
 public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -44,7 +47,7 @@ public:
 	float GetCooldown() const;
 
 	// Returns the remaining cooldown for this ability
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	float GetNormalisedRemainingCooldown() const;
 
 	UFUNCTION( BlueprintCallable )
@@ -57,9 +60,13 @@ public:
 
 	// This defines the behavior the ability will have if it can be casted
 	UFUNCTION( BlueprintImplementableEvent )
-	void ExecuteAbility(AActor* executor);
+	void ExecuteAbility(ACharacter* executor);
 
-	void InternalExecute(AActor* executor);
+	// This function must be called if the ability couldn't be executed because of the BP logic
+	UFUNCTION( BlueprintCallable )
+	void NotifyBlueprintCouldNotExecute();
 
-	bool CanBeExecuted(const AActor* executor) const;
+	void InternalExecute(ACharacter* executor);
+
+	bool CanBeExecuted(const ACharacter* executor) const;
 };
