@@ -31,7 +31,7 @@ void AAssaultRifle::ExecutePrimaryAttack()
 	if (MuzzleEffect)
 	{
 		
-		UWorld* World = GetOwningCharacter()->GetWorld();
+		UWorld* World = GetWorld();
 		if (!World)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAAAAAAA"));

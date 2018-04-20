@@ -23,6 +23,7 @@ AArenaCharacter* AWeapon::GetOwningCharacter() const
 void AWeapon::SetOwningCharacter(AArenaCharacter* NewOwningCharacter)
 {
 	OwningCharacter = NewOwningCharacter;
+	SetOwner(NewOwningCharacter);
 }
 
 AAbility* AWeapon::GetPrimaryAttack() const

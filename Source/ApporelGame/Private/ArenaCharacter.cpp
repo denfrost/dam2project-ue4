@@ -46,9 +46,11 @@ void AArenaCharacter::BeginPlay()
 	GetWeapon()->GetSecondaryAttack()->SetLastUse(-GetWeapon()->GetSecondaryAttack()->GetCooldown());
 
 	// Spawn the Weapon and attach it to the player
-	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
+	AWeapon* Spawned = GetWorld()->SpawnActor<AWeapon>(GetWeapon()->GetClass());
 
 	Spawned->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
+	Weapon = NewObject<AWeapon>(this, Spawned);
+
 }
 
 AWeapon* AArenaCharacter::GetWeapon() const
