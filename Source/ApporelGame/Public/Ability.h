@@ -31,6 +31,8 @@ private:
 
 	float LastUse;
 
+	bool bCanBlueprintExecute;
+
 public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -45,7 +47,7 @@ public:
 	float GetCooldown() const;
 
 	// Returns the remaining cooldown for this ability
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	float GetNormalisedRemainingCooldown() const;
 
 	UFUNCTION( BlueprintCallable )
@@ -59,6 +61,10 @@ public:
 	// This defines the behavior the ability will have if it can be casted
 	UFUNCTION( BlueprintImplementableEvent )
 	void ExecuteAbility(ACharacter* executor);
+
+	// This function must be called if the ability couldn't be executed because of the BP logic
+	UFUNCTION( BlueprintCallable )
+	void NotifyBlueprintCouldNotExecute();
 
 	void InternalExecute(ACharacter* executor);
 

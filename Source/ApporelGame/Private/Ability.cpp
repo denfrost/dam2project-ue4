@@ -46,12 +46,21 @@ void AAbility::SetLastUse(float NewLastUse)
 	LastUse = NewLastUse;
 }
 
+void AAbility::NotifyBlueprintCouldNotExecute()
+{
+	bCanBlueprintExecute = false;
+}
+
 void AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
 	{
 		ExecuteAbility(executor);
-		LastUse = executor->GetWorld()->TimeSeconds;
+		if (bCanBlueprintExecute)
+		{
+			LastUse = executor->GetWorld()->TimeSeconds;
+		}
+		bCanBlueprintExecute = true;
 	}
 }
 
