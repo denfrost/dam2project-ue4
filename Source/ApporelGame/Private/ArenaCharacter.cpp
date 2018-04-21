@@ -35,6 +35,7 @@ void AArenaCharacter::BeginPlay()
 	}
 	SetWeapon(Weapon); // To call Weapon->SetOwningCharacter(this)
 
+	//TODO Refactor this
 	if (GetWeapon()->GetPrimaryAttack() == nullptr || GetWeapon()->GetSecondaryAttack() == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have some ability!"), *GetName());
@@ -49,8 +50,6 @@ void AArenaCharacter::BeginPlay()
 	AWeapon* Spawned = GetWorld()->SpawnActor<AWeapon>(GetWeapon()->GetClass());
 
 	Spawned->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
-	Weapon = NewObject<AWeapon>(this, Spawned);
-
 }
 
 AWeapon* AArenaCharacter::GetWeapon() const

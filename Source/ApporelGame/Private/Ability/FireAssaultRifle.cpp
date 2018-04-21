@@ -8,7 +8,7 @@
 
 #define Out
 
-void AFireAssaultRifle::ExecuteAbility_Implementation(AActor* executor)
+void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 {
 
 	UWorld* WorldContext = executor->GetWorld();

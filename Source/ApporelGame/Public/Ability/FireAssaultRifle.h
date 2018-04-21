@@ -15,7 +15,7 @@ class APPORELGAME_API AFireAssaultRifle : public AAbility
 	GENERATED_BODY()
 
 protected:
-	virtual void ExecuteAbility_Implementation(AActor* executor) override;
+	virtual void ExecuteAbility_Implementation(ACharacter* executor) override;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> DamageType;

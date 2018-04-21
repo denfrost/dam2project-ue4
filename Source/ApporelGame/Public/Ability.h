@@ -59,18 +59,16 @@ public:
 	void SetLastUse(float NewLastUse);
 
 	// This defines the behavior the ability will have if it can be casted
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION( BlueprintNativeEvent )
 	void ExecuteAbility(ACharacter* executor);
+
+	virtual void ExecuteAbility_Implementation(ACharacter* executor);
 
 	// This function must be called if the ability couldn't be executed because of the BP logic
 	UFUNCTION( BlueprintCallable )
 	void NotifyBlueprintCouldNotExecute();
 
 	void InternalExecute(ACharacter* executor);
-
-	virtual void ExecuteAbility_Implementation(ACharacter* executor);
-
-	void InternalExecute(AActor* executor);
 
 	bool CanBeExecuted(const ACharacter* executor) const;
 };
