@@ -3,6 +3,7 @@
 #include "Ability.h"
 #include "Engine/World.h"
 #include "Misc/DateTime.h"
+#include "GameFramework/Character.h"
 
 void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
@@ -45,16 +46,25 @@ void AAbility::SetLastUse(float NewLastUse)
 	LastUse = NewLastUse;
 }
 
-void AAbility::InternalExecute(AActor* executor)
+void AAbility::NotifyBlueprintCouldNotExecute()
+{
+	bCanBlueprintExecute = false;
+}
+
+void AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
 	{
 		ExecuteAbility(executor);
-		LastUse = executor->GetWorld()->TimeSeconds;
+		if (bCanBlueprintExecute)
+		{
+			LastUse = executor->GetWorld()->TimeSeconds;
+		}
+		bCanBlueprintExecute = true;
 	}
 }
 
-bool AAbility::CanBeExecuted(const AActor* executor) const
+bool AAbility::CanBeExecuted(const ACharacter* executor) const
 {
 	float Now = executor->GetWorld()->TimeSeconds;
 	if (Now - LastUse > Cooldown)
