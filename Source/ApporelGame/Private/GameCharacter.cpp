@@ -29,6 +29,9 @@ void AGameCharacter::BeginPlay()
 	PrimaryAbility.GetDefaultObject()->SetLastUse(-PrimaryAbility.GetDefaultObject()->GetCooldown());
 	SecondaryAbility.GetDefaultObject()->SetLastUse(-SecondaryAbility.GetDefaultObject()->GetCooldown());
 	UltimateAbility.GetDefaultObject()->SetLastUse(-UltimateAbility.GetDefaultObject()->GetCooldown());
+
+	//Set the current health equal to max health at the begining
+	CurrentHealth = MaxHealth;
 }
 
 // Called every frame
