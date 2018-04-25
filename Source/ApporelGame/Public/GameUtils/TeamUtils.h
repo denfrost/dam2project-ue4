@@ -32,6 +32,7 @@ private:
 	virtual class UWorld* GetWorld() const override;
 
 public:
+	// TODO try to convert this methods in static ones
 
 	// Returns an array of all spawned actors of a class T
 	template<typename T>
