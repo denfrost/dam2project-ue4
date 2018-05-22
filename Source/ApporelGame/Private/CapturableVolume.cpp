@@ -25,7 +25,7 @@ void ACapturableVolume::BeginPlay()
 	LastCapturingTeam = ETeam::Neutral;
 }
 
-// Called every frame
+// Called every frame, so please REFACTOR THIS
 void ACapturableVolume::Tick(float DeltaTime)
 {
 	GetOverlappingActors(OUT OverlappingActors, AArenaCharacter::StaticClass());
