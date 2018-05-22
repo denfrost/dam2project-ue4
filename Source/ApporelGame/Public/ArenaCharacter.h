@@ -14,15 +14,18 @@ class USpringArmComponent;
 /**
  * The base class for all characters of the arena battle.
  */
-UCLASS( abstract )
+UCLASS(abstract)
 class APPORELGAME_API AArenaCharacter : public AGameCharacter
 {
 	GENERATED_BODY()
 
 private:
 	// The character's Weapon (holy fuck man descriptive AF feels like if this shit was created by Epic themselves)
-	UPROPERTY( EditAnywhere, Category = "Character Setup")
-	TSubclassOf<AWeapon> Weapon = nullptr;
+	UPROPERTY(EditAnywhere, Category = "Character Setup")
+	TSubclassOf<AWeapon> WeaponToSpawn;
+
+	UPROPERTY(EditAnywhere, Category = "Weapon")
+	AWeapon* CurrentWeapon;
 
 protected:
 	// Called when the game starts or when spawned
@@ -41,27 +44,33 @@ protected:
 	void BeginCrouch();
 
 	void EndCrouch();
-	
+
 public:
 	AArenaCharacter();
 
 	const FName GRAB_POINT_SOCKET_NAME = FName("WeaponSocket");
 
-	UFUNCTION( BlueprintCallable )
-	AWeapon* GetWeapon() const;
+	UFUNCTION(BlueprintCallable)
+	TSubclassOf<AWeapon> GetWeaponToSpawn() const;
+
+	UFUNCTION(BlueprintCallable)
+	void SetWeaponToSpawn(TSubclassOf<AWeapon> NewWeapon);
+
+	UFUNCTION(BlueprintCallable)
+	AWeapon* GetCurrentWeapon();
+
+	UFUNCTION(BlueprintCallable)
+	void SetCurrentWeapon(AWeapon* NewCurrentWeapon);
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
-	UFUNCTION( BlueprintCallable )
-	void SetWeapon(TSubclassOf<AWeapon> NewWeapon);
 
 	// Returns the primary attack of this Character's Weapon
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION(BlueprintCallable)
 	AAbility* GetPrimaryAttack() const;
 
 	// Returns the secondary attack of this Character's Weapon
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION(BlueprintCallable)
 	AAbility* GetSecondaryAttack() const;
 
 	// Delegate method for Weapon$PrimaryAttack()

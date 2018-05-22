@@ -18,11 +18,11 @@ class APPORELGAME_API AWeapon : public AActor
 private:	
 	// The primary attack of this Weapon, which will be executed when the owner pawn receives the PrimaryAttack input
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
-	TSubclassOf<AAbility> PrimaryAttack = nullptr;
+	TSubclassOf<AAbility> PrimaryAttack;
 
 	// The secondary attack of this Weapon, which will be executed when the owner pawn receives the SecondaryAttack input
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
-	TSubclassOf<AAbility> SecondaryAttack = nullptr;
+	TSubclassOf<AAbility> SecondaryAttack;
 
 	AArenaCharacter* OwningCharacter;
 

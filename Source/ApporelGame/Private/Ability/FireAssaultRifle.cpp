@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "FireAssaultRifle.h"
 #include "ArenaCharacter.h"
 #include "AssaultRifle.h"
@@ -9,8 +7,7 @@
 #define Out
 
 void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
-{
-
+{	
 	UWorld* WorldContext = executor->GetWorld();
 	if (!WorldContext)
 	{
@@ -25,7 +22,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		return;
 	}
 
-	AAssaultRifle* AsssaultRiffle = Cast<AAssaultRifle>(Character->GetWeapon());
+	AAssaultRifle* AsssaultRiffle = Cast<AAssaultRifle>(Character->GetCurrentWeapon());
 	if (!AsssaultRiffle)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No weapon"));
@@ -62,7 +59,6 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 
 		AActor* HitActor = Hit.GetActor();
 		UE_LOG(LogTemp, Warning, TEXT("HitActor name : %s"), *HitActor->GetName());
-
 
 		UGameplayStatics::ApplyPointDamage(HitActor, 20.0f, ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
 
