@@ -7,12 +7,11 @@
 // Sets default values
 AWeapon::AWeapon()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComp"));
 	RootComponent = MeshComp;
-
 }
 
 AArenaCharacter* AWeapon::GetOwningCharacter() const
@@ -23,6 +22,7 @@ AArenaCharacter* AWeapon::GetOwningCharacter() const
 void AWeapon::SetOwningCharacter(AArenaCharacter* NewOwningCharacter)
 {
 	OwningCharacter = NewOwningCharacter;
+	SetOwner(NewOwningCharacter);
 }
 
 AAbility* AWeapon::GetPrimaryAttack() const
@@ -55,7 +55,6 @@ void AWeapon::BeginPlay()
 void AWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AWeapon::ExecutePrimaryAttack()
@@ -65,7 +64,14 @@ void AWeapon::ExecutePrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
 		return;
 	}
-	PrimaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter);
+	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
+	
+	if (!Owner)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon has no owner RIP"));
+		return;
+	}
+	PrimaryAttack.GetDefaultObject()->InternalExecute(Owner);
 }
 
 void AWeapon::ExecuteSecondaryAttack()
@@ -75,7 +81,10 @@ void AWeapon::ExecuteSecondaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
 		return;
 	}
-	SecondaryAttack.GetDefaultObject()->InternalExecute(OwningCharacter);
+	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
+	if (!Owner)
+		return;
+	SecondaryAttack.GetDefaultObject()->InternalExecute(Owner);
 }
 
 void AWeapon::ExecuteImprove()

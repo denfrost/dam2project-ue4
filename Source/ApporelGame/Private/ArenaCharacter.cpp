@@ -20,7 +20,6 @@ AArenaCharacter::AArenaCharacter()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComp->SetupAttachment(SprinArmComp);
-
 }
 
 // Called when the game starts or when spawned
@@ -28,39 +27,60 @@ void AArenaCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (Weapon == nullptr)
+	if (WeaponToSpawn == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	SetWeapon(Weapon); // To call Weapon->SetOwningCharacter(this)
 
-	if (GetWeapon()->GetPrimaryAttack() == nullptr || GetWeapon()->GetSecondaryAttack() == nullptr)
+	// Spawn the Weapon and attach it to the player
+	CurrentWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponToSpawn.GetDefaultObject()->GetClass());
+	CurrentWeapon->SetOwner(this);
+
+	if (!CurrentWeapon)
+	{
+		UE_LOG(LogTemp, Error, TEXT("NULL IN CURRENT WEAPON!"));
+		return;
+	}
+
+	CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
+	UE_LOG(LogTemp, Error, TEXT("Damage Ability 1 weapon : %d"), CurrentWeapon->GetPrimaryAttack()->GetDamage());
+
+	//TODO Refactor this
+	if (CurrentWeapon->GetPrimaryAttack() == nullptr || CurrentWeapon->GetSecondaryAttack() == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have some ability!"), *GetName());
 		return;
 	}
 
+	//TODO extracts to a method
 	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	GetWeapon()->GetPrimaryAttack()->SetLastUse(-GetWeapon()->GetPrimaryAttack()->GetCooldown());
-	GetWeapon()->GetSecondaryAttack()->SetLastUse(-GetWeapon()->GetSecondaryAttack()->GetCooldown());
-
-	// Spawn the Weapon and attach it to the player
-	auto Spawned = GetWorld()->SpawnActor(GetWeapon()->GetClass());
-
-	Spawned->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
+	CurrentWeapon->GetPrimaryAttack()->SetLastUse(-CurrentWeapon->GetPrimaryAttack()->GetCooldown());
+	CurrentWeapon->GetSecondaryAttack()->SetLastUse(-CurrentWeapon->GetSecondaryAttack()->GetCooldown());
 }
 
-AWeapon* AArenaCharacter::GetWeapon() const
+TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const
 {
-	ensure(Weapon != nullptr);
-	return Weapon.GetDefaultObject();
+	ensure(WeaponToSpawn != nullptr);
+	return WeaponToSpawn;
 }
 
-void AArenaCharacter::SetWeapon(TSubclassOf<AWeapon> NewWeapon)
+void AArenaCharacter::SetWeaponToSpawn(TSubclassOf<AWeapon> NewWeaponToSpawn)
 {
-	Weapon = NewWeapon;
-	NewWeapon.GetDefaultObject()->SetOwningCharacter(this);
+	WeaponToSpawn = NewWeaponToSpawn;
+	NewWeaponToSpawn.GetDefaultObject()->SetOwningCharacter(this);
+}
+
+AWeapon* AArenaCharacter::GetCurrentWeapon()
+{
+	ensure(CurrentWeapon != nullptr);
+	return CurrentWeapon;
+}
+
+void AArenaCharacter::SetCurrentWeapon(AWeapon* NewCurrentWeapon)
+{
+	CurrentWeapon = NewCurrentWeapon;
+	NewCurrentWeapon->SetOwningCharacter(this);
 }
 
 void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
@@ -104,39 +124,39 @@ void AArenaCharacter::EndCrouch()
 
 AAbility* AArenaCharacter::GetPrimaryAttack() const
 {
-	ensure(Weapon != nullptr);
-	return GetWeapon()->GetPrimaryAttack();
+	ensure(CurrentWeapon != nullptr);
+	return CurrentWeapon->GetPrimaryAttack();
 }
 
 AAbility* AArenaCharacter::GetSecondaryAttack() const
 {
-	ensure(Weapon != nullptr);
-	return GetWeapon()->GetSecondaryAttack();
+	ensure(CurrentWeapon != nullptr);
+	return CurrentWeapon->GetSecondaryAttack();
 }
 
 void AArenaCharacter::PrimaryAttack()
 {
-	if (Weapon == nullptr)
+	if (CurrentWeapon == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return Weapon.GetDefaultObject()->ExecutePrimaryAttack();
+	return CurrentWeapon->ExecutePrimaryAttack();
 }
 
 void AArenaCharacter::SecondaryAttack()
 {
-	if (Weapon == nullptr)
+	if (CurrentWeapon == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return Weapon.GetDefaultObject()->ExecuteSecondaryAttack();
+	return CurrentWeapon->ExecuteSecondaryAttack();
 }
 
 void AArenaCharacter::Improve()
 {
-	return Weapon.GetDefaultObject()->ExecuteImprove();
+	return CurrentWeapon->ExecuteImprove();
 }
 
 FVector AArenaCharacter::GetPawnViewLocation() const

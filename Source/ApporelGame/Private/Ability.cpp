@@ -51,6 +51,11 @@ void AAbility::NotifyBlueprintCouldNotExecute()
 	bCanBlueprintExecute = false;
 }
 
+void AAbility::ExecuteAbility_Implementation(ACharacter* executor)
+{
+	//To override in c++ child class
+}
+
 void AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
@@ -67,9 +72,5 @@ void AAbility::InternalExecute(ACharacter* executor)
 bool AAbility::CanBeExecuted(const ACharacter* executor) const
 {
 	float Now = executor->GetWorld()->TimeSeconds;
-	if (Now - LastUse > Cooldown)
-	{
-		return true;
-	}
-	return false;
+	return (Now - LastUse) > Cooldown;
 }

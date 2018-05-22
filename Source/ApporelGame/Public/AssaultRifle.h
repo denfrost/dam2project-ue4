@@ -6,6 +6,8 @@
 #include "Weapon.h"
 #include "AssaultRifle.generated.h"
 
+class UParticleSystem;
+
 /**
  * 
  */
@@ -25,10 +27,11 @@ protected:
 	FName TracerTargetName;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UParticleSystem* TracerEffect;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UParticleSystem* MuzzleEffect;
+
+	UParticleSystem* GetMuzzleEffect();
+
+	virtual void ExecutePrimaryAttack() override;
 
 public:
 	AAssaultRifle();
