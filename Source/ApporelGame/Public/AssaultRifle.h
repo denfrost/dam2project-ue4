@@ -31,6 +31,8 @@ protected:
 
 	UParticleSystem* GetMuzzleEffect();
 
+	FName GetMuzzleSocketName();
+
 	virtual void ExecutePrimaryAttack() override;
 
 public:

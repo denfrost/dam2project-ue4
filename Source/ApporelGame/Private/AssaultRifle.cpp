@@ -24,18 +24,21 @@ UParticleSystem* AAssaultRifle::GetMuzzleEffect()
 	return MuzzleEffect;
 }
 
+FName AAssaultRifle::GetMuzzleSocketName()
+{
+	return MuzzleSocketName;
+}
+
 void AAssaultRifle::ExecutePrimaryAttack()
 {
 	Super::ExecutePrimaryAttack();
 
 	if (MuzzleEffect)
 	{
-		
 		UWorld* World = GetWorld();
 		if (!World)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAAAAAAA"));
-
+			UE_LOG(LogTemp, Warning, TEXT("No world available context"));
 		}
 		//Mostramos efecto en cañon del arma
 		UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, MeshComp, MuzzleSocketName);

@@ -48,6 +48,9 @@ public:
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetSecondaryAttack() const;
 
+	UFUNCTION(BlueprintCallable)
+	USkeletalMeshComponent* GetMeshComp() const;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

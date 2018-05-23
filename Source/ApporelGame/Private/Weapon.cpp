@@ -35,6 +35,11 @@ AAbility* AWeapon::GetSecondaryAttack() const
 	return SecondaryAttack.GetDefaultObject();
 }
 
+USkeletalMeshComponent* AWeapon::GetMeshComp() const
+{
+	return MeshComp;
+}
+
 // Called when the game starts or when spawned
 void AWeapon::BeginPlay()
 {
@@ -64,11 +69,11 @@ void AWeapon::ExecutePrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
 		return;
 	}
+
 	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
-	
 	if (!Owner)
 	{
-		UE_LOG(LogTemp, Error, TEXT("The weapon has no owner RIP"));
+		UE_LOG(LogTemp, Error, TEXT("The weapon: %s has no Owner"), *this->GetName());
 		return;
 	}
 	PrimaryAttack.GetDefaultObject()->InternalExecute(Owner);
