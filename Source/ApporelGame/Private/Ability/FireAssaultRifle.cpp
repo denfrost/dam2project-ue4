@@ -3,6 +3,7 @@
 #include "AssaultRifle.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 #define Out
 
@@ -11,7 +12,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	UWorld* WorldContext = executor->GetWorld();
 	if (!WorldContext)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("NO World Context Available!"));
+		UE_LOG(LogTemp, Warning, TEXT("No world context available!"));
 		return;
 	}
 
@@ -22,8 +23,8 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		return;
 	}
 
-	AAssaultRifle* AsssaultRiffle = Cast<AAssaultRifle>(Character->GetCurrentWeapon());
-	if (!AsssaultRiffle)
+	AAssaultRifle* AssaultRiffle = Cast<AAssaultRifle>(Character->GetCurrentWeapon());
+	if (!AssaultRiffle)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No weapon"));
 		return;
@@ -41,7 +42,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	//Ajustando la collision para que no choque contra el pawn ni el arma
 	FCollisionQueryParams QueryParams;
 	QueryParams.AddIgnoredActor(executor);
-	QueryParams.AddIgnoredActor(AsssaultRiffle);
+	QueryParams.AddIgnoredActor(AssaultRiffle);
 	QueryParams.bTraceComplex = true;
 
 	//Struct que contiene todos los datos del impacto
@@ -56,24 +57,28 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	if (WorldContext->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
 	{
 		//Blocking hit! Process Damage
-
 		AActor* HitActor = Hit.GetActor();
 		UE_LOG(LogTemp, Warning, TEXT("HitActor name : %s"), *HitActor->GetName());
 
 		UGameplayStatics::ApplyPointDamage(HitActor, 20.0f, ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
+		if (ImpactEffect)
+		{
+			//mostramos el efecto en el lugar de impacto
+			UGameplayStatics::SpawnEmitterAtLocation(WorldContext, ImpactEffect, Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
+		}
 
 		TracerEndPoint = Hit.ImpactPoint;
+		DrawDebugSphere(WorldContext, TracerEndPoint, 20, 8, FColor::Yellow, false, 1.0f);
 	}
-	DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 3.0f, 0, 3.0f);
+	//DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
 
-
-// 	if (TracerEffect)
-// 	{
-// 		FVector MuzzleLocation = MeshComp->GetSocketLocation(AsssaultRiffle->GetMuzzleSocketName());
-// 		UParticleSystemComponent* TracerComp = UGameplayStatics::SpawnEmitterAtLocation(WorldContext, TracerEffect, MuzzleLocation);
-// 		if (TracerComp)
-// 		{
-// 			TracerComp->SetVectorParameter(TracerTargetName, TracerEndPoint);
-// 		}
-// 	}
+	if (TracerEffect)
+	{
+		FVector MuzzleLocation = AssaultRiffle->GetMeshComp()->GetSocketLocation(AssaultRiffle->GetMuzzleSocketName());
+		UParticleSystemComponent* TracerComp = UGameplayStatics::SpawnEmitterAtLocation(WorldContext, TracerEffect, MuzzleLocation);
+		if (TracerComp)
+		{
+			TracerComp->SetVectorParameter(AssaultRiffle->GetTracerTargetName(), TracerEndPoint);
+		}
+	}
 }
