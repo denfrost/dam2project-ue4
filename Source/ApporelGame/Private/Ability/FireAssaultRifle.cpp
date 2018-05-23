@@ -3,6 +3,7 @@
 #include "AssaultRifle.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 #define Out
 
@@ -67,8 +68,9 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		}
 
 		TracerEndPoint = Hit.ImpactPoint;
+		DrawDebugSphere(WorldContext, TracerEndPoint, 20, 8, FColor::Yellow, false, 1.0f);
 	}
-	DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
+	//DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
 
 	if (TracerEffect)
 	{
@@ -76,7 +78,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		UParticleSystemComponent* TracerComp = UGameplayStatics::SpawnEmitterAtLocation(WorldContext, TracerEffect, MuzzleLocation);
 		if (TracerComp)
 		{
-			TracerComp->SetVectorParameter(TracerTargetName, TracerEndPoint);
+			TracerComp->SetVectorParameter(AssaultRiffle->GetTracerTargetName(), TracerEndPoint);
 		}
 	}
 }

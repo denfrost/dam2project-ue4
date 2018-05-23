@@ -29,6 +29,11 @@ FName AAssaultRifle::GetMuzzleSocketName()
 	return MuzzleSocketName;
 }
 
+FName AAssaultRifle::GetTracerTargetName()
+{
+	return TracerTargetName;
+}
+
 void AAssaultRifle::ExecutePrimaryAttack()
 {
 	Super::ExecutePrimaryAttack();

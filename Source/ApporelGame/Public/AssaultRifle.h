@@ -29,12 +29,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UParticleSystem* MuzzleEffect;
 
-	UParticleSystem* GetMuzzleEffect();
-
-	FName GetMuzzleSocketName();
-
 	virtual void ExecutePrimaryAttack() override;
 
 public:
 	AAssaultRifle();
+
+	FName GetMuzzleSocketName();
+
+	FName GetTracerTargetName();
+
+	UParticleSystem* GetMuzzleEffect();
 };
