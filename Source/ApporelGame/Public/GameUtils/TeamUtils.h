@@ -22,15 +22,6 @@ class APPORELGAME_API UTeamUtils : public UObject
 {
 	GENERATED_BODY()
 
-private:
-
-	// Set this to a valid world right after creation
-	UPROPERTY(Transient)
-	UWorld* World;
-
-	// UObject interface
-	virtual class UWorld* GetWorld() const override;
-
 public:
 	// TODO try to convert this methods in static ones
 

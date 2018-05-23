@@ -6,11 +6,6 @@
 
 #define OUT
 
-UWorld* UTeamUtils::GetWorld() const
-{
-	return World;
-}
-
 template<typename T>
 void UTeamUtils::FindAllActors(UWorld* World, TArray<T*>& Out)
 {
