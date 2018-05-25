@@ -3,12 +3,22 @@
 #include "ApporelGameGameModeBase.h"
 #include "TeamUtils.h"
 
-float AApporelGameGameModeBase::GetScoreTeam(ETeam Team)
+AApporelGameGameModeBase::AApporelGameGameModeBase()
+{
+	PrimaryActorTick.bCanEverTick = false;
+}
+
+void AApporelGameGameModeBase::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+int32 AApporelGameGameModeBase::GetScore(ETeam Team)
 {
 	return (Team == ETeam::Blue) ? ScoreTeamBlue : ScoreTeamRed;
 }
 
-void AApporelGameGameModeBase::IncrementScore(ETeam Team, float Score)
+void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
 {
 	switch (Team)
 	{
@@ -20,6 +30,12 @@ void AApporelGameGameModeBase::IncrementScore(ETeam Team, float Score)
 		break;
 	default:
 		break;
+	}
+
+	ETeam Winner = CheckWinner();
+	if (Winner != ETeam::Neutral)
+	{
+		NotifyWinner(Winner);
 	}
 }
 
@@ -36,4 +52,21 @@ void AApporelGameGameModeBase::ResetScore(ETeam Team)
 	default:
 		break;
 	}
+}
+
+ETeam AApporelGameGameModeBase::CheckWinner()
+{
+	if (ScoreTeamRed >= ScoreToWin)
+		return ETeam::Red;
+	else if (ScoreTeamBlue >= ScoreToWin)
+		return ETeam::Blue;
+
+	return ETeam::Neutral;
+}
+
+void AApporelGameGameModeBase::NotifyWinner(ETeam Team)
+{
+	FString WinnerName = Team == ETeam::Blue ? "Blue" : "Red";
+
+	UE_LOG(LogTemp, Warning, TEXT("Winner : %s"), *WinnerName);
 }
