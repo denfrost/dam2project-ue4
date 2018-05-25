@@ -3,6 +3,7 @@
 #include "CapturableVolume.h"
 #include "ArenaCharacter.h"
 #include "GameUtils/TeamUtils.h"
+#include "ApporelGameGameModeBase.h"
 
 #define OUT
 
@@ -39,6 +40,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Red;
 			OnCapture(ETeam::Red, OnCaptureAffectedActors);
+			StartScoreTimerForTeam(ETeam::Red);
 		}
 
 		// If the last capturing team isn't red but it has the advantage, then red team has neutralized the zone
@@ -46,6 +48,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Neutral;
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
+			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
 	}
 
@@ -56,12 +59,14 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Blue;
 			OnCapture(ETeam::Blue, OnCaptureAffectedActors);
+			StartScoreTimerForTeam(ETeam::Blue);
 		}
 
 		else if (LastCapturingTeam != ETeam::Blue && LastCapturingTeam != ETeam::Neutral)
 		{
 			LastCapturingTeam = ETeam::Neutral;
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
+			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
 	}
 
@@ -74,4 +79,16 @@ void ACapturableVolume::Tick(float DeltaTime)
 
 	CaptureState += TeamFactor;
 	CaptureState = FMath::Clamp(CaptureState, -CaptureThreshold, CaptureThreshold);
+}
+
+void ACapturableVolume::StartScoreTimerForTeam(ETeam Team)
+{
+	TimerDelegate.BindUFunction(this, FName("GiveScoreToTeam"), Team);
+	this->GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, 1.f, true);
+}
+
+void ACapturableVolume::GiveScoreToTeam(ETeam Team)
+{
+	AApporelGameGameModeBase* GameMode = Cast<AApporelGameGameModeBase>(this->GetWorld()->GetAuthGameMode());
+	GameMode->IncrementScore(Team, ScorePerSecond);
 }
