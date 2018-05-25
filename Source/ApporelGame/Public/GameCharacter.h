@@ -17,6 +17,7 @@ class APPORELGAME_API AGameCharacter : public ACharacter
 	GENERATED_BODY()
 
 protected:
+
 	// Called when spawned
 	virtual void BeginPlay() override;
 
@@ -39,19 +40,21 @@ protected:
 	TSubclassOf<AAbility> UltimateAbility = nullptr;
 
 public:	
+	
+	AGameCharacter();
 
 	// The receiver of this character's death event
 	UPROPERTY( BlueprintAssignable )
 	FOnDeathDelegate OnDeathDelegate;
-
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Delegate method for PlayerController#StartSpectatingOnly
 	virtual void StartSpectatingOnly();
+
+	// Called by the engine when actor damage is dealt
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController * EventInstigator, AActor * DamageCauser) override;
 
 	// Restores the specified amount of Health to the Character, stopping at MaxHealth
 	UFUNCTION( BlueprintCallable )
@@ -63,10 +66,10 @@ public:
 	UFUNCTION( BlueprintCallable )
 	int32 GetCurrentHealth() const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	void SetCurrentHealth(int32 Health);
 
-	// Returns the current health as a value between 0 and 1
+	// Returns the current health as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )
 	float GetNormalisedHealth() const;
 
@@ -76,11 +79,11 @@ public:
 	UFUNCTION( BlueprintCallable )
 	void SetTeam(ETeam Team);
 
+	virtual void RespawnAt(FVector Location);
+
 	virtual void ExecutePrimaryAbility();
 
 	virtual void ExecuteSecondaryAbility();
 
 	virtual void ExecuteUltimateAbility();
-
-	bool Dead = false; // TODO remove, respawn testing
 };

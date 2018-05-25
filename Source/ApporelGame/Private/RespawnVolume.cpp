@@ -10,7 +10,6 @@
 // Sets default values
 ARespawnVolume::ARespawnVolume()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 }
 
@@ -29,8 +28,6 @@ void ARespawnVolume::BeginPlay()
 
 void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* GameCharacter)
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s RESPAWN"), *GameCharacter->GetName());
-	//GameCharacter->StartSpectatingOnly();
 	CharactersToRespawn.Add(GameCharacter);
 
 	FTimerHandle TimerHandle;
@@ -47,6 +44,5 @@ void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* GameCharacter)
 void ARespawnVolume::RespawnCharacter()
 {
 	auto CharacterToRespawn = CharactersToRespawn.Pop();
-	CharacterToRespawn->Dead = false; // TODO remove, respawn testing
-	CharacterToRespawn->SetActorLocation(GetActorLocation());
+	CharacterToRespawn->RespawnAt(GetActorLocation());
 }
