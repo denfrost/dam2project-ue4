@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameUtils/TeamUtils.h"
 #include "Engine/TriggerBox.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "CapturableVolume.generated.h"
 
 /**
@@ -21,19 +22,31 @@ class APPORELGAME_API ACapturableVolume : public ATriggerBox
 	
 private:
 
-	// The number of points needed to capture this zone (+threshold = +hard)
+	// The number of points needed to capture this zone (+threshold -> +hard)
 	UPROPERTY( EditAnywhere, Category = "Setup" )
-	int32 CaptureThreshold;
+	int32 CaptureThreshold = 50;
 
 	// An array of referenced actors who will be affected as defined in OnCapture event when the zone is captured
 	UPROPERTY( EditAnywhere, Category = "Setup" )
 	TArray<AActor*> OnCaptureAffectedActors;
+
+	// The score this volume will give to the capturing team players each second
+	UPROPERTY( EditAnywhere, Category = "Setup" )
+	int32 ScorePerSecond = 10;
 
 	TArray<AActor*> OverlappingActors;
 
 	int32 CaptureState = 0;
 
 	ETeam LastCapturingTeam;
+
+	FTimerHandle TimerHandle;
+	FTimerDelegate TimerDelegate;
+
+	void StartScoreTimerForTeam(ETeam Team);
+
+	UFUNCTION()
+	void GiveScoreToTeam(ETeam Team);
 
 protected:
 
