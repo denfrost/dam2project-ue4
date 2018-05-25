@@ -30,21 +30,13 @@ void AGameCharacter::BeginPlay()
 	SecondaryAbility.GetDefaultObject()->SetLastUse(-SecondaryAbility.GetDefaultObject()->GetCooldown());
 	UltimateAbility.GetDefaultObject()->SetLastUse(-UltimateAbility.GetDefaultObject()->GetCooldown());
 
-	//Set the current health equal to max health at the begining
+	// Set the current health equal to max health at the beginning
 	CurrentHealth = MaxHealth;
 }
 
-// Called every frame
-void AGameCharacter::Tick(float DeltaTime)
+AGameCharacter::AGameCharacter()
 {
-	Super::Tick(DeltaTime);
-
-	// TODO remove, respawn testing
-	if (GetActorLocation().Z < -100 && !Dead)
-	{
-		Dead = true;
-		OnDeathDelegate.Broadcast(this);
-	}
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 // Called to bind functionality to input
@@ -61,6 +53,24 @@ void AGameCharacter::StartSpectatingOnly()
 	// TODO remove technical debt here when AI is implemented, otherwise it won't be able to use this class
 	AGameController* GameController = Cast<AGameController>(GetController());
 	GameController->StartSpectatingOnly();
+}
+
+float AGameCharacter::TakeDamage(
+	float DamageAmount, 
+	struct FDamageEvent const & DamageEvent, 
+	class AController * EventInstigator, 
+	AActor * DamageCauser)
+{
+	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
+	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
+
+	CurrentHealth -= DamageToApply;
+	if (CurrentHealth <= 0)
+	{
+		OnDeathDelegate.Broadcast(this);
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Damage Taken: %f\nCurrent HP: %d"), DamageAmount, CurrentHealth);
+	return DamageToApply;
 }
 
 void AGameCharacter::Heal(int32 Health)
@@ -101,6 +111,12 @@ void AGameCharacter::SetTeam(ETeam Team)
 	AGameController* Controller = Cast<AGameController>(GetController());
 	if (Controller == nullptr) return;
 	Controller->SetTeam(Team);
+}
+
+void AGameCharacter::RespawnAt(FVector Location)
+{
+	this->SetActorLocation(Location);
+	this->SetCurrentHealth(MaxHealth);
 }
 
 void AGameCharacter::ExecutePrimaryAbility()
