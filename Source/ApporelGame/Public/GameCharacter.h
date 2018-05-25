@@ -53,11 +53,18 @@ public:
 	// Delegate method for PlayerController#StartSpectatingOnly
 	virtual void StartSpectatingOnly();
 
+	// Restores the specified amount of Health to the Character, stopping at MaxHealth
+	UFUNCTION( BlueprintCallable )
+	void Heal(int32 Health);
+
 	UFUNCTION( BlueprintCallable )
 	int32 GetMaxHealth() const;
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetCurrentHealth() const;
+
+	UFUNCTION(BlueprintCallable)
+	void SetCurrentHealth(int32 Health);
 
 	// Returns the current health as a value between 0 and 1
 	UFUNCTION( BlueprintCallable )

@@ -69,7 +69,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 	for (AActor* Actor : OverlappingActors)
 	{
 		AArenaCharacter* ArenaCharacter = Cast<AArenaCharacter>(Actor);
-		TeamFactor = ( ArenaCharacter->GetTeam() == ETeam::Red ) ? TeamFactor + 1 : TeamFactor - 1;
+		TeamFactor += ( ArenaCharacter->GetTeam() == ETeam::Red ) ? 1 : -1;
 	}
 
 	CaptureState += TeamFactor;

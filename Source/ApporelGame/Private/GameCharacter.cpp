@@ -63,6 +63,12 @@ void AGameCharacter::StartSpectatingOnly()
 	GameController->StartSpectatingOnly();
 }
 
+void AGameCharacter::Heal(int32 Health)
+{
+	CurrentHealth += Health;
+	CurrentHealth = FMath::Clamp(CurrentHealth, 0, MaxHealth);
+}
+
 int32 AGameCharacter::GetMaxHealth() const
 {
 	return MaxHealth;
@@ -71,6 +77,11 @@ int32 AGameCharacter::GetMaxHealth() const
 int32 AGameCharacter::GetCurrentHealth() const
 {
 	return CurrentHealth;
+}
+
+void AGameCharacter::SetCurrentHealth(int32 Health)
+{
+	CurrentHealth = Health;
 }
 
 float AGameCharacter::GetNormalisedHealth() const
