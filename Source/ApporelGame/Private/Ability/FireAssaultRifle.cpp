@@ -5,6 +5,14 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
+
+static int32 DebugWeaponDrawing = 0;
+FAutoConsoleVariableRef CVARDebugWeaponDrawing(
+	TEXT("APPORELBOTNA.DebugWeapons"),
+	DebugWeaponDrawing,
+	TEXT("Draw Debug Lines for Weapons"),
+	ECVF_Cheat);
+
 #define Out
 
 void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
@@ -68,9 +76,11 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		}
 
 		TracerEndPoint = Hit.ImpactPoint;
-		DrawDebugSphere(WorldContext, TracerEndPoint, 20, 8, FColor::Yellow, false, 1.0f);
 	}
-	//DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
+	//Debug testing
+	if(DebugWeaponDrawing > 0){
+		DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
+	}
 
 	if (TracerEffect)
 	{
