@@ -29,6 +29,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UParticleSystem* MuzzleEffect;
 
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* FireSound;
+
 	virtual void ExecutePrimaryAttack() override;
 
 public:
