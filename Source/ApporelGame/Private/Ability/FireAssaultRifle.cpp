@@ -64,7 +64,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	//El siguiente metodo traza una linea desde el punto de vista del propietario del arma hasta 100 metros en esa direccion.
 	//Se le pasa el struct hit que sera llenado en caso de encontrar un actor con los parametros de condicion especificados
 	//en el query params y retornara true si ha encontrado dicho actor.
-	if (WorldContext->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+	if (WorldContext->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
 	{
 		//Blocking hit! Process Damage
 		AActor* HitActor = Hit.GetActor();
