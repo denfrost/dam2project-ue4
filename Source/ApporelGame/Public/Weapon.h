@@ -24,7 +24,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
 	TSubclassOf<AAbility> SecondaryAttack;
 
-	AArenaCharacter* OwningCharacter;
+	float LastTimeExecutedAbility;
 
 protected:
 	// Called when the game starts or when spawned
@@ -46,10 +46,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 	USkeletalMeshComponent* GetMeshComp() const;
 
+	FTimerHandle TimerHandle_TimeBetweenFireAbility;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void ExecutePrimaryAttack();
+
+	virtual void StartExecutingPrimaryAttack();
+
+	virtual void StopExecutingPrimaryAttack();
 
 	virtual void ExecuteSecondaryAttack();
 

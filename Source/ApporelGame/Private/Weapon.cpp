@@ -66,6 +66,20 @@ void AWeapon::ExecutePrimaryAttack()
 		return;
 	}
 	PrimaryAttack.GetDefaultObject()->InternalExecute(Owner);
+	LastTimeExecutedAbility = GetWorld()->TimeSeconds;
+}
+
+
+void AWeapon::StartExecutingPrimaryAttack()
+{
+	float FirstDelay = FMath::Max(LastTimeExecutedAbility + GetPrimaryAttack()->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
+
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
+}
+
+void AWeapon::StopExecutingPrimaryAttack()
+{
+	GetWorldTimerManager().ClearTimer(TimerHandle_TimeBetweenFireAbility);
 }
 
 void AWeapon::ExecuteSecondaryAttack()
