@@ -5,7 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
-
+//Declare debug Var
 static int32 DebugWeaponDrawing = 0;
 FAutoConsoleVariableRef CVARDebugWeaponDrawing(
 	TEXT("APPORELBOTNA.DebugWeapons"),
@@ -24,7 +24,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		return;
 	}
 
-	auto* Character = Cast<AArenaCharacter>(executor);
+	AArenaCharacter* Character = Cast<AArenaCharacter>(executor);
 	if (!Character)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Pawn"));
@@ -41,7 +41,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	FVector EyeLocation;
 	FRotator EyeRotation;
 
-	//funcion out que nos devolvera el punto de vista del propietario del arma
+	//Punto de vista del propietario del arma
 	executor->GetActorEyesViewPoint(Out EyeLocation, Out EyeRotation);
 
 	FVector ShotDirection = EyeRotation.Vector();
@@ -68,7 +68,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 		AActor* HitActor = Hit.GetActor();
 		UE_LOG(LogTemp, Warning, TEXT("HitActor name : %s"), *HitActor->GetName());
 
-		UGameplayStatics::ApplyPointDamage(HitActor, 20.0f, ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
+		UGameplayStatics::ApplyPointDamage(HitActor, GetDamage(), ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
 		if (ImpactEffect)
 		{
 			//mostramos el efecto en el lugar de impacto
@@ -77,18 +77,25 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 
 		TracerEndPoint = Hit.ImpactPoint;
 	}
+
 	//Debug testing
-	if(DebugWeaponDrawing > 0){
+	if(DebugWeaponDrawing > 0)
+	{
 		DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
 	}
 
+	FireEffects(AssaultRiffle, WorldContext, TraceEnd);
+}
+
+void AFireAssaultRifle::FireEffects(AAssaultRifle* AssaultRiffle, UWorld* WorldContext, FVector TraceEnd)
+{
 	if (TracerEffect)
 	{
 		FVector MuzzleLocation = AssaultRiffle->GetMeshComp()->GetSocketLocation(AssaultRiffle->GetMuzzleSocketName());
 		UParticleSystemComponent* TracerComp = UGameplayStatics::SpawnEmitterAtLocation(WorldContext, TracerEffect, MuzzleLocation);
 		if (TracerComp)
 		{
-			TracerComp->SetVectorParameter(AssaultRiffle->GetTracerTargetName(), TracerEndPoint);
+			TracerComp->SetVectorParameter(AssaultRiffle->GetTracerTargetName(), TraceEnd);
 		}
 	}
 }

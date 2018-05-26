@@ -39,12 +39,11 @@ void AArenaCharacter::BeginPlay()
 
 	if (!CurrentWeapon)
 	{
-		UE_LOG(LogTemp, Error, TEXT("NULL IN CURRENT WEAPON!"));
+		UE_LOG(LogTemp, Error, TEXT("Not Current Weapon Available"));
 		return;
 	}
 
 	CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
-	UE_LOG(LogTemp, Error, TEXT("Damage Ability 1 weapon : %d"), CurrentWeapon->GetPrimaryAttack()->GetDamage());
 
 	//TODO Refactor this
 	if (CurrentWeapon->GetPrimaryAttack() == nullptr || CurrentWeapon->GetSecondaryAttack() == nullptr)

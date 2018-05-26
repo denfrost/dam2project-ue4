@@ -29,10 +29,15 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UParticleSystem* MuzzleEffect;
 
-	UPROPERTY(EditAnywhere, Category = "Sound")
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundBase* FireSound;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	TSubclassOf<UCameraShake> FireCamShake;
+
 	virtual void ExecutePrimaryAttack() override;
+
+	void PlayFireEffects();
 
 public:
 	AAssaultRifle();
