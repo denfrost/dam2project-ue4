@@ -38,6 +38,11 @@ void AAssaultRifle::ExecutePrimaryAttack()
 {
 	Super::ExecutePrimaryAttack();
 
+	PlayFireEffects();
+}
+
+void AAssaultRifle::PlayFireEffects()
+{
 	if (MuzzleEffect)
 	{
 		//Mostramos efecto en cañon del arma
@@ -47,6 +52,17 @@ void AAssaultRifle::ExecutePrimaryAttack()
 	if (FireSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), FireSound, GetActorLocation());
+	}
+
+	//Shake camera
+	APawn* MyOwner = Cast<APawn>(GetOwner());
+	if (MyOwner)
+	{
+		APlayerController* PC = Cast<APlayerController>(MyOwner->GetController());
+		if (PC)
+		{
+			PC->ClientPlayCameraShake(FireCamShake);
+		}
 	}
 }
 

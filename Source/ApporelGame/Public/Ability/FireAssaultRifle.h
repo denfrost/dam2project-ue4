@@ -6,6 +6,9 @@
 #include "Ability.h"
 #include "FireAssaultRifle.generated.h"
 
+
+class AAssaultRifle;
+
 /**
  * 
  */
@@ -16,6 +19,8 @@ class APPORELGAME_API AFireAssaultRifle : public AAbility
 
 protected:
 	virtual void ExecuteAbility_Implementation(ACharacter* executor) override;
+
+	void FireEffects(AAssaultRifle* AssaultRiffle, UWorld* WorldContext, FVector TraceEnd);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> DamageType;
