@@ -4,6 +4,7 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "ApporelGame.h"
 
 //Declare debug Var
 static int32 DebugWeaponDrawing = 0;
@@ -52,6 +53,7 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	QueryParams.AddIgnoredActor(executor);
 	QueryParams.AddIgnoredActor(AssaultRiffle);
 	QueryParams.bTraceComplex = true;
+	QueryParams.bReturnPhysicalMaterial = true;
 
 	//Struct que contiene todos los datos del impacto
 	FHitResult Hit;
@@ -66,25 +68,44 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	{
 		//Blocking hit! Process Damage
 		AActor* HitActor = Hit.GetActor();
-		UE_LOG(LogTemp, Warning, TEXT("HitActor name : %s"), *HitActor->GetName());
 
-		UGameplayStatics::ApplyPointDamage(HitActor, GetDamage(), ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
-		if (ImpactEffect)
+		EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
+
+		float ActualDamage = GetDamage();
+		if (SurfaceType == SURFACE_FLESH_VULNERABLE)
 		{
-			//mostramos el efecto en el lugar de impacto
-			UGameplayStatics::SpawnEmitterAtLocation(WorldContext, ImpactEffect, Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
+			ActualDamage *= 4.f;
 		}
 
+		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
+
+		UParticleSystem* SelectedEffect = nullptr;
+		switch (SurfaceType)
+		{
+		case SURFACE_FLESH_DEFAULT:
+		case SURFACE_FLESH_VULNERABLE:
+			SelectedEffect = FleshImpactEffect;
+			break;
+		default:
+			SelectedEffect = DefaultImpactEffect;
+			break;
+		}
+		
+		if (SelectedEffect)
+		{
+			//mostramos el efecto en el lugar de impacto
+			UGameplayStatics::SpawnEmitterAtLocation(WorldContext, SelectedEffect, Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
+		}
 		TracerEndPoint = Hit.ImpactPoint;
 	}
 
 	//Debug testing
 	if(DebugWeaponDrawing > 0)
 	{
-		DrawDebugLine( WorldContext, EyeLocation, TraceEnd, FColor::Yellow, false, 1.5f, 0, 1.0f);
+		DrawDebugLine( WorldContext, EyeLocation, TracerEndPoint, FColor::Yellow, false, 1.5f, 0, 1.0f);
 	}
 
-	FireEffects(AssaultRiffle, WorldContext, TraceEnd);
+	FireEffects(AssaultRiffle, WorldContext, TracerEndPoint);
 }
 
 void AFireAssaultRifle::FireEffects(AAssaultRifle* AssaultRiffle, UWorld* WorldContext, FVector TraceEnd)

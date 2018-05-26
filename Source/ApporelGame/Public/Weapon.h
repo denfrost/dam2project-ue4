@@ -36,12 +36,7 @@ protected:
 public:	
 	// Sets default values for this actor's properties
 	AWeapon();
-
-	UFUNCTION( BlueprintCallable )
-	AArenaCharacter* GetOwningCharacter() const;
-
-	void SetOwningCharacter(AArenaCharacter* NewOwningCharacter);	
-
+	
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetPrimaryAttack() const;
 

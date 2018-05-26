@@ -67,7 +67,6 @@ TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const
 void AArenaCharacter::SetWeaponToSpawn(TSubclassOf<AWeapon> NewWeaponToSpawn)
 {
 	WeaponToSpawn = NewWeaponToSpawn;
-	NewWeaponToSpawn.GetDefaultObject()->SetOwningCharacter(this);
 }
 
 AWeapon* AArenaCharacter::GetCurrentWeapon()
@@ -79,7 +78,7 @@ AWeapon* AArenaCharacter::GetCurrentWeapon()
 void AArenaCharacter::SetCurrentWeapon(AWeapon* NewCurrentWeapon)
 {
 	CurrentWeapon = NewCurrentWeapon;
-	NewCurrentWeapon->SetOwningCharacter(this);
+	NewCurrentWeapon->SetOwner(this);
 }
 
 void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)

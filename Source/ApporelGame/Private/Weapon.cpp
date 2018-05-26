@@ -14,17 +14,6 @@ AWeapon::AWeapon()
 	RootComponent = MeshComp;
 }
 
-AArenaCharacter* AWeapon::GetOwningCharacter() const
-{
-	return OwningCharacter;
-}
-
-void AWeapon::SetOwningCharacter(AArenaCharacter* NewOwningCharacter)
-{
-	OwningCharacter = NewOwningCharacter;
-	SetOwner(NewOwningCharacter);
-}
-
 AAbility* AWeapon::GetPrimaryAttack() const
 {
 	return PrimaryAttack.GetDefaultObject();
