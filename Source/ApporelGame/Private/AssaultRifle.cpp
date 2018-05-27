@@ -7,7 +7,6 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "ArenaCharacter.h"
 #include "Engine/World.h"
-//TODO remove this Above Shit 
 
 AAssaultRifle::AAssaultRifle()
 {
@@ -21,7 +20,7 @@ void AAssaultRifle::BeginPlay()
 
 UParticleSystem* AAssaultRifle::GetMuzzleEffect()
 {
-	return MuzzleEffect;
+	return MuzzleEffectPrimaryAttack;
 }
 
 FName AAssaultRifle::GetMuzzleSocketName()
@@ -38,10 +37,17 @@ void AAssaultRifle::ExecutePrimaryAttack()
 {
 	Super::ExecutePrimaryAttack();
 
-	PlayFireEffects();
+	PlayAttackEffects(MuzzleEffectPrimaryAttack, SoundPrimaryAttack);
 }
 
-void AAssaultRifle::PlayFireEffects()
+void AAssaultRifle::ExecuteSecondaryAttack()
+{
+	Super::ExecuteSecondaryAttack();
+
+	PlayAttackEffects(MuzzleEffectSecondaryAttack, SoundSecondaryAttack);
+}
+
+void AAssaultRifle::PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* AttackSound)
 {
 	if (MuzzleEffect)
 	{
@@ -49,9 +55,9 @@ void AAssaultRifle::PlayFireEffects()
 		UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, MeshComp, MuzzleSocketName);
 	}
 
-	if (FireSound)
+	if (AttackSound)
 	{
-		UGameplayStatics::PlaySoundAtLocation(GetWorld(), FireSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), AttackSound, GetActorLocation());
 	}
 
 	//Shake camera
