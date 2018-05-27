@@ -26,18 +26,26 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	FName TracerTargetName;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UParticleSystem* MuzzleEffect;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Primary Attack | Particles")
+	UParticleSystem* MuzzleEffectPrimaryAttack;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Sound")
-	USoundBase* FireSound;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Secondary Attack | Particles")
+	UParticleSystem* MuzzleEffectSecondaryAttack;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Primary Attack | Sound")
+	USoundBase* SoundPrimaryAttack;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Secondary Attack | Sound")
+	USoundBase* SoundSecondaryAttack;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	TSubclassOf<UCameraShake> FireCamShake;
 
 	virtual void ExecutePrimaryAttack() override;
 
-	void PlayFireEffects();
+	virtual void ExecuteSecondaryAttack() override;
+
+	void PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* PrimaryAttackSound);
 
 public:
 	AAssaultRifle();
