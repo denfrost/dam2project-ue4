@@ -84,7 +84,10 @@ void AArenaCharacter::SetCurrentWeapon(AWeapon* NewCurrentWeapon)
 void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AArenaCharacter::PrimaryAttack);
+
+	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AArenaCharacter::StartPrimaryAttack);
+	PlayerInputComponent->BindAction("PrimaryAttack", IE_Released, this, &AArenaCharacter::StopPrimaryAttack);
+
 	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AArenaCharacter::SecondaryAttack);
 
 	//Setup basic movement
@@ -132,15 +135,26 @@ AAbility* AArenaCharacter::GetSecondaryAttack() const
 	return CurrentWeapon->GetSecondaryAttack();
 }
 
-void AArenaCharacter::PrimaryAttack()
+void AArenaCharacter::StartPrimaryAttack()
 {
 	if (CurrentWeapon == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return CurrentWeapon->ExecutePrimaryAttack();
+	return CurrentWeapon->StartExecutingPrimaryAttack();
 }
+
+void AArenaCharacter::StopPrimaryAttack()
+{
+	if (CurrentWeapon == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
+		return;
+	}
+	return CurrentWeapon->StopExecutingPrimaryAttack();
+}
+
 
 void AArenaCharacter::SecondaryAttack()
 {

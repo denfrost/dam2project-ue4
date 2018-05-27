@@ -75,8 +75,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	AAbility* GetSecondaryAttack() const;
 
-	// Delegate method for Weapon$PrimaryAttack()
-	void PrimaryAttack();
+	// Delegate method for Weapon$StartPrimaryAttack()
+	void StartPrimaryAttack();
+
+	// Delegate method for Weapon$StopPrimaryAttack()
+	void StopPrimaryAttack();
 
 	// Delegate method for Weapon$SecondaryAttack()
 	void SecondaryAttack();
