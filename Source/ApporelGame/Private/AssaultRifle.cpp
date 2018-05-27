@@ -21,7 +21,7 @@ void AAssaultRifle::BeginPlay()
 
 UParticleSystem* AAssaultRifle::GetMuzzleEffect()
 {
-	return MuzzleEffect;
+	return MuzzleEffectPrimaryAttack;
 }
 
 FName AAssaultRifle::GetMuzzleSocketName()
@@ -38,15 +38,27 @@ void AAssaultRifle::ExecutePrimaryAttack()
 {
 	Super::ExecutePrimaryAttack();
 
-	PlayFireEffects();
+	PlayPrimaryAttackEffects();
 }
 
-void AAssaultRifle::PlayFireEffects()
+void AAssaultRifle::ExecuteSecondaryAttack()
 {
-	if (MuzzleEffect)
+	Super::ExecuteSecondaryAttack();
+
+	PlaySecondaryAttackEffects();
+}
+
+void AAssaultRifle::PlaySecondaryAttackEffects()
+{
+
+}
+
+void AAssaultRifle::PlayPrimaryAttackEffects()
+{
+	if (MuzzleEffectPrimaryAttack)
 	{
 		//Mostramos efecto en cañon del arma
-		UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, MeshComp, MuzzleSocketName);
+		UGameplayStatics::SpawnEmitterAttached(MuzzleEffectPrimaryAttack, MeshComp, MuzzleSocketName);
 	}
 
 	if (FireSound)
