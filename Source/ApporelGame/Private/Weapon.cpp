@@ -65,7 +65,10 @@ void AWeapon::ExecutePrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon: %s has no Owner"), *this->GetName());
 		return;
 	}
-	PrimaryAttack.GetDefaultObject()->InternalExecute(Owner);
+
+	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(PrimaryAttack.GetDefaultObject()->GetClass());
+	Ability->InternalExecute(Owner);
+
 	LastTimeExecutedAbility = GetWorld()->TimeSeconds;
 }
 
@@ -92,7 +95,9 @@ void AWeapon::ExecuteSecondaryAttack()
 	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
 	if (!Owner)
 		return;
-	SecondaryAttack.GetDefaultObject()->InternalExecute(Owner);
+
+	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(SecondaryAttack.GetDefaultObject()->GetClass());
+	Ability->InternalExecute(Owner);
 }
 
 void AWeapon::ExecuteImprove()

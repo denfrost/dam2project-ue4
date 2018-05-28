@@ -126,7 +126,10 @@ void AGameCharacter::ExecutePrimaryAbility()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
 		return;
 	}
-	PrimaryAbility.GetDefaultObject()->InternalExecute(this);
+	
+	//spawn
+	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(PrimaryAbility.GetDefaultObject()->GetClass());
+	Ability->InternalExecute(this);
 }
 
 void AGameCharacter::ExecuteSecondaryAbility()
@@ -136,7 +139,8 @@ void AGameCharacter::ExecuteSecondaryAbility()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a secondary ability!"), *GetName());
 		return;
 	}
-	SecondaryAbility.GetDefaultObject()->InternalExecute(this);
+	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(SecondaryAbility.GetDefaultObject()->GetClass());
+	Ability->InternalExecute(this);
 }
 
 void AGameCharacter::ExecuteUltimateAbility()
@@ -146,6 +150,7 @@ void AGameCharacter::ExecuteUltimateAbility()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
 		return;
 	}
-	UltimateAbility.GetDefaultObject()->InternalExecute(this);
+	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(UltimateAbility.GetDefaultObject()->GetClass());
+	Ability->InternalExecute(this);
 }
 
