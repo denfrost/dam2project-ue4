@@ -56,12 +56,13 @@ void AAbility::NotifyBlueprintCouldNotExecute()
 	bCouldBlueprintExecute = false;
 }
 
-void AAbility::ExecuteAbility_Implementation(ACharacter* executor)
+bool AAbility::ExecuteAbility_Implementation(ACharacter* executor)
 {
 	//To override in c++ child class
+	return false;
 }
 
-void AAbility::InternalExecute(ACharacter* executor)
+bool AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
 	{		
@@ -69,9 +70,11 @@ void AAbility::InternalExecute(ACharacter* executor)
 		if (bCouldBlueprintExecute)
 		{
 			LastUse = executor->GetWorld()->TimeSeconds;
+			return true;
 		}
 		bCouldBlueprintExecute = true;
 	}
+	return false;
 }
 
 bool AAbility::CanBeExecuted(const ACharacter* executor) const

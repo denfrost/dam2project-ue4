@@ -16,27 +16,27 @@ FAutoConsoleVariableRef CVARDebugWeaponDrawing(
 
 #define Out
 
-void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
+bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 {	
 	UWorld* WorldContext = executor->GetWorld();
 	if (!WorldContext)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No world context available!"));
-		return;
+		return false;
 	}
 
 	AArenaCharacter* Character = Cast<AArenaCharacter>(executor);
 	if (!Character)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Pawn"));
-		return;
+		return false;
 	}
 
 	AAssaultRifle* AssaultRiffle = Cast<AAssaultRifle>(Character->GetCurrentWeapon());
 	if (!AssaultRiffle)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No weapon"));
-		return;
+		return false;
 	}
 
 	FVector EyeLocation;
@@ -106,6 +106,8 @@ void AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	}
 
 	FireEffects(AssaultRiffle, WorldContext, TracerEndPoint);
+
+	return true;
 }
 
 void AFireAssaultRifle::FireEffects(AAssaultRifle* AssaultRiffle, UWorld* WorldContext, FVector TraceEnd)

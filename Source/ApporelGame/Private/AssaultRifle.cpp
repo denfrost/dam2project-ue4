@@ -33,18 +33,24 @@ FName AAssaultRifle::GetTracerTargetName()
 	return TracerTargetName;
 }
 
-void AAssaultRifle::ExecutePrimaryAttack()
+bool AAssaultRifle::ExecutePrimaryAttack()
 {
-	Super::ExecutePrimaryAttack();
-
-	PlayAttackEffects(MuzzleEffectPrimaryAttack, SoundPrimaryAttack);
+	if (Super::ExecutePrimaryAttack())
+	{
+		PlayAttackEffects(MuzzleEffectPrimaryAttack, SoundPrimaryAttack);
+		return true;
+	}
+	return false;
 }
 
-void AAssaultRifle::ExecuteSecondaryAttack()
+bool AAssaultRifle::ExecuteSecondaryAttack()
 {
-	Super::ExecuteSecondaryAttack();
-
-	PlayAttackEffects(MuzzleEffectSecondaryAttack, SoundSecondaryAttack);
+	if (Super::ExecuteSecondaryAttack())
+	{
+		PlayAttackEffects(MuzzleEffectSecondaryAttack, SoundSecondaryAttack);
+		return true;
+	}
+	return false;
 }
 
 void AAssaultRifle::PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* AttackSound)
