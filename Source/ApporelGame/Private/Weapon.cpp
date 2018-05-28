@@ -14,35 +14,40 @@ AWeapon::AWeapon()
 	RootComponent = MeshComp;
 }
 
-AAbility* AWeapon::GetPrimaryAttack() const
-{
-	return PrimaryAttack.GetDefaultObject();
-}
-
-AAbility* AWeapon::GetSecondaryAttack() const
-{
-	return SecondaryAttack.GetDefaultObject();
-}
-
-USkeletalMeshComponent* AWeapon::GetMeshComp() const
-{
-	return MeshComp;
-}
-
 // Called when the game starts or when spawned
 void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (PrimaryAttack == nullptr)
+	if (PrimaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
 	}
 
-	if (SecondaryAttack == nullptr)
+	if (SecondaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
 	}
+	PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
+	//PrimaryAttack->SetOwner(this);
+
+	SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
+	//SecondaryAttack->SetOwner(this);
+}
+
+AAbility* AWeapon::GetPrimaryAttackClass() const
+{
+	return PrimaryAttackClass.GetDefaultObject();
+}
+
+AAbility* AWeapon::GetSecondaryAttackClass() const
+{
+	return SecondaryAttackClass.GetDefaultObject();
+}
+
+USkeletalMeshComponent* AWeapon::GetMeshComp() const
+{
+	return MeshComp;
 }
 
 // Called every frame
@@ -53,7 +58,7 @@ void AWeapon::Tick(float DeltaTime)
 
 void AWeapon::ExecutePrimaryAttack()
 {
-	if (PrimaryAttack == nullptr)
+	if (PrimaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
 		return;
@@ -65,19 +70,26 @@ void AWeapon::ExecutePrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The weapon: %s has no Owner"), *this->GetName());
 		return;
 	}
-
-	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(PrimaryAttack.GetDefaultObject()->GetClass());
-	Ability->InternalExecute(Owner);
+	PrimaryAttack->InternalExecute(Owner);
 
 	LastTimeExecutedAbility = GetWorld()->TimeSeconds;
 }
 
+AAbility* AWeapon::GetPrimaryAttack()
+{
+	return PrimaryAttack;
+}
+
+AAbility* AWeapon::GetSecondaryAttack()
+{
+	return SecondaryAttack;
+}
 
 void AWeapon::StartExecutingPrimaryAttack()
 {
 	float FirstDelay = FMath::Max(LastTimeExecutedAbility + GetPrimaryAttack()->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
 
-	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttackClass()->GetCooldown(), true, FirstDelay);
 }
 
 void AWeapon::StopExecutingPrimaryAttack()
@@ -87,7 +99,7 @@ void AWeapon::StopExecutingPrimaryAttack()
 
 void AWeapon::ExecuteSecondaryAttack()
 {
-	if (SecondaryAttack == nullptr)
+	if (SecondaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
 		return;
@@ -95,9 +107,7 @@ void AWeapon::ExecuteSecondaryAttack()
 	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
 	if (!Owner)
 		return;
-
-	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(SecondaryAttack.GetDefaultObject()->GetClass());
-	Ability->InternalExecute(Owner);
+	SecondaryAttack->InternalExecute(Owner);
 }
 
 void AWeapon::ExecuteImprove()
