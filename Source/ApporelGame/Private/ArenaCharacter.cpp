@@ -54,8 +54,8 @@ void AArenaCharacter::BeginPlay()
 
 	//TODO extracts to a method
 	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	CurrentWeapon->GetPrimaryAttackClass()->SetLastUse(-CurrentWeapon->GetPrimaryAttackClass()->GetCooldown());
-	CurrentWeapon->GetSecondaryAttackClass()->SetLastUse(-CurrentWeapon->GetSecondaryAttackClass()->GetCooldown());
+	CurrentWeapon->GetPrimaryAttack()->SetLastUse(-CurrentWeapon->GetPrimaryAttack()->GetCooldown());
+	CurrentWeapon->GetSecondaryAttack()->SetLastUse(-CurrentWeapon->GetSecondaryAttack()->GetCooldown());
 }
 
 TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const
@@ -126,13 +126,13 @@ void AArenaCharacter::EndCrouch()
 AAbility* AArenaCharacter::GetPrimaryAttack() const
 {
 	ensure(CurrentWeapon != nullptr);
-	return CurrentWeapon->GetPrimaryAttackClass();
+	return CurrentWeapon->GetPrimaryAttack();
 }
 
 AAbility* AArenaCharacter::GetSecondaryAttack() const
 {
 	ensure(CurrentWeapon != nullptr);
-	return CurrentWeapon->GetSecondaryAttackClass();
+	return CurrentWeapon->GetSecondaryAttack();
 }
 
 void AArenaCharacter::StartPrimaryAttack()
