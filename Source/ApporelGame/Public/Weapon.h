@@ -18,11 +18,11 @@ class APPORELGAME_API AWeapon : public AActor
 private:	
 	// The primary attack of this Weapon, which will be executed when the owner pawn receives the PrimaryAttack input
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
-	TSubclassOf<AAbility> PrimaryAttack;
+	TSubclassOf<AAbility> PrimaryAttackClass;
 
 	// The secondary attack of this Weapon, which will be executed when the owner pawn receives the SecondaryAttack input
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
-	TSubclassOf<AAbility> SecondaryAttack;
+	TSubclassOf<AAbility> SecondaryAttackClass;
 
 	float LastTimeExecutedAbility;
 
@@ -33,15 +33,19 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* MeshComp;
 
+	AAbility* PrimaryAttack;
+
+	AAbility* SecondaryAttack;
+
 public:	
 	// Sets default values for this actor's properties
 	AWeapon();
 	
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetPrimaryAttack() const;
+	AAbility* GetPrimaryAttackClass() const;
 
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetSecondaryAttack() const;
+	AAbility* GetSecondaryAttackClass() const;
 
 	UFUNCTION(BlueprintCallable)
 	USkeletalMeshComponent* GetMeshComp() const;
@@ -52,6 +56,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void ExecutePrimaryAttack();
+
+	AAbility* GetPrimaryAttack();
+
+	AAbility* GetSecondaryAttack();
 
 	virtual void StartExecutingPrimaryAttack();
 

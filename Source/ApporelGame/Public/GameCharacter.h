@@ -31,13 +31,19 @@ protected:
 	int32 Armor;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
-	TSubclassOf<AAbility> PrimaryAbility = nullptr;
+	TSubclassOf<AAbility> PrimaryAbilityClass = nullptr;
+
+	AAbility* PrimaryAbility;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
-	TSubclassOf<AAbility> SecondaryAbility = nullptr;
+	TSubclassOf<AAbility> SecondaryAbilityClass = nullptr;
+
+	AAbility* SecondaryAbility;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
-	TSubclassOf<AAbility> UltimateAbility = nullptr;
+	TSubclassOf<AAbility> UltimateAbilityClass = nullptr;
+
+	AAbility* UltimateAbility;
 
 public:	
 	
@@ -86,4 +92,10 @@ public:
 	virtual void ExecuteSecondaryAbility();
 
 	virtual void ExecuteUltimateAbility();
+
+	virtual AAbility* GetPrimaryAbility();
+
+	virtual AAbility* GetSecondaryAbility();
+
+	virtual AAbility* GetUltimateAbility();
 };

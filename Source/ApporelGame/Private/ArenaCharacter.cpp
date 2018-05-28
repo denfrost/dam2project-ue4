@@ -46,7 +46,7 @@ void AArenaCharacter::BeginPlay()
 	CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
 
 	//TODO Refactor this
-	if (CurrentWeapon->GetPrimaryAttack() == nullptr || CurrentWeapon->GetSecondaryAttack() == nullptr)
+	if (CurrentWeapon->GetPrimaryAttackClass() == nullptr || CurrentWeapon->GetSecondaryAttackClass() == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have some ability!"), *GetName());
 		return;
@@ -54,8 +54,8 @@ void AArenaCharacter::BeginPlay()
 
 	//TODO extracts to a method
 	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	CurrentWeapon->GetPrimaryAttack()->SetLastUse(-CurrentWeapon->GetPrimaryAttack()->GetCooldown());
-	CurrentWeapon->GetSecondaryAttack()->SetLastUse(-CurrentWeapon->GetSecondaryAttack()->GetCooldown());
+	CurrentWeapon->GetPrimaryAttackClass()->SetLastUse(-CurrentWeapon->GetPrimaryAttackClass()->GetCooldown());
+	CurrentWeapon->GetSecondaryAttackClass()->SetLastUse(-CurrentWeapon->GetSecondaryAttackClass()->GetCooldown());
 }
 
 TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const
@@ -126,13 +126,13 @@ void AArenaCharacter::EndCrouch()
 AAbility* AArenaCharacter::GetPrimaryAttack() const
 {
 	ensure(CurrentWeapon != nullptr);
-	return CurrentWeapon->GetPrimaryAttack();
+	return CurrentWeapon->GetPrimaryAttackClass();
 }
 
 AAbility* AArenaCharacter::GetSecondaryAttack() const
 {
 	ensure(CurrentWeapon != nullptr);
-	return CurrentWeapon->GetSecondaryAttack();
+	return CurrentWeapon->GetSecondaryAttackClass();
 }
 
 void AArenaCharacter::StartPrimaryAttack()

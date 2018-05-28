@@ -10,25 +10,34 @@ void AGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (PrimaryAbility == nullptr)
+	if (PrimaryAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
 	}
 
-	if (SecondaryAbility == nullptr)
+	if (SecondaryAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a secondary ability!"), *GetName());
 	}
 
-	if (UltimateAbility == nullptr)
+	if (UltimateAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
 	}
 
+	PrimaryAbility = GetWorld()->SpawnActor<AAbility>(PrimaryAbilityClass->GetDefaultObject()->GetClass());
+	PrimaryAbility->SetOwner(this);
+
+	SecondaryAbility = GetWorld()->SpawnActor<AAbility>(SecondaryAbilityClass.GetDefaultObject()->GetClass());
+	SecondaryAbility->SetOwner(this);
+
+	UltimateAbility = GetWorld()->SpawnActor<AAbility>(UltimateAbilityClass.GetDefaultObject()->GetClass());
+	UltimateAbility->SetOwner(this);
+
 	// Set Abilities last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	PrimaryAbility.GetDefaultObject()->SetLastUse(-PrimaryAbility.GetDefaultObject()->GetCooldown());
-	SecondaryAbility.GetDefaultObject()->SetLastUse(-SecondaryAbility.GetDefaultObject()->GetCooldown());
-	UltimateAbility.GetDefaultObject()->SetLastUse(-UltimateAbility.GetDefaultObject()->GetCooldown());
+	PrimaryAbility->SetLastUse(-PrimaryAbilityClass.GetDefaultObject()->GetCooldown());
+	SecondaryAbility->SetLastUse(-SecondaryAbilityClass.GetDefaultObject()->GetCooldown());
+	UltimateAbility->SetLastUse(-UltimateAbilityClass.GetDefaultObject()->GetCooldown());
 
 	// Set the current health equal to max health at the beginning
 	CurrentHealth = MaxHealth;
@@ -121,36 +130,47 @@ void AGameCharacter::RespawnAt(FVector Location)
 
 void AGameCharacter::ExecutePrimaryAbility()
 {
-	if (PrimaryAbility == nullptr)
+	if (PrimaryAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a primary ability!"), *GetName());
 		return;
 	}
-	
-	//spawn
-	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(PrimaryAbility.GetDefaultObject()->GetClass());
-	Ability->InternalExecute(this);
+	PrimaryAbility->InternalExecute(this);
 }
+
 
 void AGameCharacter::ExecuteSecondaryAbility()
 {
-	if (SecondaryAbility == nullptr)
+	if (SecondaryAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a secondary ability!"), *GetName());
 		return;
 	}
-	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(SecondaryAbility.GetDefaultObject()->GetClass());
-	Ability->InternalExecute(this);
+	SecondaryAbility->InternalExecute(this);
 }
 
 void AGameCharacter::ExecuteUltimateAbility()
 {
-	if (UltimateAbility == nullptr)
+	if (UltimateAbilityClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
-		return;
+		return; 
 	}
-	AAbility* Ability = GetWorld()->SpawnActor<AAbility>(UltimateAbility.GetDefaultObject()->GetClass());
-	Ability->InternalExecute(this);
+	UltimateAbility->InternalExecute(this);
+}
+
+AAbility* AGameCharacter::GetPrimaryAbility()
+{
+	return PrimaryAbility;
+}
+
+AAbility* AGameCharacter::GetSecondaryAbility()
+{
+	return SecondaryAbility;
+}
+
+AAbility* AGameCharacter::GetUltimateAbility()
+{
+	return UltimateAbility;
 }
 

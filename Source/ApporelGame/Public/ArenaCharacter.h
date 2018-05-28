@@ -24,7 +24,6 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Character Setup")
 	TSubclassOf<AWeapon> WeaponToSpawn;
 
-	UPROPERTY(EditAnywhere, Category = "Weapon")
 	AWeapon* CurrentWeapon;
 
 protected:
