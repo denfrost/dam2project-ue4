@@ -61,13 +61,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void ExecutePrimaryAttack();
+	virtual bool ExecutePrimaryAttack();
 
 	virtual void StartExecutingPrimaryAttack();
 
+	void CheckExecutePrimaryAttackCanBeExecuted();
+
 	virtual void StopExecutingPrimaryAttack();
 
-	virtual void ExecuteSecondaryAttack();
+	virtual bool ExecuteSecondaryAttack();
 
 	virtual void ExecuteImprove();
 };

@@ -18,7 +18,7 @@ class APPORELGAME_API AFireAssaultRifle : public AAbility
 	GENERATED_BODY()
 
 protected:
-	virtual void ExecuteAbility_Implementation(ACharacter* executor) override;
+	virtual bool ExecuteAbility_Implementation(ACharacter* executor) override;
 
 	void FireEffects(AAssaultRifle* AssaultRiffle, UWorld* WorldContext, FVector TraceEnd);
 

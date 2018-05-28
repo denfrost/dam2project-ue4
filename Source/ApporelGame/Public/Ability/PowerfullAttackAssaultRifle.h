@@ -19,7 +19,7 @@ class APPORELGAME_API APowerfullAttackAssaultRifle : public AAbility
 	
 	
 protected:
-	virtual void ExecuteAbility_Implementation(ACharacter* executor);
+	virtual bool ExecuteAbility_Implementation(ACharacter* executor);
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
 	TSubclassOf<AActor> ProjectileClass;

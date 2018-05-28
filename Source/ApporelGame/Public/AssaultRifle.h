@@ -41,9 +41,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	TSubclassOf<UCameraShake> FireCamShake;
 
-	virtual void ExecutePrimaryAttack() override;
+	virtual bool ExecutePrimaryAttack() override;
 
-	virtual void ExecuteSecondaryAttack() override;
+	virtual bool ExecuteSecondaryAttack() override;
 
 	void PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* PrimaryAttackSound);
 

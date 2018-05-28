@@ -29,10 +29,10 @@ void AWeapon::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
 	}
 	PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
-	//PrimaryAttack->SetOwner(this);
+	PrimaryAttack->SetOwner(this);
 
 	SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
-	//SecondaryAttack->SetOwner(this);
+	SecondaryAttack->SetOwner(this);
 }
 
 TSubclassOf<AAbility> AWeapon::GetPrimaryAttackClass() const
@@ -56,23 +56,26 @@ void AWeapon::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AWeapon::ExecutePrimaryAttack()
+bool AWeapon::ExecutePrimaryAttack()
 {
 	if (PrimaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
-		return;
+		return false;
 	}
 
 	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
 	if (!Owner)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon: %s has no Owner"), *this->GetName());
-		return;
+		return false;
 	}
-	PrimaryAttack->InternalExecute(Owner);
-
+	if (!PrimaryAttack->InternalExecute(Owner))
+	{
+		return false;
+	}
 	LastTimeExecutedAbility = GetWorld()->TimeSeconds;
+	return true;
 }
 
 AAbility* AWeapon::GetPrimaryAttack()
@@ -89,7 +92,12 @@ void AWeapon::StartExecutingPrimaryAttack()
 {
 	float FirstDelay = FMath::Max(LastTimeExecutedAbility + GetPrimaryAttack()->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
 
-	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::CheckExecutePrimaryAttackCanBeExecuted, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
+}
+
+void AWeapon::CheckExecutePrimaryAttackCanBeExecuted()
+{
+	if (!ExecutePrimaryAttack()) return;
 }
 
 void AWeapon::StopExecutingPrimaryAttack()
@@ -97,17 +105,22 @@ void AWeapon::StopExecutingPrimaryAttack()
 	GetWorldTimerManager().ClearTimer(TimerHandle_TimeBetweenFireAbility);
 }
 
-void AWeapon::ExecuteSecondaryAttack()
+bool AWeapon::ExecuteSecondaryAttack()
 {
 	if (SecondaryAttackClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
-		return;
+		return false;
 	}
 	AArenaCharacter* Owner = Cast<AArenaCharacter>(GetOwner());
 	if (!Owner)
-		return;
-	SecondaryAttack->InternalExecute(Owner);
+		return false;
+
+	if (!SecondaryAttack->InternalExecute(Owner))
+	{
+		return false;
+	}
+	return true;
 }
 
 void AWeapon::ExecuteImprove()
