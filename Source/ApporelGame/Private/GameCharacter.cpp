@@ -76,6 +76,7 @@ float AGameCharacter::TakeDamage(
 	CurrentHealth -= DamageToApply;
 	if (CurrentHealth <= 0)
 	{
+		this->SetDead(true);
 		OnDeathDelegate.Broadcast(this);
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Damage Taken: %f\nCurrent HP: %d"), DamageAmount, CurrentHealth);
@@ -103,6 +104,16 @@ void AGameCharacter::SetCurrentHealth(int32 Health)
 	CurrentHealth = Health;
 }
 
+bool AGameCharacter::IsDead() const
+{
+	return bIsDead;
+}
+
+void AGameCharacter::SetDead(bool IsDead)
+{
+	bIsDead = IsDead;
+}
+
 float AGameCharacter::GetNormalisedHealth() const
 {
 	return CurrentHealth / (float)MaxHealth;
@@ -126,6 +137,7 @@ void AGameCharacter::RespawnAt(FVector Location)
 {
 	this->SetActorLocation(Location);
 	this->SetCurrentHealth(MaxHealth);
+	this->SetDead(false);
 }
 
 void AGameCharacter::ExecutePrimaryAbility()

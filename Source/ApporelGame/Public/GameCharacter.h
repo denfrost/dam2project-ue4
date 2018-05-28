@@ -30,6 +30,8 @@ protected:
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
 	int32 Armor;
 
+	bool bIsDead;
+
 	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
 	TSubclassOf<AAbility> PrimaryAbilityClass = nullptr;
 
@@ -74,6 +76,12 @@ public:
 
 	UFUNCTION( BlueprintCallable )
 	void SetCurrentHealth(int32 Health);
+
+	UFUNCTION( BlueprintCallable )
+	bool IsDead() const;
+
+	UFUNCTION( BlueprintCallable )
+	void SetDead(bool IsDead);
 
 	// Returns the current health as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )

@@ -48,7 +48,7 @@ void AArenaCharacter::BeginPlay()
 	//TODO Refactor this
 	if (CurrentWeapon->GetPrimaryAttackClass() == nullptr || CurrentWeapon->GetSecondaryAttackClass() == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have some ability!"), *GetName());
+		UE_LOG(LogTemp, Error, TEXT("The character %s is missing an ability!"), *GetName());
 		return;
 	}
 
