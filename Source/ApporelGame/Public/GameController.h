@@ -25,5 +25,8 @@ public:
 
 	UFUNCTION( BlueprintCallable )
 	void SetTeam(ETeam NewTeam);
+
+	UFUNCTION( BlueprintCallable )
+	bool IsControlledPawnDead();
 	
 };

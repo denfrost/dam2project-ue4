@@ -10,6 +10,7 @@
 class AAbility;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeathDelegate, AGameCharacter*, GameCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRespawnDelegate, AGameCharacter*, GameCharacter);
 
 UCLASS( abstract )
 class APPORELGAME_API AGameCharacter : public ACharacter
@@ -55,6 +56,10 @@ public:
 	UPROPERTY( BlueprintAssignable )
 	FOnDeathDelegate OnDeathDelegate;
 
+	// The receiver of this character's respawn event
+	UPROPERTY( BlueprintAssignable )
+	FOnRespawnDelegate OnRespawnDelegate;
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -67,6 +72,10 @@ public:
 	// Restores the specified amount of Health to the Character, stopping at MaxHealth
 	UFUNCTION( BlueprintCallable )
 	void Heal(int32 Health);
+
+	// Generic death procedure
+	UFUNCTION( BlueprintCallable )
+	virtual void Die();
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetMaxHealth() const;
