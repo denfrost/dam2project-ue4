@@ -2,6 +2,7 @@
 
 #include "PowerfullAttackAssaultRifle.h"
 #include "ArenaCharacter.h"
+#include "ApporelGame.h"
 #include "AssaultRifle.h"
 
 #define Out
@@ -37,10 +38,25 @@ void APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* exe
 
 	FVector MuzzleLocation = AssaultRiffle->GetMeshComp()->GetSocketLocation(AssaultRiffle->GetMuzzleSocketName());
 
+	FVector ShotDirection = EyeRotation.Vector();
+	FVector TraceEnd = EyeLocation + (ShotDirection * 10000);
+	FHitResult Hit;
+
+	//Ajustando la collision para que no choque contra el pawn ni el arma
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(executor);
+	QueryParams.AddIgnoredActor(AssaultRiffle);
+	QueryParams.bTraceComplex = true;
+	QueryParams.bReturnPhysicalMaterial = true;
+
+	GetWorld()->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams);
+	
+	FVector Distance = Hit.Location - MuzzleLocation;
+	
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, EyeRotation, SpawnParams);
+	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, Distance.Rotation(), SpawnParams);
 
 
 // 
