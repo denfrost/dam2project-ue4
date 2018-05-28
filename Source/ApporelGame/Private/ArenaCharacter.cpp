@@ -142,7 +142,7 @@ void AArenaCharacter::StartPrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return CurrentWeapon->StartExecutingPrimaryAttack();
+	CurrentWeapon->StartExecutingPrimaryAttack();
 }
 
 void AArenaCharacter::StopPrimaryAttack()
@@ -152,7 +152,7 @@ void AArenaCharacter::StopPrimaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return CurrentWeapon->StopExecutingPrimaryAttack();
+	CurrentWeapon->StopExecutingPrimaryAttack();
 }
 
 
@@ -163,7 +163,7 @@ void AArenaCharacter::SecondaryAttack()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have a weapon!"), *GetName());
 		return;
 	}
-	return CurrentWeapon->ExecuteSecondaryAttack();
+	CurrentWeapon->ExecuteSecondaryAttack();
 }
 
 void AArenaCharacter::Improve()
