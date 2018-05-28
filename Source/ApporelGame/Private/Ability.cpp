@@ -5,11 +5,9 @@
 #include "Misc/DateTime.h"
 #include "GameFramework/Character.h"
 
-
-
 void AAbility::BeginPlay()
 {
-	bCanBlueprintExecute = true;
+	bCouldBlueprintExecute = true;
 }
 
 void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -55,7 +53,7 @@ void AAbility::SetLastUse(float NewLastUse)
 
 void AAbility::NotifyBlueprintCouldNotExecute()
 {
-	bCanBlueprintExecute = false;
+	bCouldBlueprintExecute = false;
 }
 
 void AAbility::ExecuteAbility_Implementation(ACharacter* executor)
@@ -67,24 +65,17 @@ void AAbility::InternalExecute(ACharacter* executor)
 {
 	if (CanBeExecuted(executor))
 	{		
-		if (!this->GetWorld())
-		{
-			UE_LOG(LogTemp, Warning, TEXT("World is null"));
-		}
-
 		ExecuteAbility(executor);
-		if (bCanBlueprintExecute)
+		if (bCouldBlueprintExecute)
 		{
 			LastUse = executor->GetWorld()->TimeSeconds;
-			UE_LOG(LogTemp, Warning, TEXT("LastUse: %s"), *FString::SanitizeFloat(LastUse));
 		}
-		bCanBlueprintExecute = true;
+		bCouldBlueprintExecute = true;
 	}
 }
 
 bool AAbility::CanBeExecuted(const ACharacter* executor) const
 {
 	float Now = executor->GetWorld()->TimeSeconds;
-	UE_LOG(LogTemp, Warning, TEXT("now: %s , LastUse: %s , Cooldown: %s "), *FString::SanitizeFloat(Now), *FString::SanitizeFloat(LastUse), *FString::SanitizeFloat(Cooldown));
 	return (Now - LastUse) > Cooldown;
 }

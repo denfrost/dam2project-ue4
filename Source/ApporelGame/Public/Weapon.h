@@ -42,12 +42,18 @@ public:
 	AWeapon();
 	
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetPrimaryAttackClass() const;
+	TSubclassOf<AAbility> GetPrimaryAttackClass() const;
 
 	UFUNCTION( BlueprintCallable )
-	AAbility* GetSecondaryAttackClass() const;
+	TSubclassOf<AAbility> GetSecondaryAttackClass() const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetPrimaryAttack();
+
+	UFUNCTION( BlueprintCallable )
+	AAbility* GetSecondaryAttack();
+
+	UFUNCTION( BlueprintCallable )
 	USkeletalMeshComponent* GetMeshComp() const;
 
 	FTimerHandle TimerHandle_TimeBetweenFireAbility;
@@ -56,10 +62,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void ExecutePrimaryAttack();
-
-	AAbility* GetPrimaryAttack();
-
-	AAbility* GetSecondaryAttack();
 
 	virtual void StartExecutingPrimaryAttack();
 

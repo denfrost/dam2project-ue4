@@ -35,14 +35,14 @@ void AWeapon::BeginPlay()
 	//SecondaryAttack->SetOwner(this);
 }
 
-AAbility* AWeapon::GetPrimaryAttackClass() const
+TSubclassOf<AAbility> AWeapon::GetPrimaryAttackClass() const
 {
-	return PrimaryAttackClass.GetDefaultObject();
+	return PrimaryAttackClass;
 }
 
-AAbility* AWeapon::GetSecondaryAttackClass() const
+TSubclassOf<AAbility> AWeapon::GetSecondaryAttackClass() const
 {
-	return SecondaryAttackClass.GetDefaultObject();
+	return SecondaryAttackClass;
 }
 
 USkeletalMeshComponent* AWeapon::GetMeshComp() const
@@ -89,7 +89,7 @@ void AWeapon::StartExecutingPrimaryAttack()
 {
 	float FirstDelay = FMath::Max(LastTimeExecutedAbility + GetPrimaryAttack()->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
 
-	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttackClass()->GetCooldown(), true, FirstDelay);
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::ExecutePrimaryAttack, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
 }
 
 void AWeapon::StopExecutingPrimaryAttack()

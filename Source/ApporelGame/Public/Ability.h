@@ -31,7 +31,7 @@ private:
 
 	float LastUse;
 
-	bool bCanBlueprintExecute;
+	bool bCouldBlueprintExecute;
 
 protected:
 
