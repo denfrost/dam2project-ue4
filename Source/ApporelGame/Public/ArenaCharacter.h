@@ -44,6 +44,10 @@ protected:
 
 	void EndCrouch();
 
+	virtual void Die() override;
+
+	virtual void RespawnAt(FVector Location) override;
+
 public:
 	AArenaCharacter();
 

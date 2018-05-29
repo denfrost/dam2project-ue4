@@ -123,6 +123,20 @@ void AArenaCharacter::EndCrouch()
 	UnCrouch();
 }
 
+void AArenaCharacter::Die()
+{
+	Super::Die();
+
+	StopPrimaryAttack();
+}
+
+void AArenaCharacter::RespawnAt(FVector Location)
+{
+	Super::RespawnAt(Location);
+
+	// Override with further arena details
+}
+
 AAbility* AArenaCharacter::GetPrimaryAttack() const
 {
 	ensure(CurrentWeapon != nullptr);
