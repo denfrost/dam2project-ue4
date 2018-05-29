@@ -23,27 +23,33 @@ protected:
 	virtual void BeginPlay() override;
 
 	// The initial health of the character (could be modified in game)
-	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
+	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Stats" )
 	int32 MaxHealth;
 
 	int32 CurrentHealth;
 
-	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
+	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Stats" )
 	int32 Armor;
 
 	bool bIsDead;
 
-	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
+	UPROPERTY(EditAnywhere, Category = "Game Character Setup | Sound")
+	TArray<USoundBase*> DeathSounds;
+
+	UPROPERTY(EditAnywhere, Category = "Game Character Setup | Sound")
+	TArray<USoundBase*> DamagedSounds;
+
+	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> PrimaryAbilityClass = nullptr;
 
 	AAbility* PrimaryAbility;
 
-	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
+	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> SecondaryAbilityClass = nullptr;
 
 	AAbility* SecondaryAbility;
 
-	UPROPERTY( EditDefaultsOnly, Category = "Character Setup" )
+	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> UltimateAbilityClass = nullptr;
 
 	AAbility* UltimateAbility;

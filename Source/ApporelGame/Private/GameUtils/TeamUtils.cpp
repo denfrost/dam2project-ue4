@@ -7,9 +7,9 @@
 #define OUT
 
 template<typename T>
-void UTeamUtils::FindAllActors(UWorld* World, TArray<T*>& Out)
+void UTeamUtils::FindAllActors(UWorld* WorldContext, TArray<T*>& Out)
 {
-	for (TActorIterator<AActor> It(World, T::StaticClass()); It; ++It)
+	for (TActorIterator<AActor> It(WorldContext, T::StaticClass()); It; ++It)
 	{
 		T* Actor = Cast<T>(*It);
 		if (Actor && !Actor->IsPendingKill())
@@ -19,11 +19,11 @@ void UTeamUtils::FindAllActors(UWorld* World, TArray<T*>& Out)
 	}
 }
 
-TArray<class AGameCharacter*> UTeamUtils::FindCharactersFromTeam(UWorld* World, ETeam Team)
+TArray<class AGameCharacter*> UTeamUtils::FindCharactersFromTeam(UWorld* WorldContext, ETeam Team)
 {
 	TArray<AGameCharacter*>		CharactersFromTeam;
 	TArray<AGameCharacter*>		Characters;
-	FindAllActors( World, OUT Characters );
+	FindAllActors( WorldContext, OUT Characters );
 
 	for (AGameCharacter* Character : Characters)
 	{
