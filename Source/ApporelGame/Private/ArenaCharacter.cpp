@@ -4,6 +4,7 @@
 #include "Weapon.h"
 #include "Ability.h"
 #include "Camera/CameraComponent.h"
+#include "GameUtils/Sounds.h"
 #include "GameFramework//SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 
@@ -12,14 +13,14 @@ AArenaCharacter::AArenaCharacter()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	SprinArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
-	SprinArmComp->bUsePawnControlRotation = true;
-	SprinArmComp->SetupAttachment(RootComponent);
+	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
+	SpringArmComp->bUsePawnControlRotation = true;
+	SpringArmComp->SetupAttachment(RootComponent);
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
-	CameraComp->SetupAttachment(SprinArmComp);
+	CameraComp->SetupAttachment(SpringArmComp);
 }
 
 // Called when the game starts or when spawned
@@ -100,7 +101,14 @@ void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCom
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AArenaCharacter::BeginCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AArenaCharacter::EndCrouch);
 
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AArenaCharacter::Jump);
+}
+
+// TODO fix infinite jump sound bug
+void AArenaCharacter::Jump()
+{
+	Super::Jump();
+	USounds::PlayRandomSoundAtLocation(GetWorld(), JumpSounds, GetActorLocation());
 }
 
 void AArenaCharacter::MoveForward(float value)

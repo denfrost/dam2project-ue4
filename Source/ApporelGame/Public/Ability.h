@@ -29,6 +29,10 @@ private:
 	UPROPERTY( EditDefaultsOnly )
 	float Cooldown;
 
+	// The sound this Ability will emit when successfully executed
+	UPROPERTY( EditDefaultsOnly )
+	USoundBase* Sound;
+
 	float LastUse;
 
 	bool bCouldBlueprintExecute;
@@ -51,7 +55,7 @@ public:
 	UFUNCTION( BlueprintCallable )
 	float GetCooldown() const;
 
-	// Returns the remaining cooldown for this ability
+	// Returns the remaining cooldown for this ability as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )
 	float GetNormalisedRemainingCooldown() const;
 

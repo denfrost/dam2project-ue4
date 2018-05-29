@@ -27,8 +27,10 @@ public:
 
 	// Returns an array of all spawned actors of a class T
 	template<typename T>
-	void FindAllActors(UWorld* World, TArray<T*>& Out);
+	UFUNCTION( BlueprintCallable )
+	static void FindAllActors(UWorld* WorldContext, TArray<T*>& Out);
 
 	// Returns all the spawned game characters from a given team
-	TArray<class AGameCharacter*> FindCharactersFromTeam(UWorld* World, ETeam Team);
+	UFUNCTION( BlueprintCallable )
+	static TArray<class AGameCharacter*> FindCharactersFromTeam(UWorld* WorldContext, ETeam Team);
 };

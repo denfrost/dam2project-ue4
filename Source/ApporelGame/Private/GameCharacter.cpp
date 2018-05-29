@@ -2,6 +2,7 @@
 
 #include "GameCharacter.h"
 #include "GameController.h"
+#include "GameUtils/Sounds.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
 
@@ -72,6 +73,8 @@ float AGameCharacter::TakeDamage(
 {
 	if(bIsDead) return 0.f;
 
+	USounds::PlayRandomSoundAtLocation(GetWorld(), DamagedSounds, GetActorLocation());
+
 	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
 	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
 
@@ -96,6 +99,8 @@ void AGameCharacter::Die()
 	{
 		return;
 	}
+
+	USounds::PlayRandomSoundAtLocation(GetWorld(), DeathSounds, GetActorLocation());
 
 	this->SetDead(true);
 	OnDeathDelegate.Broadcast(this);

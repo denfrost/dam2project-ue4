@@ -17,8 +17,7 @@ void ARespawnVolume::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UTeamUtils* TeamUtils = NewObject<UTeamUtils>();
-	TArray<AGameCharacter*> Characters = TeamUtils->FindCharactersFromTeam(GetWorld(), Team);
+	TArray<AGameCharacter*> Characters = UTeamUtils::FindCharactersFromTeam(GetWorld(), Team);
 
 	for (AGameCharacter* Character : Characters)
 	{

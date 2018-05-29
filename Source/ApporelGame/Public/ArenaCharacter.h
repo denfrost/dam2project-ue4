@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameCharacter.h"
+#include "Runtime/Engine/Classes/GameFramework/MovementComponent.h"
 #include "ArenaCharacter.generated.h"
 
 class AWeapon;
@@ -21,10 +22,16 @@ class APPORELGAME_API AArenaCharacter : public AGameCharacter
 
 private:
 	// The character's Weapon (holy fuck man descriptive AF feels like if this shit was created by Epic themselves)
-	UPROPERTY(EditAnywhere, Category = "Character Setup")
+	UPROPERTY(EditAnywhere, Category = "Arena Character Setup")
 	TSubclassOf<AWeapon> WeaponToSpawn;
 
 	AWeapon* CurrentWeapon;
+
+	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
+	TArray<USoundBase*> JumpSounds;
+
+	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
+	TArray<USoundBase*> TauntSounds;
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,7 +41,9 @@ protected:
 	UCameraComponent* CameraComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	USpringArmComponent* SprinArmComp;
+	USpringArmComponent* SpringArmComp;
+
+	void Jump();
 
 	void MoveForward(float value);
 

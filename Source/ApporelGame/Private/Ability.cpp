@@ -3,6 +3,7 @@
 #include "Ability.h"
 #include "Engine/World.h"
 #include "Misc/DateTime.h"
+#include "GameUtils/Sounds.h"
 #include "GameFramework/Character.h"
 
 void AAbility::BeginPlay()
@@ -69,6 +70,7 @@ bool AAbility::InternalExecute(ACharacter* executor)
 		ExecuteAbility(executor);
 		if (bCouldBlueprintExecute)
 		{
+			USounds::PlaySoundAtLocation(executor->GetWorld(), Sound, executor->GetActorLocation());
 			LastUse = executor->GetWorld()->TimeSeconds;
 			return true;
 		}

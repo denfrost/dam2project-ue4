@@ -32,12 +32,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Secondary Attack | Particles")
 	UParticleSystem* MuzzleEffectSecondaryAttack;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Primary Attack | Sound")
-	USoundBase* SoundPrimaryAttack;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Secondary Attack | Sound")
-	USoundBase* SoundSecondaryAttack;
-
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	TSubclassOf<UCameraShake> FireCamShake;
 
