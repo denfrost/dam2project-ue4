@@ -57,6 +57,7 @@ bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* exe
 	
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	SpawnParams.Owner = executor;
 
 	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, Distance.Rotation(), SpawnParams);
 	return true;
