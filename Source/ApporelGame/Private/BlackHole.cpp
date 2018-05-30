@@ -55,15 +55,14 @@ void ABlackHole::Tick(float DeltaTime)
 			UE_LOG(LogTemp, Warning, TEXT("No Owner"));
 		}
 
-		//TODO add team condition
-		if(Actor && Owner)
+		if( Owner->GetTeam() != Actor->GetTeam() )
 		{
 			const float SphereRadius = SphereCompSuck->GetScaledSphereRadius();
 			UE_LOG(LogTemp, Warning, TEXT("Sucking %s"), *Actor->GetName());
 
 			FVector DistanceActorToBlackHole = GetActorLocation() - Actor->GetActorLocation();
-			FVector UnitVector = DistanceActorToBlackHole / DistanceActorToBlackHole.Size();
-			Actor->AddActorWorldOffset(UnitVector * SuckerForce);
+			DistanceActorToBlackHole.Normalize();
+			Actor->AddActorWorldOffset(DistanceActorToBlackHole * SuckerForce);
 		}
 	}
 }
