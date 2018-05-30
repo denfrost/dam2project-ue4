@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "GameUtils/TeamUtils.h"
+#include "Util/TeamUtils.h"
 #include "ApporelGameGameModeBase.generated.h"
 
 UCLASS()

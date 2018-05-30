@@ -2,7 +2,7 @@
 
 #include "RespawnVolume.h"
 #include "GameCharacter.h"
-#include "GameUtils/TeamUtils.h"
+#include "Util/TeamUtils.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 
 #define OUT

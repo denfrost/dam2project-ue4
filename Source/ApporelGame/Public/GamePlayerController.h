@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameUtils/TeamUtils.h"
 #include "GameFramework/PlayerController.h"
 #include "GamePlayerController.generated.h"
 
@@ -15,16 +14,7 @@ class APPORELGAME_API AGamePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-private:
-	UPROPERTY( EditAnywhere )
-	ETeam Team;
-
 public:
-	UFUNCTION( BlueprintCallable )
-	ETeam GetTeam() const;
-
-	UFUNCTION( BlueprintCallable )
-	void SetTeam(ETeam NewTeam);
 
 	UFUNCTION( BlueprintCallable )
 	bool IsControlledPawnDead();

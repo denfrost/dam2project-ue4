@@ -3,7 +3,7 @@
 #include "Ability.h"
 #include "Engine/World.h"
 #include "Misc/DateTime.h"
-#include "GameUtils/Sounds.h"
+#include "Util/Sounds.h"
 #include "GameFramework/Character.h"
 
 void AAbility::BeginPlay()

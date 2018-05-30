@@ -4,7 +4,7 @@
 #include "Weapon.h"
 #include "Ability.h"
 #include "Camera/CameraComponent.h"
-#include "GameUtils/Sounds.h"
+#include "Util/Sounds.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 

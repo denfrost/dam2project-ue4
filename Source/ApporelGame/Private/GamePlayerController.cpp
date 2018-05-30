@@ -3,16 +3,6 @@
 #include "GamePlayerController.h"
 #include "GameCharacter.h"
 
-ETeam AGamePlayerController::GetTeam() const
-{
-	return Team;
-}
-
-void AGamePlayerController::SetTeam(ETeam NewTeam)
-{
-	Team = NewTeam;
-}
-
 bool AGamePlayerController::IsControlledPawnDead()
 {
 	auto ControlledCharacter = Cast<AGameCharacter>(GetPawn());

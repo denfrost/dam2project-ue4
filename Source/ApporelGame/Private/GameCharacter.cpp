@@ -2,9 +2,16 @@
 
 #include "GameCharacter.h"
 #include "GamePlayerController.h"
-#include "GameUtils/Sounds.h"
+#include "Util/Sounds.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
+
+AGameCharacter::AGameCharacter()
+{
+	PrimaryActorTick.bCanEverTick = false;
+
+	Team = ETeam::Neutral;
+}
 
 // Called when the game starts or when spawned
 void AGameCharacter::BeginPlay()
@@ -42,11 +49,6 @@ void AGameCharacter::BeginPlay()
 
 	// Set the current health equal to max health at the beginning
 	CurrentHealth = MaxHealth;
-}
-
-AGameCharacter::AGameCharacter()
-{
-	PrimaryActorTick.bCanEverTick = false;
 }
 
 // Called to bind functionality to input
@@ -137,16 +139,12 @@ float AGameCharacter::GetNormalisedHealth() const
 
 ETeam AGameCharacter::GetTeam() const
 {
-	AGamePlayerController* Controller = Cast<AGamePlayerController>(GetController());
-	if (Controller == nullptr) return ETeam::Neutral;
-	return Controller->GetTeam();
+	return Team;
 }
 
-void AGameCharacter::SetTeam(ETeam Team)
+void AGameCharacter::SetTeam(ETeam NewTeam)
 {
-	AGamePlayerController* Controller = Cast<AGamePlayerController>(GetController());
-	if (Controller == nullptr) return;
-	Controller->SetTeam(Team);
+	Team = NewTeam;
 }
 
 void AGameCharacter::RespawnAt(FVector Location)
