@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameUtils/TeamUtils.h"
-#include "GameFramework/Controller.h"
-#include "GameController.generated.h"
+#include "GameFramework/PlayerController.h"
+#include "GamePlayerController.generated.h"
 
 /**
  * 
  */
 UCLASS( Blueprintable )
-class APPORELGAME_API AGameController : public APlayerController
+class APPORELGAME_API AGamePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 

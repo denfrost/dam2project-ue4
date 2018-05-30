@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameCharacter.h"
-#include "GameController.h"
+#include "GamePlayerController.h"
 #include "GameUtils/Sounds.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
@@ -60,8 +60,7 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AGameCharacter::StartSpectatingOnly()
 {
-	// TODO remove technical debt here when AI is implemented, otherwise it won't be able to use this class
-	AGameController* GameController = Cast<AGameController>(GetController());
+	AGamePlayerController* GameController = Cast<AGamePlayerController>(GetController());
 	GameController->StartSpectatingOnly();
 }
 
@@ -138,14 +137,14 @@ float AGameCharacter::GetNormalisedHealth() const
 
 ETeam AGameCharacter::GetTeam() const
 {
-	AGameController* Controller = Cast<AGameController>(GetController());
+	AGamePlayerController* Controller = Cast<AGamePlayerController>(GetController());
 	if (Controller == nullptr) return ETeam::Neutral;
 	return Controller->GetTeam();
 }
 
 void AGameCharacter::SetTeam(ETeam Team)
 {
-	AGameController* Controller = Cast<AGameController>(GetController());
+	AGamePlayerController* Controller = Cast<AGamePlayerController>(GetController());
 	if (Controller == nullptr) return;
 	Controller->SetTeam(Team);
 }
