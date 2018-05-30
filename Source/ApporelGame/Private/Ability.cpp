@@ -81,6 +81,17 @@ bool AAbility::InternalExecute(ACharacter* executor)
 
 bool AAbility::CanBeExecuted(const ACharacter* executor) const
 {
+	if (!executor->GetWorld())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("world is null"));
+	}
+
+	if (!GetWorld())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("world is null 2"));
+		return false;
+	}
+
 	float Now = executor->GetWorld()->TimeSeconds;
 	return (Now - LastUse) > Cooldown;
 }

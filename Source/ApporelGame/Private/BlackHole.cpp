@@ -17,19 +17,20 @@ ABlackHole::ABlackHole()
 	MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	RootComponent = MeshComp;
 
-	SphereSuckerRadius = 3000.f;
+	SphereSuckerRadius = 60.f;
 
 	SphereCompSuck = CreateDefaultSubobject<USphereComponent>(TEXT("SphereSuck"));
 	SphereCompSuck->SetSphereRadius(SphereSuckerRadius);
 	SphereCompSuck->SetupAttachment(MeshComp);
+
+	InitialLifeSpan = 5.f;
+	SuckerForce = 5;
 }
 
 // Called when the game starts or when spawned
 void ABlackHole::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	InitialLifeSpan = 10.f;
 }
 
 // Called every frame
@@ -54,13 +55,15 @@ void ABlackHole::Tick(float DeltaTime)
 			UE_LOG(LogTemp, Warning, TEXT("No Owner"));
 		}
 
-		//&& Actor->GetTeam() != Owner->GetTeam()
+		//TODO add team condition
 		if(Actor && Owner)
 		{
 			const float SphereRadius = SphereCompSuck->GetScaledSphereRadius();
-			const float ForceStrenght = -2000;
 			UE_LOG(LogTemp, Warning, TEXT("Sucking %s"), *Actor->GetName());
-			Actor->GetCapsuleComponent()->AddRadialForce(GetActorLocation(), SphereRadius, ForceStrenght, ERadialImpulseFalloff::RIF_Linear, true);
+
+			FVector DistanceActorToBlackHole = GetActorLocation() - Actor->GetActorLocation();
+			FVector UnitVector = DistanceActorToBlackHole / DistanceActorToBlackHole.Size();
+			Actor->AddActorWorldOffset(UnitVector * SuckerForce);
 		}
 	}
 }

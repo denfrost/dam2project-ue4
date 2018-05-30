@@ -30,6 +30,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float SphereSuckerRadius;
+	
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	int32 SuckerForce;
 
 public:	
 	// Called every frame
