@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameUtils/TeamUtils.h"
+#include "Util/TeamUtils.h"
 #include "Engine/TriggerBox.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "CapturableVolume.generated.h"

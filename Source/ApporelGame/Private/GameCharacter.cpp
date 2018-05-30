@@ -1,10 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameCharacter.h"
-#include "GameController.h"
-#include "GameUtils/Sounds.h"
+#include "GamePlayerController.h"
+#include "Util/Sounds.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
+
+AGameCharacter::AGameCharacter()
+{
+	PrimaryActorTick.bCanEverTick = false;
+
+	Team = ETeam::Neutral;
+}
 
 // Called when the game starts or when spawned
 void AGameCharacter::BeginPlay()
@@ -44,11 +51,6 @@ void AGameCharacter::BeginPlay()
 	CurrentHealth = MaxHealth;
 }
 
-AGameCharacter::AGameCharacter()
-{
-	PrimaryActorTick.bCanEverTick = false;
-}
-
 // Called to bind functionality to input
 void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -60,8 +62,7 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AGameCharacter::StartSpectatingOnly()
 {
-	// TODO remove technical debt here when AI is implemented, otherwise it won't be able to use this class
-	AGameController* GameController = Cast<AGameController>(GetController());
+	AGamePlayerController* GameController = Cast<AGamePlayerController>(GetController());
 	GameController->StartSpectatingOnly();
 }
 
@@ -138,16 +139,12 @@ float AGameCharacter::GetNormalisedHealth() const
 
 ETeam AGameCharacter::GetTeam() const
 {
-	AGameController* Controller = Cast<AGameController>(GetController());
-	if (Controller == nullptr) return ETeam::Neutral;
-	return Controller->GetTeam();
+	return Team;
 }
 
-void AGameCharacter::SetTeam(ETeam Team)
+void AGameCharacter::SetTeam(ETeam NewTeam)
 {
-	AGameController* Controller = Cast<AGameController>(GetController());
-	if (Controller == nullptr) return;
-	Controller->SetTeam(Team);
+	Team = NewTeam;
 }
 
 void AGameCharacter::RespawnAt(FVector Location)

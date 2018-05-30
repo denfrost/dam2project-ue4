@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameUtils/TeamUtils.h"
+#include "Util/TeamUtils.h"
 #include "GameFramework/Character.h"
 #include "GameCharacter.generated.h"
 
@@ -32,6 +32,9 @@ protected:
 	int32 Armor;
 
 	bool bIsDead;
+
+	UPROPERTY( EditAnywhere )
+	ETeam Team;
 
 	UPROPERTY(EditAnywhere, Category = "Game Character Setup | Sound")
 	TArray<USoundBase*> DeathSounds;
@@ -106,7 +109,7 @@ public:
 	ETeam GetTeam() const;
 
 	UFUNCTION( BlueprintCallable )
-	void SetTeam(ETeam Team);
+	void SetTeam(ETeam NewTeam);
 
 	virtual void RespawnAt(FVector Location);
 

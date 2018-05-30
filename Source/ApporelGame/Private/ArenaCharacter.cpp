@@ -4,8 +4,8 @@
 #include "Weapon.h"
 #include "Ability.h"
 #include "Camera/CameraComponent.h"
-#include "GameUtils/Sounds.h"
-#include "GameFramework//SpringArmComponent.h"
+#include "Util/Sounds.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 
 AArenaCharacter::AArenaCharacter()
@@ -53,7 +53,7 @@ void AArenaCharacter::BeginPlay()
 		return;
 	}
 
-	//TODO extracts to a method
+	//TODO extract to a method
 	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
 	CurrentWeapon->GetPrimaryAttack()->SetLastUse(-CurrentWeapon->GetPrimaryAttack()->GetCooldown());
 	CurrentWeapon->GetSecondaryAttack()->SetLastUse(-CurrentWeapon->GetSecondaryAttack()->GetCooldown());
