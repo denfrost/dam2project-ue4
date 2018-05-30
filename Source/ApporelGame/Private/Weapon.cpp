@@ -19,20 +19,22 @@ void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (PrimaryAttackClass == nullptr)
+	if (PrimaryAttackClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a primary attack!"), *GetName());
+		PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
+		PrimaryAttack->SetOwner(this);
 	}
 
-	if (SecondaryAttackClass == nullptr)
+	if (SecondaryAttackClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("The weapon %s doesn't have a secondary attack!"), *GetName());
+		SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
+		SecondaryAttack->SetOwner(this);
 	}
-	PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
-	PrimaryAttack->SetOwner(this);
 
-	SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
-	SecondaryAttack->SetOwner(this);
+	if (!(PrimaryAttackClass && SecondaryAttackClass))
+	{
+		UE_LOG(LogTemp, Error, TEXT("The weapon %s is missing an attack!"), *GetName());
+	}
 }
 
 TSubclassOf<AAbility> AWeapon::GetPrimaryAttackClass() const
@@ -90,9 +92,14 @@ AAbility* AWeapon::GetSecondaryAttack()
 
 void AWeapon::StartExecutingPrimaryAttack()
 {
-	float FirstDelay = FMath::Max(LastTimeExecutedAbility + GetPrimaryAttack()->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
+	if (PrimaryAttack == nullptr)
+	{
+		return;
+	}
 
-	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::CheckExecutePrimaryAttackCanBeExecuted, GetPrimaryAttack()->GetCooldown(), true, FirstDelay);
+	float FirstDelay = FMath::Max(LastTimeExecutedAbility + PrimaryAttack->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
+
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::CheckExecutePrimaryAttackCanBeExecuted, PrimaryAttack->GetCooldown(), true, FirstDelay);
 }
 
 void AWeapon::CheckExecutePrimaryAttackCanBeExecuted()

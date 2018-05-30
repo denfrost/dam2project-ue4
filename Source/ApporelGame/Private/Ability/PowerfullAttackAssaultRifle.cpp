@@ -49,15 +49,20 @@ bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* exe
 	QueryParams.bTraceComplex = true;
 	QueryParams.bReturnPhysicalMaterial = true;
 
+	FRotator DesiredRotation = EyeRotation;
+
 	//Lugar de impacto
-	GetWorld()->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams);
-	
-	//vector de distancia entre la ubicacion del cañon del arma y el lugar de impacto
-	FVector Distance = Hit.Location - MuzzleLocation;
-	
+	if(GetWorld()->LineTraceSingleByChannel(Out Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
+	{	
+		//vector de distancia entre la ubicacion del cañon del arma y el lugar de impacto
+		FVector Distance = Hit.Location - MuzzleLocation;
+		DesiredRotation = Distance.Rotation();
+	}
+
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	SpawnParams.Owner = executor;
 
-	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, Distance.Rotation(), SpawnParams);
+	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, DesiredRotation, SpawnParams);
 	return true;
 }
