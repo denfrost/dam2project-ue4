@@ -37,7 +37,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleInstanceOnly, Category = "Capturable")
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "Capturable")
 	TArray<AActor*> CapturableVolumes;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
