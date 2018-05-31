@@ -57,7 +57,7 @@ public:
 
 	// Returns the remaining cooldown for this ability as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )
-	float GetNormalisedRemainingCooldown() const;
+	float GetNormalizedRemainingCooldown() const;
 
 	UFUNCTION( BlueprintCallable )
 	void SetCooldown(float NewCooldown);

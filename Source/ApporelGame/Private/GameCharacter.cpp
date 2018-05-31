@@ -132,7 +132,7 @@ void AGameCharacter::SetDead(bool IsDead)
 	bIsDead = IsDead;
 }
 
-float AGameCharacter::GetNormalisedHealth() const
+float AGameCharacter::GetNormalizedHealth() const
 {
 	return CurrentHealth / (float)MaxHealth;
 }
