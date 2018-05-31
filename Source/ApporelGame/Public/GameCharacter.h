@@ -103,7 +103,7 @@ public:
 
 	// Returns the current health as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )
-	float GetNormalisedHealth() const;
+	float GetNormalizedHealth() const;
 
 	UFUNCTION( BlueprintCallable )
 	ETeam GetTeam() const;

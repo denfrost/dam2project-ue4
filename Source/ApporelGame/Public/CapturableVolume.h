@@ -23,16 +23,28 @@ class APPORELGAME_API ACapturableVolume : public ATriggerBox
 private:
 
 	// The number of points needed to capture this zone (+threshold -> +hard)
-	UPROPERTY( EditAnywhere, Category = "Setup" )
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
 	int32 CaptureThreshold = 50;
 
 	// An array of referenced actors who will be affected as defined in OnCapture event when the zone is captured
-	UPROPERTY( EditAnywhere, Category = "Setup" )
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
 	TArray<AActor*> OnCaptureAffectedActors;
 
 	// The score this volume will give to the capturing team players each second
-	UPROPERTY( EditAnywhere, Category = "Setup" )
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
 	int32 ScorePerSecond = 10;
+
+	// The sound that will be played when red team captures this volume
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
+	USoundBase* RedCaptureSound;
+
+	// The sound that will be played when blue team captures this volume
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
+	USoundBase* BlueCaptureSound;
+
+	// The sound that will be played when this volume is neutralized
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
+	USoundBase* NeutralizedSound;
 
 	TArray<AActor*> OverlappingActors;
 
@@ -62,6 +74,9 @@ public:
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetCaptureState() const;
+
+	UFUNCTION( BlueprintCallable )
+	float GetNormalizedCaptureState() const;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

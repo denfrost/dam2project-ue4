@@ -31,7 +31,7 @@ float AAbility::GetCooldown() const
 	return Cooldown;
 }
 
-float AAbility::GetNormalisedRemainingCooldown() const
+float AAbility::GetNormalizedRemainingCooldown() const
 {
 	// TODO implement
 	return 0.0;

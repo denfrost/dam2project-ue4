@@ -3,6 +3,7 @@
 #include "CapturableVolume.h"
 #include "ArenaCharacter.h"
 #include "Util/TeamUtils.h"
+#include "Util/Sounds.h"
 #include "ApporelGameGameModeBase.h"
 
 #define OUT
@@ -22,6 +23,12 @@ ETeam ACapturableVolume::GetOwnerTeam()
 int32 ACapturableVolume::GetCaptureState() const
 {
 	return CaptureState;
+}
+
+float ACapturableVolume::GetNormalizedCaptureState() const
+{
+	float NormalizedCaptureState = CaptureState / (float)CaptureThreshold;
+	return FMath::Clamp(NormalizedCaptureState, -1.f, 1.f);
 }
 
 void ACapturableVolume::BeginPlay()
@@ -44,6 +51,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		if (CaptureState >= CaptureThreshold && LastCapturingTeam != ETeam::Red)
 		{
 			LastCapturingTeam = ETeam::Red;
+			USounds::PlaySound2D(GetWorld(), RedCaptureSound);
 			OnCapture(ETeam::Red, OnCaptureAffectedActors);
 			StartScoreTimerForTeam(ETeam::Red);
 		}
@@ -52,6 +60,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		else if (LastCapturingTeam != ETeam::Red && LastCapturingTeam != ETeam::Neutral)
 		{
 			LastCapturingTeam = ETeam::Neutral;
+			USounds::PlaySound2D(GetWorld(), NeutralizedSound);
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
 			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
@@ -63,6 +72,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		if (CaptureState <= -CaptureThreshold && LastCapturingTeam != ETeam::Blue)
 		{
 			LastCapturingTeam = ETeam::Blue;
+			USounds::PlaySound2D(GetWorld(), BlueCaptureSound);
 			OnCapture(ETeam::Blue, OnCaptureAffectedActors);
 			StartScoreTimerForTeam(ETeam::Blue);
 		}
@@ -70,6 +80,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		else if (LastCapturingTeam != ETeam::Blue && LastCapturingTeam != ETeam::Neutral)
 		{
 			LastCapturingTeam = ETeam::Neutral;
+			USounds::PlaySound2D(GetWorld(), NeutralizedSound);
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
 			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
