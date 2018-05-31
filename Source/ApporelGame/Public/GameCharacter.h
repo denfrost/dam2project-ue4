@@ -113,10 +113,13 @@ public:
 
 	virtual void RespawnAt(FVector Location);
 
+	UFUNCTION( BlueprintCallable )
 	virtual void ExecutePrimaryAbility();
 
+	UFUNCTION( BlueprintCallable )
 	virtual void ExecuteSecondaryAbility();
 
+	UFUNCTION( BlueprintCallable )
 	virtual void ExecuteUltimateAbility();
 
 	virtual AAbility* GetPrimaryAbility();

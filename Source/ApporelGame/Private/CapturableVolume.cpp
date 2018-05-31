@@ -14,6 +14,11 @@ ACapturableVolume::ACapturableVolume()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+ETeam ACapturableVolume::GetOwnerTeam()
+{
+	return LastCapturingTeam;
+}
+
 int32 ACapturableVolume::GetCaptureState() const
 {
 	return CaptureState;
@@ -74,7 +79,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 	for (AActor* Actor : OverlappingActors)
 	{
 		AArenaCharacter* ArenaCharacter = Cast<AArenaCharacter>(Actor);
-		TeamFactor += ( ArenaCharacter->GetTeam() == ETeam::Red ) ? 1 : -1;
+		TeamFactor += ( !ArenaCharacter->IsDead() && ArenaCharacter->GetTeam() == ETeam::Red ) ? 1 : -1;
 	}
 
 	CaptureState += TeamFactor;
