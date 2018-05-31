@@ -54,9 +54,11 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-
 	// Sets default values for this actor's properties
 	ACapturableVolume();
+
+	UFUNCTION( BlueprintCallable )
+	ETeam GetOwnerTeam();
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetCaptureState() const;

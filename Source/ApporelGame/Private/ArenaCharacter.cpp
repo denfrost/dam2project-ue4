@@ -5,6 +5,8 @@
 #include "Ability.h"
 #include "Camera/CameraComponent.h"
 #include "Util/Sounds.h"
+#include "Kismet/GameplayStatics.h"
+#include "CapturableVolume.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 
@@ -27,6 +29,8 @@ AArenaCharacter::AArenaCharacter()
 void AArenaCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	 
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACapturableVolume::StaticClass(), CapturableVolumes);
 
 	if (WeaponToSpawn == nullptr)
 	{

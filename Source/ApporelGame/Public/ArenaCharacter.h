@@ -11,6 +11,7 @@ class AWeapon;
 class AAbility;
 class UCameraComponent;
 class USpringArmComponent;
+class ACapturableVolume;
 
 /**
  * The base class for all characters of the arena battle.
@@ -32,10 +33,12 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
 	TArray<USoundBase*> TauntSounds;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UPROPERTY(VisibleInstanceOnly, Category = "Capturable")
+	TArray<AActor*> CapturableVolumes;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* CameraComp;
@@ -62,36 +65,39 @@ public:
 
 	const FName GRAB_POINT_SOCKET_NAME = FName("WeaponSocket");
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	TSubclassOf<AWeapon> GetWeaponToSpawn() const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	void SetWeaponToSpawn(TSubclassOf<AWeapon> NewWeapon);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	AWeapon* GetCurrentWeapon();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	void SetCurrentWeapon(AWeapon* NewCurrentWeapon);
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Returns the primary attack of this Character's Weapon
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	AAbility* GetPrimaryAttack() const;
 
 	// Returns the secondary attack of this Character's Weapon
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	AAbility* GetSecondaryAttack() const;
 
 	// Delegate method for Weapon$StartPrimaryAttack()
+	UFUNCTION( BlueprintCallable )
 	void StartPrimaryAttack();
 
 	// Delegate method for Weapon$StopPrimaryAttack()
+	UFUNCTION( BlueprintCallable )
 	void StopPrimaryAttack();
 
 	// Delegate method for Weapon$SecondaryAttack()
+	UFUNCTION( BlueprintCallable )
 	void SecondaryAttack();
 
 	// Delegate method for Weapon$Improve()
