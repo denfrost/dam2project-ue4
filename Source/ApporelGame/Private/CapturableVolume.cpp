@@ -15,7 +15,12 @@ ACapturableVolume::ACapturableVolume()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-ETeam ACapturableVolume::GetOwnerTeam()
+FString ACapturableVolume::GetName() const
+{
+	return Name;
+}
+
+ETeam ACapturableVolume::GetOwnerTeam() const
 {
 	return LastCapturingTeam;
 }
@@ -23,6 +28,11 @@ ETeam ACapturableVolume::GetOwnerTeam()
 int32 ACapturableVolume::GetCaptureState() const
 {
 	return CaptureState;
+}
+
+ETeam ACapturableVolume::GetLastCapturingTeam() const
+{
+	return LastCapturingTeam;
 }
 
 float ACapturableVolume::GetNormalizedCaptureState() const
@@ -52,6 +62,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Red;
 			USounds::PlaySound2D(GetWorld(), RedCaptureSound);
+			OnCaptureDelegate.Broadcast(this);
 			OnCapture(ETeam::Red, OnCaptureAffectedActors);
 			StartScoreTimerForTeam(ETeam::Red);
 		}
@@ -61,6 +72,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Neutral;
 			USounds::PlaySound2D(GetWorld(), NeutralizedSound);
+			OnCaptureDelegate.Broadcast(this);
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
 			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
@@ -73,6 +85,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Blue;
 			USounds::PlaySound2D(GetWorld(), BlueCaptureSound);
+			OnCaptureDelegate.Broadcast(this);
 			OnCapture(ETeam::Blue, OnCaptureAffectedActors);
 			StartScoreTimerForTeam(ETeam::Blue);
 		}
@@ -81,6 +94,7 @@ void ACapturableVolume::Tick(float DeltaTime)
 		{
 			LastCapturingTeam = ETeam::Neutral;
 			USounds::PlaySound2D(GetWorld(), NeutralizedSound);
+			OnCaptureDelegate.Broadcast(this);
 			OnCapture(ETeam::Neutral, OnCaptureAffectedActors);
 			this->GetWorldTimerManager().ClearTimer(TimerHandle);
 		}
