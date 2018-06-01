@@ -8,6 +8,8 @@
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "CapturableVolume.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCaptureDelegate, ACapturableVolume*, CapturableVolume);
+
 /**
  * A placeable volume that can be captured by members of each Team. 
  * It will trigger an OnCapture event to its derived BP in the following cases:
@@ -22,9 +24,17 @@ class APPORELGAME_API ACapturableVolume : public ATriggerBox
 	
 private:
 
+	// The name of this CapturableVolume, as it will be displayed on its capture
+	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
+	FString Name;
+
 	// The number of points needed to capture this zone (+threshold -> +hard)
 	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
 	int32 CaptureThreshold = 50;
+
+	// A blueprint assignable delegate which can handle the OnCapture events as the CapturableVolume overridable method itself
+	UPROPERTY( BlueprintAssignable )
+	FOnCaptureDelegate OnCaptureDelegate;
 
 	// An array of referenced actors who will be affected as defined in OnCapture event when the zone is captured
 	UPROPERTY( EditAnywhere, Category = "Capturable Volume Setup" )
@@ -70,10 +80,16 @@ public:
 	ACapturableVolume();
 
 	UFUNCTION( BlueprintCallable )
-	ETeam GetOwnerTeam();
+	FString GetName() const;
+
+	UFUNCTION( BlueprintCallable )
+	ETeam GetOwnerTeam() const;
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetCaptureState() const;
+
+	UFUNCTION( BlueprintCallable )
+	ETeam GetLastCapturingTeam() const;
 
 	UFUNCTION( BlueprintCallable )
 	float GetNormalizedCaptureState() const;
