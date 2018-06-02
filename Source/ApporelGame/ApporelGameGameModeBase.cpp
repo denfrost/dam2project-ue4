@@ -18,6 +18,11 @@ int32 AApporelGameGameModeBase::GetScore(ETeam Team)
 	return (Team == ETeam::Blue) ? ScoreTeamBlue : ScoreTeamRed;
 }
 
+TMap<AGameCharacter*, FPlayerStats> AApporelGameGameModeBase::GetPlayerStats() const
+{
+	return PlayerStats;
+}
+
 void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
 {
 	switch (Team)

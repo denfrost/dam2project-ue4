@@ -82,7 +82,8 @@ float AGameCharacter::TakeDamage(
 	CurrentHealth -= DamageToApply;
 	if (CurrentHealth <= 0)
 	{
-		Die();
+		UE_LOG(LogTemp, Error, TEXT("KILLER: %s!"), *DamageCauser->GetName());
+		Die(Cast<AGameCharacter>(DamageCauser));
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Damage Taken: %f\nCurrent HP: %d"), DamageAmount, CurrentHealth);
 	return DamageToApply;
@@ -94,7 +95,7 @@ void AGameCharacter::Heal(int32 Health)
 	CurrentHealth = FMath::Clamp(CurrentHealth, 0, MaxHealth);
 }
 
-void AGameCharacter::Die()
+void AGameCharacter::Die(AGameCharacter* Killer)
 {
 	if (bIsDead)
 	{
@@ -104,7 +105,17 @@ void AGameCharacter::Die()
 	USounds::PlayRandomSoundAtLocation(GetWorld(), DeathSounds, GetActorLocation());
 
 	this->SetDead(true);
-	OnDeathDelegate.Broadcast(this);
+	OnDeathDelegate.Broadcast(this, Killer);
+}
+
+FName AGameCharacter::GetDisplayName()
+{
+	return DisplayName;
+}
+
+void AGameCharacter::SetDisplayName(FName Name)
+{
+	DisplayName = Name;
 }
 
 int32 AGameCharacter::GetMaxHealth() const

@@ -25,9 +25,9 @@ void ARespawnVolume::BeginPlay()
 	}
 }
 
-void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* GameCharacter)
+void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* Killer)
 {
-	CharactersToRespawn.Add(GameCharacter);
+	CharactersToRespawn.Add(Dead);
 
 	FTimerHandle TimerHandle;
 	GetWorldTimerManager().SetTimer
