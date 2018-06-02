@@ -77,7 +77,7 @@ bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 			ActualDamage *= 4.f;
 		}
 
-		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, executor->GetInstigatorController(), this, DamageType);
+		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, executor->GetInstigatorController(), Character, DamageType);
 
 		UParticleSystem* SelectedEffect = nullptr;
 		switch (SurfaceType)

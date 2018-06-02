@@ -56,7 +56,7 @@ protected:
 
 	void EndCrouch();
 
-	virtual void Die() override;
+	virtual void Die(AGameCharacter* Killer) override;
 
 	virtual void RespawnAt(FVector Location) override;
 

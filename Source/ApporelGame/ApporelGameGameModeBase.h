@@ -7,6 +7,28 @@
 #include "Util/TeamUtils.h"
 #include "ApporelGameGameModeBase.generated.h"
 
+USTRUCT(BlueprintType)
+struct FPlayerStats
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	FName Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	int32 Kills;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	int32 Deaths; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	int32 Assistances;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	int32 Score;
+};
+
+
 UCLASS()
 class APPORELGAME_API AApporelGameGameModeBase : public AGameModeBase
 {
@@ -19,9 +41,15 @@ protected:
 	UPROPERTY( EditDefaultsOnly , Category = "Win")
 	int32 ScoreToWin = 500.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	TMap<AGameCharacter*, FPlayerStats> PlayerStats;
+
 public:
 	UFUNCTION(BlueprintCallable)
 	int32 GetScore(ETeam Team);
+
+	UFUNCTION(BlueprintCallable)
+	TMap<AGameCharacter*, FPlayerStats> GetPlayerStats() const;
 
 	UFUNCTION(BlueprintCallable)
 	void IncrementScore(ETeam Team, int32 Score);

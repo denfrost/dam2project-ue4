@@ -9,7 +9,7 @@
 
 class AAbility;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeathDelegate, AGameCharacter*, GameCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDeathDelegate, AGameCharacter*, DeadCharacter, AGameCharacter*, KillerCharacter);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRespawnDelegate, AGameCharacter*, GameCharacter);
 
 UCLASS( abstract )
@@ -18,6 +18,9 @@ class APPORELGAME_API AGameCharacter : public ACharacter
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(EditAnywhere, Category = "Game Character Setup" )
+	FName DisplayName;
 
 	// Called when spawned
 	virtual void BeginPlay() override;
@@ -84,8 +87,14 @@ public:
 
 	// Generic death procedure
 	UFUNCTION( BlueprintCallable )
-	virtual void Die();
+	virtual void Die(AGameCharacter* Killer);
 
+	UFUNCTION( BlueprintCallable )
+	FName GetDisplayName();
+
+	UFUNCTION( BlueprintCallable )
+	void SetDisplayName(FName Name);
+	
 	UFUNCTION( BlueprintCallable )
 	int32 GetMaxHealth() const;
 

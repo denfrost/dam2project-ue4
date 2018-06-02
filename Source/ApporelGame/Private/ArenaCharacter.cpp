@@ -135,9 +135,11 @@ void AArenaCharacter::EndCrouch()
 	UnCrouch();
 }
 
-void AArenaCharacter::Die()
+void AArenaCharacter::Die(AGameCharacter* Killer)
 {
-	Super::Die();
+	Super::Die(Killer);
+
+	
 
 	StopPrimaryAttack();
 }

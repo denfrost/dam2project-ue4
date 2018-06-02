@@ -26,7 +26,7 @@ private:
 	float TimeToRespawn;
 
 	UFUNCTION()
-	void ReceiveDeadCharacter(AGameCharacter* GameCharacter);
+	void ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* Killer);
 
 	UFUNCTION()
 	void RespawnCharacter();
