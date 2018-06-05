@@ -8,7 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "CapturableVolume.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 AArenaCharacter::AArenaCharacter()
 {
@@ -108,11 +108,14 @@ void AArenaCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCom
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AArenaCharacter::Jump);
 }
 
-// TODO fix infinite jump sound bug
 void AArenaCharacter::Jump()
 {
 	Super::Jump();
-	USounds::PlayRandomSoundAtLocation(GetWorld(), JumpSounds, GetActorLocation());
+
+	if ( ! GetCharacterMovement()->IsFalling())
+	{
+		USounds::PlayRandomSoundAtLocation(GetWorld(), JumpSounds, GetActorLocation());
+	}
 }
 
 void AArenaCharacter::MoveForward(float value)
