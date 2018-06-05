@@ -112,10 +112,15 @@ void AArenaCharacter::Jump()
 {
 	Super::Jump();
 
-	if ( ! GetCharacterMovement()->IsFalling())
+	if (CanJump())
 	{
 		USounds::PlayRandomSoundAtLocation(GetWorld(), JumpSounds, GetActorLocation());
 	}
+}
+
+bool AArenaCharacter::CanJump()
+{
+	return !(GetCharacterMovement()->IsFalling() || GetCharacterMovement()->IsCrouching());
 }
 
 void AArenaCharacter::MoveForward(float value)
@@ -130,7 +135,10 @@ void AArenaCharacter::MoveRight(float value)
 
 void AArenaCharacter::BeginCrouch()
 {
-	Crouch();
+	if (!GetCharacterMovement()->IsFalling())
+	{
+		Crouch();
+	}
 }
 
 void AArenaCharacter::EndCrouch()
