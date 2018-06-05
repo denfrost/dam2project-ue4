@@ -35,11 +35,11 @@ class APPORELGAME_API AApporelGameGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 	
 protected:
-	int32 ScoreTeamBlue = 0.f; // Create Team class (?)
-	int32 ScoreTeamRed = 0.f;
+	int32 ScoreTeamBlue = 0;
+	int32 ScoreTeamRed = 0;
 
 	UPROPERTY( EditDefaultsOnly , Category = "Win")
-	int32 ScoreToWin = 500.f;
+	int32 ScoreToWin = 5000;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 	TMap<AGameCharacter*, FPlayerStats> PlayerStats;
