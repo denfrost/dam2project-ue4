@@ -48,6 +48,9 @@ protected:
 
 	void Jump();
 
+	UFUNCTION( BlueprintCallable )
+	bool CanJump();
+
 	void MoveForward(float value);
 
 	void MoveRight(float value);
