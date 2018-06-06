@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Util/TeamUtils.h"
-#include "Engine/TriggerBox.h"
+#include "GameFramework/Actor.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "CapturableVolume.generated.h"
 
@@ -18,7 +18,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCaptureDelegate, ACapturableVolum
  * - When CaptureState changes sign after having been captured: Neutral
  */
 UCLASS( Blueprintable )
-class APPORELGAME_API ACapturableVolume : public ATriggerBox
+class APPORELGAME_API ACapturableVolume : public AActor
 {
 	GENERATED_BODY()
 	
