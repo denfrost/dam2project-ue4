@@ -68,7 +68,7 @@ public:
 	void SetLastUse(float NewLastUse);
 
 	// This defines the behavior the ability will have if it can be casted
-	UFUNCTION( BlueprintNativeEvent )
+	UFUNCTION( BlueprintNativeEvent, BlueprintCallable )
 	bool ExecuteAbility(ACharacter* executor);
 
 	virtual bool ExecuteAbility_Implementation(ACharacter* executor);
