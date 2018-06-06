@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ApporelGameGameModeBase.h"
-#include "TeamUtils.h"
+#include "Util/Sounds.h"
+#include 
 
 AApporelGameGameModeBase::AApporelGameGameModeBase()
 {
@@ -80,6 +81,25 @@ void AApporelGameGameModeBase::ResetScore(ETeam Team)
 	case ETeam::Red:
 		ScoreTeamRed = 0;
 		break;
+	default:
+		break;
+	}
+}
+
+void AApporelGameGameModeBase::AnnounceWinnerTeam() const
+{
+	ETeam Winner = CheckWinner();
+
+	switch (Winner)
+	{
+	case ETeam::Red:
+		USounds::PlaySound2D(GetWorld(), RedTeamWinSound);
+		break;
+
+	case ETeam::Blue:
+		USounds::PlaySound2D(GetWorld(), BlueTeamWinSound);
+		break;
+
 	default:
 		break;
 	}

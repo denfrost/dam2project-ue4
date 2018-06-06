@@ -47,6 +47,14 @@ protected:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category = "Player Stats" )
 	TMap<AGameCharacter*, FPlayerStats> PlayerStats;
 
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* BlueTeamWinSound;
+
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* RedTeamWinSound;
+
+	// TODO add background music
+
 public:
 	UFUNCTION( BlueprintCallable )
 	int32 GetScore(ETeam Team) const;
@@ -65,6 +73,9 @@ public:
 
 	UFUNCTION( BlueprintImplementableEvent )
 	void OnGameOver(ETeam WinnerTeam);
+
+	UFUNCTION( BlueprintCallable )
+	void AnnounceWinnerTeam() const;
 
 	UFUNCTION( BlueprintCallable )
 	bool IsGameOver() const;
