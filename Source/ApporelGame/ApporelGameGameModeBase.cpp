@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ApporelGameGameModeBase.h"
-#include "TeamUtils.h"
+#include "Util/Sounds.h"
 
 AApporelGameGameModeBase::AApporelGameGameModeBase()
 {
@@ -11,11 +11,31 @@ AApporelGameGameModeBase::AApporelGameGameModeBase()
 void AApporelGameGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	bIsGameOver = false;
 }
 
-int32 AApporelGameGameModeBase::GetScore(ETeam Team)
+int32 AApporelGameGameModeBase::GetScore(ETeam Team) const
 {
 	return (Team == ETeam::Blue) ? ScoreTeamBlue : ScoreTeamRed;
+}
+
+struct FSortByKDA
+{
+	bool operator()(const FPlayerStats A, const FPlayerStats B) const
+	{
+		return ( (A.Kills + 1) / (float)(A.Deaths + 1) ) > ( (B.Kills + 1) / (float)(B.Deaths + 1) );
+	}
+};
+
+TArray<FPlayerStats> AApporelGameGameModeBase::GetSortedPlayerStats() const
+{
+	TArray<FPlayerStats> PlayerStatsValues;
+	PlayerStats.GenerateValueArray(PlayerStatsValues);
+
+	Algo::Sort(PlayerStatsValues, FSortByKDA());
+
+	return PlayerStatsValues;
 }
 
 TMap<AGameCharacter*, FPlayerStats> AApporelGameGameModeBase::GetPlayerStats() const
@@ -25,6 +45,11 @@ TMap<AGameCharacter*, FPlayerStats> AApporelGameGameModeBase::GetPlayerStats() c
 
 void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
 {
+	if (bIsGameOver)
+	{
+		return;
+	}
+
 	switch (Team)
 	{
 	case ETeam::Blue:
@@ -40,7 +65,8 @@ void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
 	ETeam Winner = CheckWinner();
 	if (Winner != ETeam::Neutral)
 	{
-		NotifyWinner(Winner);
+		bIsGameOver = true;
+		OnGameOver(Winner);
 	}
 }
 
@@ -59,7 +85,31 @@ void AApporelGameGameModeBase::ResetScore(ETeam Team)
 	}
 }
 
-ETeam AApporelGameGameModeBase::CheckWinner()
+void AApporelGameGameModeBase::AnnounceWinnerTeam() const
+{
+	ETeam Winner = CheckWinner();
+
+	switch (Winner)
+	{
+	case ETeam::Red:
+		USounds::PlaySound2D(GetWorld(), RedTeamWinSound);
+		break;
+
+	case ETeam::Blue:
+		USounds::PlaySound2D(GetWorld(), BlueTeamWinSound);
+		break;
+
+	default:
+		break;
+	}
+}
+
+bool AApporelGameGameModeBase::IsGameOver() const
+{
+	return bIsGameOver;
+}
+
+ETeam AApporelGameGameModeBase::CheckWinner() const
 {
 	if (ScoreTeamRed >= ScoreToWin)
 		return ETeam::Red;
@@ -67,11 +117,4 @@ ETeam AApporelGameGameModeBase::CheckWinner()
 		return ETeam::Blue;
 
 	return ETeam::Neutral;
-}
-
-void AApporelGameGameModeBase::NotifyWinner(ETeam Team)
-{
-	FString WinnerName = Team == ETeam::Blue ? "Blue" : "Red";
-
-	UE_LOG(LogTemp, Warning, TEXT("Winner : %s"), *WinnerName);
 }
