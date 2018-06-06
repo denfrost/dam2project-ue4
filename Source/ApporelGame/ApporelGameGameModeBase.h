@@ -33,33 +33,43 @@ UCLASS()
 class APPORELGAME_API AApporelGameGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+private:
+	bool bIsGameOver;
 	
 protected:
-	int32 ScoreTeamBlue = 0;
-	int32 ScoreTeamRed = 0;
+	int32 ScoreTeamBlue;
+	int32 ScoreTeamRed;
 
 	UPROPERTY( EditDefaultsOnly , Category = "Win")
 	int32 ScoreToWin = 5000;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category = "Player Stats" )
 	TMap<AGameCharacter*, FPlayerStats> PlayerStats;
 
 public:
-	UFUNCTION(BlueprintCallable)
-	int32 GetScore(ETeam Team);
+	UFUNCTION( BlueprintCallable )
+	int32 GetScore(ETeam Team) const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
+	TArray<FPlayerStats> GetSortedPlayerStats() const;
+
+	UFUNCTION( BlueprintCallable )
 	TMap<AGameCharacter*, FPlayerStats> GetPlayerStats() const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	void IncrementScore(ETeam Team, int32 Score);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION( BlueprintCallable )
 	void ResetScore(ETeam Team);
 
-	ETeam CheckWinner();
+	UFUNCTION( BlueprintImplementableEvent )
+	void OnGameOver(ETeam WinnerTeam);
 
-	void NotifyWinner(ETeam Team);
+	UFUNCTION( BlueprintCallable )
+	bool IsGameOver() const;
+
+	ETeam CheckWinner() const;
 
 	AApporelGameGameModeBase();
 
