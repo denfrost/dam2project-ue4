@@ -144,6 +144,7 @@ float AGameCharacter::GetNormalizedHealth() const
 	return CurrentHealth / (float)MaxHealth;
 }
 
+// TODO Find a way to remove yourself from the array
 TArray<AGameCharacter*> AGameCharacter::GetTeammates() const
 {
 	return UTeamUtils::FindCharactersFromTeam(GetWorld(), Team);
