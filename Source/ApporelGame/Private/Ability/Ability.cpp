@@ -4,16 +4,14 @@
 #include "Engine/World.h"
 #include "Misc/DateTime.h"
 #include "Util/Sounds.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
+#include "Runtime/Engine/Public/TimerManager.h"
 #include "GameFramework/Character.h"
 
 void AAbility::BeginPlay()
 {
+	bHasCooldownEnded = true;
 	bCouldBlueprintExecute = true;
-}
-
-void AAbility::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	LastUse = 0.f;
 }
 
 int32 AAbility::GetDamage() const
@@ -31,10 +29,22 @@ float AAbility::GetCooldown() const
 	return Cooldown;
 }
 
+FTimerHandle AAbility::GetCooldownTimerHandle() const
+{
+	return CooldownTimerHandle;
+}
+
+float AAbility::GetRemainingCooldown() const
+{
+	return FMath::Clamp(
+		GetWorld()->GetTimerManager().GetTimerRemaining(CooldownTimerHandle), 
+		0.0f, 
+		Cooldown);
+}
+
 float AAbility::GetNormalizedRemainingCooldown() const
 {
-	// TODO implement
-	return 0.0;
+	return GetRemainingCooldown() / Cooldown;
 }
 
 void AAbility::SetCooldown(float NewCooldown)
@@ -42,14 +52,22 @@ void AAbility::SetCooldown(float NewCooldown)
 	this->Cooldown = NewCooldown;
 }
 
-float AAbility::GetLastUse() const
+void AAbility::StartCooldownTimer()
 {
-	return LastUse;
+	bHasCooldownEnded = false;
+	GetWorldTimerManager().SetTimer
+	(
+		CooldownTimerHandle,
+		this,
+		&AAbility::NotifyCooldownEnded,
+		Cooldown,
+		false
+	);
 }
 
-void AAbility::SetLastUse(float NewLastUse)
+void AAbility::NotifyCooldownEnded()
 {
-	LastUse = NewLastUse;
+	bHasCooldownEnded = true;
 }
 
 void AAbility::NotifyBlueprintCouldNotExecute()
@@ -59,19 +77,19 @@ void AAbility::NotifyBlueprintCouldNotExecute()
 
 bool AAbility::ExecuteAbility_Implementation(ACharacter* executor)
 {
-	//To override in c++ child class
+	// To override in c++ child class
 	return false;
 }
 
 bool AAbility::InternalExecute(ACharacter* executor)
 {
-	if (CanBeExecuted(executor))
+	if (HasCooldownEnded())
 	{		
 		ExecuteAbility(executor);
 		if (bCouldBlueprintExecute)
 		{
 			USounds::PlaySoundAtLocation(executor->GetWorld(), Sound, executor->GetActorLocation());
-			LastUse = executor->GetWorld()->TimeSeconds;
+			StartCooldownTimer();
 			return true;
 		}
 		bCouldBlueprintExecute = true;
@@ -79,19 +97,7 @@ bool AAbility::InternalExecute(ACharacter* executor)
 	return false;
 }
 
-bool AAbility::CanBeExecuted(const ACharacter* executor) const
+bool AAbility::HasCooldownEnded() const
 {
-	if (!executor->GetWorld())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("world is null"));
-	}
-
-	if (!GetWorld())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("world is null 2"));
-		return false;
-	}
-
-	float Now = executor->GetWorld()->TimeSeconds;
-	return (Now - LastUse) > Cooldown;
+	return bHasCooldownEnded;
 }
