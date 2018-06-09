@@ -3,6 +3,7 @@
 #include "GameCharacter.h"
 #include "GamePlayerController.h"
 #include "Util/Sounds.h"
+#include "Util/TeamUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Ability.h"
 
@@ -41,11 +42,6 @@ void AGameCharacter::BeginPlay()
 
 	UltimateAbility = GetWorld()->SpawnActor<AAbility>(UltimateAbilityClass.GetDefaultObject()->GetClass());
 	UltimateAbility->SetOwner(this);
-
-	// Set Abilities last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	PrimaryAbility->SetLastUse(-PrimaryAbilityClass.GetDefaultObject()->GetCooldown());
-	SecondaryAbility->SetLastUse(-SecondaryAbilityClass.GetDefaultObject()->GetCooldown());
-	UltimateAbility->SetLastUse(-UltimateAbilityClass.GetDefaultObject()->GetCooldown());
 
 	// Set the current health equal to max health at the beginning
 	CurrentHealth = MaxHealth;
@@ -148,6 +144,11 @@ float AGameCharacter::GetNormalizedHealth() const
 	return CurrentHealth / (float)MaxHealth;
 }
 
+TArray<AGameCharacter*> AGameCharacter::GetTeammates() const
+{
+	return UTeamUtils::FindCharactersFromTeam(GetWorld(), Team);
+}
+
 ETeam AGameCharacter::GetTeam() const
 {
 	return Team;
@@ -197,17 +198,17 @@ void AGameCharacter::ExecuteUltimateAbility()
 	UltimateAbility->InternalExecute(this);
 }
 
-AAbility* AGameCharacter::GetPrimaryAbility()
+AAbility* AGameCharacter::GetPrimaryAbility() const
 {
 	return PrimaryAbility;
 }
 
-AAbility* AGameCharacter::GetSecondaryAbility()
+AAbility* AGameCharacter::GetSecondaryAbility() const
 {
 	return SecondaryAbility;
 }
 
-AAbility* AGameCharacter::GetUltimateAbility()
+AAbility* AGameCharacter::GetUltimateAbility() const
 {
 	return UltimateAbility;
 }

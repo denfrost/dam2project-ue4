@@ -115,6 +115,9 @@ public:
 	float GetNormalizedHealth() const;
 
 	UFUNCTION( BlueprintCallable )
+	TArray<AGameCharacter*> GetTeammates() const;
+
+	UFUNCTION( BlueprintCallable )
 	ETeam GetTeam() const;
 
 	UFUNCTION( BlueprintCallable )
@@ -131,9 +134,12 @@ public:
 	UFUNCTION( BlueprintCallable )
 	virtual void ExecuteUltimateAbility();
 
-	virtual AAbility* GetPrimaryAbility();
+	UFUNCTION( BlueprintCallable )
+	virtual AAbility* GetPrimaryAbility() const;
 
-	virtual AAbility* GetSecondaryAbility();
+	UFUNCTION( BlueprintCallable )
+	virtual AAbility* GetSecondaryAbility() const;
 
-	virtual AAbility* GetUltimateAbility();
+	UFUNCTION( BlueprintCallable )
+	virtual AAbility* GetUltimateAbility() const;
 };

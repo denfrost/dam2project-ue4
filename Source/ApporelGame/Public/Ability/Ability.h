@@ -33,7 +33,9 @@ private:
 	UPROPERTY( EditDefaultsOnly )
 	USoundBase* Sound;
 
-	float LastUse;
+	FTimerHandle CooldownTimerHandle;
+
+	bool bHasCooldownEnded;
 
 	bool bCouldBlueprintExecute;
 
@@ -44,8 +46,6 @@ protected:
 
 public:
 
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
 	UFUNCTION( BlueprintCallable )
 	int32 GetDamage() const;
 
@@ -55,6 +55,12 @@ public:
 	UFUNCTION( BlueprintCallable )
 	float GetCooldown() const;
 
+	UFUNCTION( BlueprintCallable )
+	FTimerHandle GetCooldownTimerHandle() const;
+
+	UFUNCTION( BlueprintCallable )
+	float GetRemainingCooldown() const;
+
 	// Returns the remaining cooldown for this ability as a value between 0.0 and 1.0
 	UFUNCTION( BlueprintCallable )
 	float GetNormalizedRemainingCooldown() const;
@@ -63,9 +69,10 @@ public:
 	void SetCooldown(float NewCooldown);
 
 	UFUNCTION( BlueprintCallable )
-	float GetLastUse() const;
+	void StartCooldownTimer();
 
-	void SetLastUse(float NewLastUse);
+	UFUNCTION( BlueprintCallable )
+	void NotifyCooldownEnded();
 
 	// This defines the behavior the ability will have if it can be casted
 	UFUNCTION( BlueprintNativeEvent, BlueprintCallable )
@@ -79,5 +86,5 @@ public:
 
 	bool InternalExecute(ACharacter* executor);
 
-	bool CanBeExecuted(const ACharacter* executor) const;
+	bool HasCooldownEnded() const;
 };

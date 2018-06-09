@@ -56,11 +56,6 @@ void AArenaCharacter::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("The character %s is missing an ability!"), *GetName());
 		return;
 	}
-
-	//TODO extract to a method
-	// Set Weapon attacks last use to -Cooldown to be able to cast them instantly at the beginning of the match
-	CurrentWeapon->GetPrimaryAttack()->SetLastUse(-CurrentWeapon->GetPrimaryAttack()->GetCooldown());
-	CurrentWeapon->GetSecondaryAttack()->SetLastUse(-CurrentWeapon->GetSecondaryAttack()->GetCooldown());
 }
 
 TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const
