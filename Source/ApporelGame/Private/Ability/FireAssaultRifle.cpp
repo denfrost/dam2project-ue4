@@ -74,7 +74,7 @@ bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* Executor)
 		float ActualDamage = GetDamage();
 		if (SurfaceType == SURFACE_FLESH_VULNERABLE)
 		{
-			ActualDamage *= 4.f;
+			ActualDamage *= HeadShotDamageMultiplier;
 		}
 
 		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, Executor->GetInstigatorController(), Character, DamageType);

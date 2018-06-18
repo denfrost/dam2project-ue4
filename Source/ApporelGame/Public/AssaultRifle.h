@@ -20,26 +20,26 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Assault Rifle Setup")
 	FName MuzzleSocketName;
 	
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Assault Rifle Setup")
 	FName TracerTargetName;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Primary Attack | Particles")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Assault Rifle Setup | Primary Attack | Particles")
 	UParticleSystem* MuzzleEffectPrimaryAttack;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Secondary Attack | Particles")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Assault Rifle Setup | Secondary Attack | Particles")
 	UParticleSystem* MuzzleEffectSecondaryAttack;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, Category = "Assault Rifle Setup")
 	TSubclassOf<UCameraShake> FireCamShake;
 
 	virtual bool ExecutePrimaryAttack() override;
 
 	virtual bool ExecuteSecondaryAttack() override;
 
-	void PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* PrimaryAttackSound);
+	void PlayAttackEffects(UParticleSystem* MuzzleEffect);
 
 public:
 	AAssaultRifle();

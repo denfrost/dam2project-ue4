@@ -33,12 +33,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* MeshComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Primary Attack | Sound")
-	USoundBase* SoundPrimaryAttack;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Secondary Attack | Sound")
-	USoundBase* SoundSecondaryAttack;
-
 	AAbility* PrimaryAttack;
 
 	AAbility* SecondaryAttack;
