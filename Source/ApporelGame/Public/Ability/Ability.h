@@ -37,14 +37,20 @@ private:
 
 	bool bHasCooldownEnded;
 
-	bool bCouldBlueprintExecute;
-
 protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
+
+	/**
+	* This defines the behavior the ability will have if it can be casted just by checking its cooldown.
+	* If further logic is involved in the implementation, the return value of this method must be used to notify
+	* whether the ability could or could not be executed, so the cooldown is updated accordingly.
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	bool ExecuteAbility(ACharacter* Executor);
 
 	UFUNCTION( BlueprintCallable )
 	int32 GetDamage() const;
@@ -74,17 +80,9 @@ public:
 	UFUNCTION( BlueprintCallable )
 	void NotifyCooldownEnded();
 
-	// This defines the behavior the ability will have if it can be casted
-	UFUNCTION( BlueprintNativeEvent, BlueprintCallable )
-	bool ExecuteAbility(ACharacter* executor);
+	virtual bool ExecuteAbility_Implementation(ACharacter* Executor);
 
-	virtual bool ExecuteAbility_Implementation(ACharacter* executor);
-
-	// This function must be called if the ability couldn't be executed because of the BP logic
-	UFUNCTION( BlueprintCallable )
-	void NotifyBlueprintCouldNotExecute();
-
-	bool InternalExecute(ACharacter* executor);
+	bool InternalExecute(ACharacter* Executor);
 
 	bool HasCooldownEnded() const;
 };

@@ -7,16 +7,16 @@
 
 #define Out
 
-bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
+bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* Executor)
 {
-	UWorld* WorldContext = executor->GetWorld();
+	UWorld* WorldContext = Executor->GetWorld();
 	if (!WorldContext)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No world context available!"));
 		return false;
 	}
 
-	AArenaCharacter* Character = Cast<AArenaCharacter>(executor);
+	AArenaCharacter* Character = Cast<AArenaCharacter>(Executor);
 	if (!Character)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Pawn"));
@@ -34,17 +34,17 @@ bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* exe
 	FRotator EyeRotation;
 
 	//Punto de vista del propietario del arma
-	executor->GetActorEyesViewPoint(Out EyeLocation, Out EyeRotation);
+	Executor->GetActorEyesViewPoint(Out EyeLocation, Out EyeRotation);
 
 	FVector MuzzleLocation = AssaultRiffle->GetMeshComp()->GetSocketLocation(AssaultRiffle->GetMuzzleSocketName());
 
 	FVector ShotDirection = EyeRotation.Vector();
-	FVector TraceEnd = EyeLocation + (ShotDirection * 10000);
+	FVector TraceEnd = EyeLocation + (ShotDirection * ShotImpulse);
 	FHitResult Hit;
 
 	//Ajustando la collision para que no choque contra el pawn ni el arma
 	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(executor);
+	QueryParams.AddIgnoredActor(Executor);
 	QueryParams.AddIgnoredActor(AssaultRiffle);
 	QueryParams.bTraceComplex = true;
 	QueryParams.bReturnPhysicalMaterial = true;
@@ -61,7 +61,7 @@ bool APowerfullAttackAssaultRifle::ExecuteAbility_Implementation(ACharacter* exe
 
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	SpawnParams.Owner = executor;
+	SpawnParams.Owner = Executor;
 
 	GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, DesiredRotation, SpawnParams);
 	return true;

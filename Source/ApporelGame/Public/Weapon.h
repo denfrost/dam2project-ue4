@@ -62,7 +62,7 @@ public:
 	UFUNCTION( BlueprintCallable )
 	USkeletalMeshComponent* GetMeshComp() const;
 
-	FTimerHandle TimerHandle_TimeBetweenFireAbility;
+	FTimerHandle TimerHandleAutoattack;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -71,7 +71,8 @@ public:
 
 	virtual void StartExecutingPrimaryAttack();
 
-	void CheckExecutePrimaryAttackCanBeExecuted();
+	// Calls ExecutePrimaryAttack returning nothing so it can be passed as a lambda to TimerHandleTimeBetweenFireAbility
+	void TimerExecutePrimaryAttack();
 
 	virtual void StopExecutingPrimaryAttack();
 

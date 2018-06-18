@@ -56,6 +56,9 @@ void AArenaCharacter::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("The character %s is missing an ability!"), *GetName());
 		return;
 	}
+
+	// Notify BP that the character has been successfully initialized and its abilities/weapon are ready to use
+	this->OnCharacterInitializationComplete();
 }
 
 TSubclassOf<AWeapon> AArenaCharacter::GetWeaponToSpawn() const

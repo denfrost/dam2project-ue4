@@ -16,11 +16,17 @@ UCLASS()
 class APPORELGAME_API APowerfullAttackAssaultRifle : public AAbility
 {
 	GENERATED_BODY()
+
+private:
+
+	UPROPERTY( EditDefaultsOnly, Category = "Setup" )
+	int32 ShotImpulse = 10000;
 	
 	
 protected:
+
 	virtual bool ExecuteAbility_Implementation(ACharacter* executor);
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
+	UPROPERTY( EditDefaultsOnly, Category = "Setup" )
 	TSubclassOf<AActor> ProjectileClass;
 };
