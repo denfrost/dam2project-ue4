@@ -22,7 +22,7 @@ class APPORELGAME_API AArenaCharacter : public AGameCharacter
 	GENERATED_BODY()
 
 private:
-	// The character's Weapon (holy fuck man descriptive AF feels like if this shit was created by Epic themselves)
+
 	UPROPERTY(EditAnywhere, Category = "Arena Character Setup")
 	TSubclassOf<AWeapon> WeaponToSpawn;
 
@@ -34,7 +34,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
 	TArray<USoundBase*> TauntSounds;
 protected:
-	// Called when the game starts or when spawned
+
+	// Called when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "Capturable")
@@ -91,19 +92,19 @@ public:
 	UFUNCTION( BlueprintCallable )
 	AAbility* GetSecondaryAttack() const;
 
-	// Delegate method for Weapon$StartPrimaryAttack()
+	// Delegate method for Weapon#StartPrimaryAttack()
 	UFUNCTION( BlueprintCallable )
 	void StartPrimaryAttack();
 
-	// Delegate method for Weapon$StopPrimaryAttack()
+	// Delegate method for Weapon#StopPrimaryAttack()
 	UFUNCTION( BlueprintCallable )
 	void StopPrimaryAttack();
 
-	// Delegate method for Weapon$SecondaryAttack()
+	// Delegate method for Weapon#SecondaryAttack()
 	UFUNCTION( BlueprintCallable )
 	void SecondaryAttack();
 
-	// Delegate method for Weapon$Improve()
+	// Delegate method for Weapon#Improve()
 	void Improve();
 
 	// Pawn function override to define the character's view point on the camera instead of on the pawn's head

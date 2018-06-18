@@ -17,6 +17,11 @@ class APPORELGAME_API AFireAssaultRifle : public AAbility
 {
 	GENERATED_BODY()
 
+private:
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	int32 ShotImpulse = 10000;
+
 protected:
 	virtual bool ExecuteAbility_Implementation(ACharacter* executor) override;
 

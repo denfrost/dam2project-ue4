@@ -16,16 +16,16 @@ FAutoConsoleVariableRef CVARDebugWeaponDrawing(
 
 #define Out
 
-bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
+bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* Executor)
 {	
-	UWorld* WorldContext = executor->GetWorld();
+	UWorld* WorldContext = Executor->GetWorld();
 	if (!WorldContext)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No world context available!"));
 		return false;
 	}
 
-	AArenaCharacter* Character = Cast<AArenaCharacter>(executor);
+	AArenaCharacter* Character = Cast<AArenaCharacter>(Executor);
 	if (!Character)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Pawn"));
@@ -43,14 +43,14 @@ bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 	FRotator EyeRotation;
 
 	//Punto de vista del propietario del arma
-	executor->GetActorEyesViewPoint(Out EyeLocation, Out EyeRotation);
+	Executor->GetActorEyesViewPoint(Out EyeLocation, Out EyeRotation);
 
 	FVector ShotDirection = EyeRotation.Vector();
-	FVector TraceEnd = EyeLocation + (ShotDirection * 10000);
+	FVector TraceEnd = EyeLocation + (ShotDirection * ShotImpulse);
 
 	//Ajustando la collision para que no choque contra el pawn ni el arma
 	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(executor);
+	QueryParams.AddIgnoredActor(Executor);
 	QueryParams.AddIgnoredActor(AssaultRiffle);
 	QueryParams.bTraceComplex = true;
 	QueryParams.bReturnPhysicalMaterial = true;
@@ -77,7 +77,7 @@ bool AFireAssaultRifle::ExecuteAbility_Implementation(ACharacter* executor)
 			ActualDamage *= 4.f;
 		}
 
-		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, executor->GetInstigatorController(), Character, DamageType);
+		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, Executor->GetInstigatorController(), Character, DamageType);
 
 		UParticleSystem* SelectedEffect = nullptr;
 		switch (SurfaceType)

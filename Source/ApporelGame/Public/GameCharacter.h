@@ -72,6 +72,9 @@ public:
 	UPROPERTY( BlueprintAssignable )
 	FOnRespawnDelegate OnRespawnDelegate;
 
+	UFUNCTION( BlueprintImplementableEvent )
+	void OnCharacterInitializationComplete();
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

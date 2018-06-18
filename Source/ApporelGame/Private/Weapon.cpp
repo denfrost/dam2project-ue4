@@ -97,19 +97,22 @@ void AWeapon::StartExecutingPrimaryAttack()
 		return;
 	}
 
-	float FirstDelay = FMath::Max(LastTimeExecutedAbility + PrimaryAttack->GetCooldown() - GetWorld()->TimeSeconds, 0.f);
-
-	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenFireAbility, this, &AWeapon::CheckExecutePrimaryAttackCanBeExecuted, PrimaryAttack->GetCooldown(), true, FirstDelay);
+	GetWorldTimerManager().SetTimer(
+		TimerHandleAutoattack,
+		this,
+		&AWeapon::TimerExecutePrimaryAttack,
+		0.01f, // Make the timer try to always execute the ability, the cooldown will be managed internally
+		true);
 }
 
-void AWeapon::CheckExecutePrimaryAttackCanBeExecuted()
+void AWeapon::TimerExecutePrimaryAttack()
 {
-	if (!ExecutePrimaryAttack()) return;
+	ExecutePrimaryAttack();
 }
 
 void AWeapon::StopExecutingPrimaryAttack()
 {
-	GetWorldTimerManager().ClearTimer(TimerHandle_TimeBetweenFireAbility);
+	GetWorldTimerManager().ClearTimer(TimerHandleAutoattack);
 }
 
 bool AWeapon::ExecuteSecondaryAttack()

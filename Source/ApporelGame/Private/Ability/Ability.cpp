@@ -11,7 +11,6 @@
 void AAbility::BeginPlay()
 {
 	bHasCooldownEnded = true;
-	bCouldBlueprintExecute = true;
 }
 
 int32 AAbility::GetDamage() const
@@ -70,29 +69,22 @@ void AAbility::NotifyCooldownEnded()
 	bHasCooldownEnded = true;
 }
 
-void AAbility::NotifyBlueprintCouldNotExecute()
-{
-	bCouldBlueprintExecute = false;
-}
-
-bool AAbility::ExecuteAbility_Implementation(ACharacter* executor)
+bool AAbility::ExecuteAbility_Implementation(ACharacter* Executor)
 {
 	// To override in c++ child class
 	return false;
 }
 
-bool AAbility::InternalExecute(ACharacter* executor)
+bool AAbility::InternalExecute(ACharacter* Executor)
 {
 	if (HasCooldownEnded())
 	{		
-		ExecuteAbility(executor);
-		if (bCouldBlueprintExecute)
+		if (ExecuteAbility(Executor))
 		{
-			USounds::PlaySoundAtLocation(executor->GetWorld(), Sound, executor->GetActorLocation());
+			USounds::PlaySoundAtLocation(Executor->GetWorld(), Sound, Executor->GetActorLocation());
 			StartCooldownTimer();
 			return true;
 		}
-		bCouldBlueprintExecute = true;
 	}
 	return false;
 }
