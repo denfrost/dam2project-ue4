@@ -22,6 +22,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	int32 ShotImpulse = 10000;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float HeadShotDamageMultiplier = 4.f;
+
 protected:
 	virtual bool ExecuteAbility_Implementation(ACharacter* executor) override;
 
