@@ -37,7 +37,7 @@ bool AAssaultRifle::ExecutePrimaryAttack()
 {
 	if (Super::ExecutePrimaryAttack())
 	{
-		PlayAttackEffects(MuzzleEffectPrimaryAttack, SoundPrimaryAttack);
+		PlayAttackEffects(MuzzleEffectPrimaryAttack);
 		return true;
 	}
 	return false;
@@ -47,23 +47,18 @@ bool AAssaultRifle::ExecuteSecondaryAttack()
 {
 	if (Super::ExecuteSecondaryAttack())
 	{
-		PlayAttackEffects(MuzzleEffectSecondaryAttack, SoundSecondaryAttack);
+		PlayAttackEffects(MuzzleEffectSecondaryAttack);
 		return true;
 	}
 	return false;
 }
 
-void AAssaultRifle::PlayAttackEffects(UParticleSystem* MuzzleEffect, USoundBase* AttackSound)
+void AAssaultRifle::PlayAttackEffects(UParticleSystem* MuzzleEffect)
 {
 	if (MuzzleEffect)
 	{
 		//Mostramos efecto en cañon del arma
 		UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, MeshComp, MuzzleSocketName);
-	}
-
-	if (AttackSound)
-	{
-		UGameplayStatics::PlaySoundAtLocation(GetWorld(), AttackSound, GetActorLocation());
 	}
 
 	//Shake camera
