@@ -56,12 +56,6 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AGameCharacter::ExecuteUltimateAbility);
 }
 
-void AGameCharacter::StartSpectatingOnly()
-{
-	AGamePlayerController* GameController = Cast<AGamePlayerController>(GetController());
-	GameController->StartSpectatingOnly();
-}
-
 float AGameCharacter::TakeDamage(
 	float DamageAmount, 
 	struct FDamageEvent const & DamageEvent, 

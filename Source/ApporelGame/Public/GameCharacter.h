@@ -19,7 +19,7 @@ class APPORELGAME_API AGameCharacter : public ACharacter
 
 protected:
 
-	UPROPERTY(EditAnywhere, Category = "Game Character Setup" )
+	UPROPERTY( EditAnywhere, Category = "Game Character Setup" )
 	FName DisplayName;
 
 	// Called when spawned
@@ -77,9 +77,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	// Delegate method for PlayerController#StartSpectatingOnly
-	virtual void StartSpectatingOnly();
 
 	// Called by the engine when actor damage is dealt
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController * EventInstigator, AActor * DamageCauser) override;
