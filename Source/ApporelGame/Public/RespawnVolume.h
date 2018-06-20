@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Util/TeamUtils.h"
 #include "Engine/TriggerBox.h"
+#include "UnrealNetwork.h"
 #include "RespawnVolume.generated.h"
 
 /**
@@ -18,17 +19,17 @@ class APPORELGAME_API ARespawnVolume : public ATriggerBox
 private:
 
 	// This respawn volume will spawn players of this team when they die
-	UPROPERTY(EditAnywhere)
+	UPROPERTY( EditAnywhere )
 	ETeam Team;
 
 	// The time it will take for this respawn to regenerate the dead player
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY( EditDefaultsOnly )
 	float TimeToRespawn;
 
 	UFUNCTION()
 	void ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* Killer);
 
-	UFUNCTION()
+	UFUNCTION( NetMulticast, Reliable )
 	void RespawnCharacter();
 
 	TArray<AGameCharacter*> CharactersToRespawn;
