@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Util/TeamUtils.h"
 #include "Engine/TriggerBox.h"
-#include "UnrealNetwork.h"
 #include "RespawnVolume.generated.h"
 
 /**
@@ -26,13 +25,13 @@ private:
 	UPROPERTY( EditDefaultsOnly )
 	float TimeToRespawn;
 
-	UFUNCTION()
+	UFUNCTION( NetMulticast, Reliable )
 	void ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* Killer);
 
 	UFUNCTION( NetMulticast, Reliable )
 	void RespawnCharacter();
 
-	TArray<AGameCharacter*> CharactersToRespawn;
+	TQueue<AGameCharacter*> CharactersToRespawn;
 
 protected:
 

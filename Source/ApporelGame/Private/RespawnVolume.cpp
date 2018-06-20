@@ -25,9 +25,9 @@ void ARespawnVolume::BeginPlay()
 	}
 }
 
-void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* Killer)
+void ARespawnVolume::ReceiveDeadCharacter_Implementation(AGameCharacter* Dead, AGameCharacter* Killer)
 {
-	CharactersToRespawn.Add(Dead);
+	CharactersToRespawn.Enqueue(Dead);
 
 	FTimerHandle TimerHandle;
 	GetWorldTimerManager().SetTimer
@@ -40,8 +40,19 @@ void ARespawnVolume::ReceiveDeadCharacter(AGameCharacter* Dead, AGameCharacter* 
 	);
 }
 
-void ARespawnVolume::RespawnCharacter()
+//bool ARespawnVolume::ReceiveDeadCharacter_Validate(AGameCharacter* Dead, AGameCharacter* Killer)
+//{
+//	return true;
+//}
+
+void ARespawnVolume::RespawnCharacter_Implementation()
 {
-	auto CharacterToRespawn = CharactersToRespawn.Pop();
+	AGameCharacter* CharacterToRespawn;
+	CharactersToRespawn.Dequeue(CharacterToRespawn);
 	CharacterToRespawn->RespawnAt(GetActorLocation());
 }
+
+//bool ARespawnVolume::RespawnCharacter_Validate()
+//{
+//	return true;
+//}
