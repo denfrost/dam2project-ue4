@@ -1,21 +1,21 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "ApporelGameGameModeBase.h"
+#include "TeamDeathmatchGameMode.h"
 #include "Util/Sounds.h"
 
-AApporelGameGameModeBase::AApporelGameGameModeBase()
+ATeamDeathmatchGameMode::ATeamDeathmatchGameMode()
 {
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void AApporelGameGameModeBase::BeginPlay()
+void ATeamDeathmatchGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
 	bIsGameOver = false;
 }
 
-int32 AApporelGameGameModeBase::GetScore(ETeam Team) const
+int32 ATeamDeathmatchGameMode::GetScore(ETeam Team) const
 {
 	return (Team == ETeam::Blue) ? ScoreTeamBlue : ScoreTeamRed;
 }
@@ -28,7 +28,7 @@ struct FSortByKDA
 	}
 };
 
-TArray<FPlayerStats> AApporelGameGameModeBase::GetSortedPlayerStats() const
+TArray<FPlayerStats> ATeamDeathmatchGameMode::GetSortedPlayerStats() const
 {
 	TArray<FPlayerStats> PlayerStatsValues;
 	PlayerStats.GenerateValueArray(PlayerStatsValues);
@@ -38,12 +38,12 @@ TArray<FPlayerStats> AApporelGameGameModeBase::GetSortedPlayerStats() const
 	return PlayerStatsValues;
 }
 
-TMap<AGameCharacter*, FPlayerStats> AApporelGameGameModeBase::GetPlayerStats() const
+TMap<AGameCharacter*, FPlayerStats> ATeamDeathmatchGameMode::GetPlayerStats() const
 {
 	return PlayerStats;
 }
 
-void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
+void ATeamDeathmatchGameMode::IncrementScore(ETeam Team, int32 Score)
 {
 	if (bIsGameOver)
 	{
@@ -70,7 +70,7 @@ void AApporelGameGameModeBase::IncrementScore(ETeam Team, int32 Score)
 	}
 }
 
-void AApporelGameGameModeBase::ResetScore(ETeam Team)
+void ATeamDeathmatchGameMode::ResetScore(ETeam Team)
 {
 	switch (Team)
 	{
@@ -85,7 +85,7 @@ void AApporelGameGameModeBase::ResetScore(ETeam Team)
 	}
 }
 
-void AApporelGameGameModeBase::AnnounceWinnerTeam() const
+void ATeamDeathmatchGameMode::AnnounceWinnerTeam() const
 {
 	ETeam Winner = CheckWinner();
 
@@ -104,12 +104,12 @@ void AApporelGameGameModeBase::AnnounceWinnerTeam() const
 	}
 }
 
-bool AApporelGameGameModeBase::IsGameOver() const
+bool ATeamDeathmatchGameMode::IsGameOver() const
 {
 	return bIsGameOver;
 }
 
-ETeam AApporelGameGameModeBase::CheckWinner() const
+ETeam ATeamDeathmatchGameMode::CheckWinner() const
 {
 	if (ScoreTeamRed >= ScoreToWin)
 		return ETeam::Red;

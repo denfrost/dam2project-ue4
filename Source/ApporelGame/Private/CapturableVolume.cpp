@@ -4,7 +4,7 @@
 #include "ArenaCharacter.h"
 #include "Util/TeamUtils.h"
 #include "Util/Sounds.h"
-#include "ApporelGameGameModeBase.h"
+#include "GameMode/TeamDeathmatch/TeamDeathmatchGameMode.h"
 
 #define OUT
 
@@ -119,6 +119,11 @@ void ACapturableVolume::StartScoreTimerForTeam(ETeam Team)
 
 void ACapturableVolume::GiveScoreToTeam(ETeam Team)
 {
-	AApporelGameGameModeBase* GameMode = Cast<AApporelGameGameModeBase>(this->GetWorld()->GetAuthGameMode());
-	GameMode->IncrementScore(Team, ScorePerSecond);
+	ATeamDeathmatchGameMode* GameMode = Cast<ATeamDeathmatchGameMode>(this->GetWorld()->GetAuthGameMode());
+	
+	// Server only
+	if (GameMode)
+	{
+		GameMode->IncrementScore(Team, ScorePerSecond);
+	}
 }

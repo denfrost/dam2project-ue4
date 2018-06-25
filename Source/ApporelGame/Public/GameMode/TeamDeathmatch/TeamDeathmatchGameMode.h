@@ -2,10 +2,9 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Util/TeamUtils.h"
-#include "ApporelGameGameModeBase.generated.h"
+#include "TeamDeathmatchGameMode.generated.h"
 
 USTRUCT(BlueprintType)
 struct FPlayerStats
@@ -30,7 +29,7 @@ struct FPlayerStats
 
 
 UCLASS()
-class APPORELGAME_API AApporelGameGameModeBase : public AGameModeBase
+class APPORELGAME_API ATeamDeathmatchGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
@@ -82,7 +81,7 @@ public:
 
 	ETeam CheckWinner() const;
 
-	AApporelGameGameModeBase();
+	ATeamDeathmatchGameMode();
 
 	void BeginPlay();
 };
