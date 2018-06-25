@@ -1,0 +1,820 @@
+﻿# Game English translation.
+# Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2018-06-25 14:13\n"
+"PO-Revision-Date: 2018-06-25 14:13\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Key:	06ECD47B4449097B5C07E48C5067925A
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Play_Selected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Play_Selected.Text
+msgctxt ",06ECD47B4449097B5C07E48C5067925A"
+msgid "PLAY"
+msgstr "PLAY"
+
+#. Key:	09972B6C47B9D594FA53A98DDD25988F
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",09972B6C47B9D594FA53A98DDD25988F"
+msgid "DEATHMATCH IS ALL FOR ONE AND ONE FOR ALL. IT'S A BLOODBATH."
+msgstr "DEATHMATCH IS ALL FOR ONE AND ONE FOR ALL. IT'S A BLOODBATH."
+
+#. Key:	11E03DD545E4BBE93BA17CA25901B491
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",11E03DD545E4BBE93BA17CA25901B491"
+msgid "None"
+msgstr "None"
+
+#. Key:	126027E147A4FC4FFCBE5EA4B4B93930
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",126027E147A4FC4FFCBE5EA4B4B93930"
+msgid "Video"
+msgstr "Video"
+
+#. Key:	170CAF724F6885A052399EB439E48191
+#. SourceLocation:	/Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Score.Text
+#: /Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Score.Text
+msgctxt ",170CAF724F6885A052399EB439E48191"
+msgid "20000"
+msgstr "20000"
+
+#. Key:	197ACE0244AC3A4AEEB780831C3263C0
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",197ACE0244AC3A4AEEB780831C3263C0"
+msgid "PACIFISM"
+msgstr "PACIFISM"
+
+#. Key:	199B5BB74ADC686670FB0FA73D5188B4
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",199B5BB74ADC686670FB0FA73D5188B4"
+msgid "Gameplay"
+msgstr "Gameplay"
+
+#. Key:	1FD515144AD9C668F57333808F640B33
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",1FD515144AD9C668F57333808F640B33"
+msgid "Busy"
+msgstr "Busy"
+
+#. Key:	20E0ADC54F4E4750295A3A887B8FFBD1
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",20E0ADC54F4E4750295A3A887B8FFBD1"
+msgid "GET THE ENEMY BAG AND SCORE IT. DEFEND YOURS."
+msgstr "GET THE ENEMY BAG AND SCORE IT. DEFEND YOURS."
+
+#. Key:	227E55B440576A216256B2A2DCA7C066
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",227E55B440576A216256B2A2DCA7C066"
+msgid "TrueFalse"
+msgstr "TrueFalse"
+
+#. Key:	270145014802005463471C87FC5D6F53
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",270145014802005463471C87FC5D6F53"
+msgid "FIGHT TO CLIMB UP THE LADDER"
+msgstr "FIGHT TO CLIMB UP THE LADDER"
+
+#. Key:	2D2B16FA4D5B35D8AD1A26B2DDE97D22
+#. SourceLocation:	/Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Deaths.Text
+#: /Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Deaths.Text
+msgctxt ",2D2B16FA4D5B35D8AD1A26B2DDE97D22"
+msgid "100"
+msgstr "100"
+
+#. Key:	2E6440BF41ECF74819A378BDDB8E49D5
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",2E6440BF41ECF74819A378BDDB8E49D5"
+msgid "IT'S LIKE CAPTURE THE FLAG. BUT WITH BAGS. INNOVATIVE."
+msgstr "IT'S LIKE CAPTURE THE FLAG. BUT WITH BAGS. INNOVATIVE."
+
+#. Key:	2E6F0106440CCE5CF2F16AB6B96E22A8
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+msgctxt ",2E6F0106440CCE5CF2F16AB6B96E22A8"
+msgid "Window / Fullscreen"
+msgstr "Window / Fullscreen"
+
+#. Key:	30010835430520075F871A8131D86752
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(10 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(10 - Value).DisplayNameMap
+msgctxt ",30010835430520075F871A8131D86752"
+msgid "0.9"
+msgstr "0.9"
+
+#. Key:	3050DBA84ACB0EE8DCBD3E9834AA081B
+#. SourceLocation:	/Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",3050DBA84ACB0EE8DCBD3E9834AA081B"
+msgid "Voices"
+msgstr "Voices"
+
+#. Key:	3156BCEA4796322D48C7A6A93B870E25
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Store_Selected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Store_Selected.Text
+msgctxt ",3156BCEA4796322D48C7A6A93B870E25"
+msgid "STORE"
+msgstr "STORE"
+
+#. Key:	316B53E14C6E88E5730632B3F95C07CE
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",316B53E14C6E88E5730632B3F95C07CE"
+msgid "Resolution"
+msgstr "Resolution"
+
+#. Key:	35D95AA340FBF499DFEFD9ACE57D89EE
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_0.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_0.Text
+msgctxt ",35D95AA340FBF499DFEFD9ACE57D89EE"
+msgid "VIDEO"
+msgstr "VIDEO"
+
+#. Key:	362700AB4F4835A1393C01B1818D58B1
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(4 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(4 - Value).DisplayNameMap
+msgctxt ",362700AB4F4835A1393C01B1818D58B1"
+msgid "0.3"
+msgstr "0.3"
+
+#. Key:	3744D4B6403FB34C3521CC90FB8E8AFE
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",3744D4B6403FB34C3521CC90FB8E8AFE"
+msgid "Mid"
+msgstr "Mid"
+
+#. Key:	3A5F42FC48F79C5B7FB797A493E878D7
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",3A5F42FC48F79C5B7FB797A493E878D7"
+msgid "PEW, PEW! KILL THEM ALL!"
+msgstr "PEW, PEW! KILL THEM ALL!"
+
+#. Key:	3A9A926B4A49F40534373D8823025A8E
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(11 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(11 - Value).DisplayNameMap
+msgctxt ",3A9A926B4A49F40534373D8823025A8E"
+msgid "1.0"
+msgstr "1.0"
+
+#. Key:	3AD1AFF04C527F091021EDB801388790
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Customize_Unselected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Customize_Unselected.Text
+msgctxt ",3AD1AFF04C527F091021EDB801388790"
+msgid "CUSTOMIZE"
+msgstr "CUSTOMIZE"
+
+#. Key:	3BBD37E44796C718DA21D7A9B169B152
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_1.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_1.Text
+msgctxt ",3BBD37E44796C718DA21D7A9B169B152"
+msgid "AUDIO"
+msgstr "AUDIO"
+
+#. Key:	3CCA5764422B8A4209A91AB69DAB989C
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+msgctxt ",3CCA5764422B8A4209A91AB69DAB989C"
+msgid "Video Resolution"
+msgstr "Video Resolution"
+
+#. Key:	3E4F5E7A41EA5634C45C16880C6C69CE
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_6.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_6.Text
+msgctxt ",3E4F5E7A41EA5634C45C16880C6C69CE"
+msgid "No entries found. Please add your own entries here!"
+msgstr "No entries found. Please add your own entries here!"
+
+#. Key:	3EC557B24BA1680CCB949287E0C70768
+#. SourceLocation:	/Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.Name1.Text
+#: /Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.Name1.Text
+msgctxt ",3EC557B24BA1680CCB949287E0C70768"
+msgid "NameReallyLongThatFucks"
+msgstr "NameReallyLongThatFucks"
+
+#. Key:	42D66833415897795E2BFBA1D5BFB8F0
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(4 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(4 - Value).DisplayNameMap
+msgctxt ",42D66833415897795E2BFBA1D5BFB8F0"
+msgid "ABC (1-2-3)"
+msgstr "ABC (1-2-3)"
+
+#. Key:	4AC3D04F4AA8CB145B5E7F8BA5F18929
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button2.Default__UMG_Droids_Button2_C.Local_TextTitle
+#: /Game/MainMenu/Widget/UMG_Droids_Button2.Default__UMG_Droids_Button2_C.Local_TextTitle
+msgctxt ",4AC3D04F4AA8CB145B5E7F8BA5F18929"
+msgid "BUTTON TITLE"
+msgstr "BUTTON TITLE"
+
+#. Key:	4CE0A2664A5DC70EA0F6E783CB609C55
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+msgctxt ",4CE0A2664A5DC70EA0F6E783CB609C55"
+msgid "Music"
+msgstr "Music"
+
+#. Key:	4EBFF9944F20D25ED642C89F17421D0B
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",4EBFF9944F20D25ED642C89F17421D0B"
+msgid "Jump right into the game alone or with your party mates in a chill match!"
+msgstr "Jump right into the game alone or with your party mates in a chill match!"
+
+#. Key:	5008FEDE4DBB566D1258D7B80B4ECA00
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",5008FEDE4DBB566D1258D7B80B4ECA00"
+msgid "Away"
+msgstr "Away"
+
+#. Key:	50B2B7EC40214DDFDC79538415DE1CC0
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_2.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_2.Text
+msgctxt ",50B2B7EC40214DDFDC79538415DE1CC0"
+msgid "GAME"
+msgstr "GAME"
+
+#. Key:	51DD020C487DE30450F6F5B91A64D98A
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:TrueFalse [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:TrueFalse [Script Bytecode]
+msgctxt ",51DD020C487DE30450F6F5B91A64D98A"
+msgid "Off"
+msgstr "Off"
+
+#. Key:	52C823044CCCA430B6AE57BC483CD2D3
+#. SourceLocation:	/Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",52C823044CCCA430B6AE57BC483CD2D3"
+msgid "Master"
+msgstr "Master"
+
+#. Key:	547BDDB247AFCF9B32D59FB90DEDA718
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",547BDDB247AFCF9B32D59FB90DEDA718"
+msgid "TEAM DEATHMATCH"
+msgstr "TEAM DEATHMATCH"
+
+#. Key:	55BC16DD404B90C58EC57CBD3A3AB5EE
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_5.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_5.Text
+msgctxt ",55BC16DD404B90C58EC57CBD3A3AB5EE"
+msgid "DEFAULT"
+msgstr "DEFAULT"
+
+#. Key:	56E3350F4E9E7FC39AE8E39F8D791F89
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",56E3350F4E9E7FC39AE8E39F8D791F89"
+msgid "ARENA TRAINING"
+msgstr "ARENA TRAINING"
+
+#. Key:	59E48CCB4B12CD28709407B0715DBE60
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button.Default__UMG_Droids_Button_C.Local_TextTitle
+#: /Game/MainMenu/Widget/UMG_Droids_Button.Default__UMG_Droids_Button_C.Local_TextTitle
+msgctxt ",59E48CCB4B12CD28709407B0715DBE60"
+msgid "BUTTON TITLE"
+msgstr "BUTTON TITLE"
+
+#. Key:	5A182258473F86E3040006BD1238C918
+#. SourceLocation:	/Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.Kills1.Text
+#: /Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.Kills1.Text
+msgctxt ",5A182258473F86E3040006BD1238C918"
+msgid "999"
+msgstr "999"
+
+#. Key:	6032E0A842CD8E7A69AFDDB91E9E917C
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",6032E0A842CD8E7A69AFDDB91E9E917C"
+msgid "Online"
+msgstr "Online"
+
+#. Key:	625C179F4901DBC44DFC47B211D83AF8
+#. SourceLocation:	/Game/Arena/UI/Ammo/BP_Ammo.BP_Ammo_C:WidgetTree.CurrentAmmo.Text
+#: /Game/Arena/UI/Ammo/BP_Ammo.BP_Ammo_C:WidgetTree.CurrentAmmo.Text
+msgctxt ",625C179F4901DBC44DFC47B211D83AF8"
+msgid "∞"
+msgstr "∞"
+
+#. Key:	6429C1A14087ED03D3926D8B59624C66
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",6429C1A14087ED03D3926D8B59624C66"
+msgid "Are you ready to fight for your honor? Start a new freakin ranked game fam!"
+msgstr "Are you ready to fight for your honor? Start a new freakin ranked game fam!"
+
+#. Key:	663F499149D17187526CC5BC64E212C9
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Quit_Selected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Quit_Selected.Text
+msgctxt ",663F499149D17187526CC5BC64E212C9"
+msgid "QUIT"
+msgstr "QUIT"
+
+#. Key:	673F9738465DBA1D0F24DB92BB68D2DF
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+msgctxt ",673F9738465DBA1D0F24DB92BB68D2DF"
+msgid "Master"
+msgstr "Master"
+
+#. Key:	6F2753A54F7A902B74732FA13AE33D37
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",6F2753A54F7A902B74732FA13AE33D37"
+msgid "A MOVING WAYPOINT. GET TO IT."
+msgstr "A MOVING WAYPOINT. GET TO IT."
+
+#. Key:	70C1BA0743388B2B226D9790D8A70662
+#. SourceLocation:	/Game/Arena/UI/Score/BP_Score.BP_Score_C:WidgetTree.BlueScoreLabel.Text
+#: /Game/Arena/UI/Score/BP_Score.BP_Score_C:WidgetTree.BlueScoreLabel.Text
+msgctxt ",70C1BA0743388B2B226D9790D8A70662"
+msgid "999999"
+msgstr "999999"
+
+#. Key:	75C0351343FA8B98EC6364AB90E62AD7
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:TrueFalse [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:TrueFalse [Script Bytecode]
+msgctxt ",75C0351343FA8B98EC6364AB90E62AD7"
+msgid "On"
+msgstr "On"
+
+#. Key:	779940434FCC8A01CDABF9A97AB86EA3
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Store_Unselected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Store_Unselected.Text
+msgctxt ",779940434FCC8A01CDABF9A97AB86EA3"
+msgid "STORE"
+msgstr "STORE"
+
+#. Key:	7A40A3BF4F51A8079C0D36A70484CF95
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",7A40A3BF4F51A8079C0D36A70484CF95"
+msgid "GET KILLS TO GET BETTER GUNS."
+msgstr "GET KILLS TO GET BETTER GUNS."
+
+#. Key:	7B29D2C74691BBDC7582D093B82B5A0C
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",7B29D2C74691BBDC7582D093B82B5A0C"
+msgid "TRAIN YOUR ARENA SKILLS"
+msgstr "TRAIN YOUR ARENA SKILLS"
+
+#. Key:	7B783D9F4867B413C3E284BDFEC2F303
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",7B783D9F4867B413C3E284BDFEC2F303"
+msgid "Window / Fullscreen"
+msgstr "Window / Fullscreen"
+
+#. Key:	7BF4E771456514E95A5C90B995A8CD4A
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Play_Unselected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Play_Unselected.Text
+msgctxt ",7BF4E771456514E95A5C90B995A8CD4A"
+msgid "PLAY"
+msgstr "PLAY"
+
+#. Key:	7C3FADE24B3CE9117532CDBD121E8A44
+#. SourceLocation:	/Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",7C3FADE24B3CE9117532CDBD121E8A44"
+msgid "Music"
+msgstr "Music"
+
+#. Key:	7CEF158F4570369DBABB829F183D6243
+#. SourceLocation:	/Game/Arena/UI/CaptureNotifications/BP_CaptureNotifications.BP_CaptureNotifications_C:WidgetTree.CaptureNotificationLabel.Text
+#: /Game/Arena/UI/CaptureNotifications/BP_CaptureNotifications.BP_CaptureNotifications_C:WidgetTree.CaptureNotificationLabel.Text
+msgctxt ",7CEF158F4570369DBABB829F183D6243"
+msgid "The X Team has captured Y!"
+msgstr "The X Team has captured Y!"
+
+#. Key:	8254CA3043F8667E3946A79EC5E098E1
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",8254CA3043F8667E3946A79EC5E098E1"
+msgid "TERRITORIES"
+msgstr "TERRITORIES"
+
+#. Key:	8396A5FE419D88CAF555E4993464B9BF
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",8396A5FE419D88CAF555E4993464B9BF"
+msgid "None"
+msgstr "None"
+
+#. Key:	83DDC77640BC1EAEBD708AA05B3DCA99
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",83DDC77640BC1EAEBD708AA05B3DCA99"
+msgid "DEATHMATCH"
+msgstr "DEATHMATCH"
+
+#. Key:	896005C6425BBF7BE708AFA7FF0C34CD
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Customize_Selected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Customize_Selected.Text
+msgctxt ",896005C6425BBF7BE708AFA7FF0C34CD"
+msgid "CUSTOMIZE"
+msgstr "CUSTOMIZE"
+
+#. Key:	8A41B4EB4334FB4B587394989AA4763C
+#. SourceLocation:	/Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.PlayerName.Text
+#: /Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.PlayerName.Text
+msgctxt ",8A41B4EB4334FB4B587394989AA4763C"
+msgid "Bob"
+msgstr "Bob"
+
+#. Key:	8B451E954F4B47C7A9D6BB9D4DF2405C
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",8B451E954F4B47C7A9D6BB9D4DF2405C"
+msgid "RACING TRAINING"
+msgstr "RACING TRAINING"
+
+#. Key:	8DC968594E245AEDC230A684A364A39E
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",8DC968594E245AEDC230A684A364A39E"
+msgid "START A NEW NORMAL GAME"
+msgstr "START A NEW NORMAL GAME"
+
+#. Key:	9A727B7D46374684ED1647A28C5AFE64
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",9A727B7D46374684ED1647A28C5AFE64"
+msgid "None"
+msgstr "None"
+
+#. Key:	9AD86A6B4D829D9E55DAFCB9276867BE
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",9AD86A6B4D829D9E55DAFCB9276867BE"
+msgid "TRAIN YOUR RACING SKILLS"
+msgstr "TRAIN YOUR RACING SKILLS"
+
+#. Key:	9ADEBC7D4381FAFA628D999AA643389B
+#. SourceLocation:	/Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",9ADEBC7D4381FAFA628D999AA643389B"
+msgid "None"
+msgstr "None"
+
+#. Key:	9CC3DD1245D16A8000B18F97EC651D25
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",9CC3DD1245D16A8000B18F97EC651D25"
+msgid "GIVE PEACE A CHANCE."
+msgstr "GIVE PEACE A CHANCE."
+
+#. Key:	9E2BDE234188968BCFB72089E31F2D9D
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",9E2BDE234188968BCFB72089E31F2D9D"
+msgid "0.1"
+msgstr "0.1"
+
+#. Key:	9E82FDAA449636FF53C357848ACA9B3F
+#. SourceLocation:	/Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(4 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Audio/Enum_AudioToEdit.Enum_AudioToEdit.DisplayNameMap(4 - Value).DisplayNameMap
+msgctxt ",9E82FDAA449636FF53C357848ACA9B3F"
+msgid "FX"
+msgstr "FX"
+
+#. Key:	A06173CF4E52FF6A1C17D3BB3AE7F3D5
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",A06173CF4E52FF6A1C17D3BB3AE7F3D5"
+msgid "GUN GAME"
+msgstr "GUN GAME"
+
+#. Key:	A08449724821199C350069A00B80E959
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",A08449724821199C350069A00B80E959"
+msgid "0"
+msgstr "0"
+
+#. Key:	A088CDB5448F4D6DD4C592A80C6E1E47
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetVideoSetting [Script Bytecode]
+msgctxt ",A088CDB5448F4D6DD4C592A80C6E1E47"
+msgid "V-Sync"
+msgstr "V-Sync"
+
+#. Key:	A1584AB04F369297C460318993A1E5F9
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",A1584AB04F369297C460318993A1E5F9"
+msgid "CAPTURE THE BAG"
+msgstr "CAPTURE THE BAG"
+
+#. Key:	A338011F47F29D7901DA4AB4D3AE3F18
+#. SourceLocation:	/Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Kills.Text
+#: /Game/Arena/UI/ScoreBoard/WBP_ScoreLine.WBP_ScoreLine_C:WidgetTree.Kills.Text
+msgctxt ",A338011F47F29D7901DA4AB4D3AE3F18"
+msgid "30"
+msgstr "30"
+
+#. Key:	A3A80726414AC1596468D39EB2950440
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(6 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(6 - Value).DisplayNameMap
+msgctxt ",A3A80726414AC1596468D39EB2950440"
+msgid "0.5"
+msgstr "0.5"
+
+#. Key:	A3A94C4847DAA3DFDAA6B68F040DDB52
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",A3A94C4847DAA3DFDAA6B68F040DDB52"
+msgid "THE MORE YOU KILL, THE BETTER GUNS."
+msgstr "THE MORE YOU KILL, THE BETTER GUNS."
+
+#. Key:	AA5A15BB46ED1818DCA55D8F00E276CD
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button.UMG_Droids_Button_C:WidgetTree.TextBlock_0.Text
+#: /Game/MainMenu/Widget/UMG_Droids_Button.UMG_Droids_Button_C:WidgetTree.TextBlock_0.Text
+msgctxt ",AA5A15BB46ED1818DCA55D8F00E276CD"
+msgid "BUTTON TITLE"
+msgstr "BUTTON TITLE"
+
+#. Key:	ABA73C16453D59A5AEC64C8943A25DC3
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingToEdit.Enum_SettingToEdit.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",ABA73C16453D59A5AEC64C8943A25DC3"
+msgid "Audio"
+msgstr "Audio"
+
+#. Key:	AE423A294E8E632DFBC3D9A89BFDAD6E
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",AE423A294E8E632DFBC3D9A89BFDAD6E"
+msgid "None"
+msgstr "None"
+
+#. Key:	AECB1BF443126B0950F510B91B9E92AC
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",AECB1BF443126B0950F510B91B9E92AC"
+msgid "NO GUNS, NO VIOLENCE."
+msgstr "NO GUNS, NO VIOLENCE."
+
+#. Key:	B2D069154E53F4E143ACECB28B817C61
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_3.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_3.Text
+msgctxt ",B2D069154E53F4E143ACECB28B817C61"
+msgid "OK"
+msgstr "OK"
+
+#. Key:	B367FDD44605C076E28123AFBB9ED2D4
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",B367FDD44605C076E28123AFBB9ED2D4"
+msgid "VSync"
+msgstr "VSync"
+
+#. Key:	B3D2F39F4EF9AC62FCAC8AAA4A11A15F
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+msgctxt ",B3D2F39F4EF9AC62FCAC8AAA4A11A15F"
+msgid "Effects"
+msgstr "Effects"
+
+#. Key:	B69050914D6E8B3D6872CF94932C965C
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",B69050914D6E8B3D6872CF94932C965C"
+msgid "Low"
+msgstr "Low"
+
+#. Key:	B6BA0AC2400AC0A20FAC379200D49671
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",B6BA0AC2400AC0A20FAC379200D49671"
+msgid "None"
+msgstr "None"
+
+#. Key:	B90920A44372CA1BA2B9B9AEB2BB32FA
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button.UMG_Droids_Button_C:WidgetTree.TextBlock_1.Text
+#: /Game/MainMenu/Widget/UMG_Droids_Button.UMG_Droids_Button_C:WidgetTree.TextBlock_1.Text
+msgctxt ",B90920A44372CA1BA2B9B9AEB2BB32FA"
+msgid "BUTTON DESCRIPTION"
+msgstr "BUTTON DESCRIPTION"
+
+#. Key:	BA00A5234ED557862281FA99398B3471
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Quit_Unselected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Quit_Unselected.Text
+msgctxt ",BA00A5234ED557862281FA99398B3471"
+msgid "QUIT"
+msgstr "QUIT"
+
+#. Key:	BBEDC38240DC0FD1859D0BB229D37807
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_TypeOfInput.Enum_TypeOfInput.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",BBEDC38240DC0FD1859D0BB229D37807"
+msgid "0-1"
+msgstr "0-1"
+
+#. Key:	BC2447664B759ECC616033A6A2BF7D9C
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(2 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(2 - Value).DisplayNameMap
+msgctxt ",BC2447664B759ECC616033A6A2BF7D9C"
+msgid "High"
+msgstr "High"
+
+#. Key:	BC99E6AC4BA036C6495BD3AEC23E1051
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",BC99E6AC4BA036C6495BD3AEC23E1051"
+msgid "RANKED GAME"
+msgstr "RANKED GAME"
+
+#. Key:	C199E48B4D5501FAE23FE1A0BA99253C
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",C199E48B4D5501FAE23FE1A0BA99253C"
+msgid "TEAM DM IS A TEAM-BASED DEATHMATCH. BRING FRIENDS!"
+msgstr "TEAM DM IS A TEAM-BASED DEATHMATCH. BRING FRIENDS!"
+
+#. Key:	C56E50AC42585E664E71BCB825D72893
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",C56E50AC42585E664E71BCB825D72893"
+msgid "0.2"
+msgstr "0.2"
+
+#. Key:	C7A19A3F4B13116F177CBC913322766B
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(7 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(7 - Value).DisplayNameMap
+msgctxt ",C7A19A3F4B13116F177CBC913322766B"
+msgid "0.6"
+msgstr "0.6"
+
+#. Key:	C89BC7704897B79AECD21A85C8DE7628
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_QuitGame.UMG_QuitGame_C:WidgetTree.TextBlock_15.Text
+#: /Game/MainMenu/Widget/UMG_QuitGame.UMG_QuitGame_C:WidgetTree.TextBlock_15.Text
+msgctxt ",C89BC7704897B79AECD21A85C8DE7628"
+msgid "QUIT GAME"
+msgstr "QUIT GAME"
+
+#. Key:	C971A6504A9135B1E3308BB94492D244
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button.Default__UMG_Droids_Button_C.Local_TextDesc
+#: /Game/MainMenu/Widget/UMG_Droids_Button.Default__UMG_Droids_Button_C.Local_TextDesc
+msgctxt ",C971A6504A9135B1E3308BB94492D244"
+msgid "BUTTON DESCRIPTION"
+msgstr "BUTTON DESCRIPTION"
+
+#. Key:	C987776B401FB6E6F2D0A29BB30A8F7B
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(3 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_Severity.Enum_Severity.DisplayNameMap(3 - Value).DisplayNameMap
+msgctxt ",C987776B401FB6E6F2D0A29BB30A8F7B"
+msgid "Extreme"
+msgstr "Extreme"
+
+#. Key:	D0EF643648574CE343F2F98A742B5BD8
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_GametoEdit.Enum_GametoEdit.DisplayNameMap(0 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_GametoEdit.Enum_GametoEdit.DisplayNameMap(0 - Value).DisplayNameMap
+msgctxt ",D0EF643648574CE343F2F98A742B5BD8"
+msgid "None"
+msgstr "None"
+
+#. Key:	D31CDA674049F8011AFDE2AE6602EFA4
+#. SourceLocation:	/Game/Arena/UI/Score/BP_Score.BP_Score_C:WidgetTree.RedScoreLabel.Text
+#: /Game/Arena/UI/Score/BP_Score.BP_Score_C:WidgetTree.RedScoreLabel.Text
+msgctxt ",D31CDA674049F8011AFDE2AE6602EFA4"
+msgid "999999"
+msgstr "999999"
+
+#. Key:	D74EC4F4412FE8E98D2D778D551EC21A
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_GametoEdit.Enum_GametoEdit.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_GametoEdit.Enum_GametoEdit.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",D74EC4F4412FE8E98D2D778D551EC21A"
+msgid "AddCustomStuffTo\"Enum_GameToEdit\""
+msgstr "AddCustomStuffTo\"Enum_GameToEdit\""
+
+#. Key:	D8A9765D4BFA8D44A22889B2B17C8199
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(9 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(9 - Value).DisplayNameMap
+msgctxt ",D8A9765D4BFA8D44A22889B2B17C8199"
+msgid "0.8"
+msgstr "0.8"
+
+#. Key:	DA7515D94878F9BC95B62EA1830B6F8C
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Settings_Unselected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Settings_Unselected.Text
+msgctxt ",DA7515D94878F9BC95B62EA1830B6F8C"
+msgid "SETTINGS"
+msgstr "SETTINGS"
+
+#. Key:	DF5FCFE948C6ADCC3B046E98D943F43B
+#. SourceLocation:	/Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(4 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Library/Enum_UserStatus.Enum_UserStatus.DisplayNameMap(4 - Value).DisplayNameMap
+msgctxt ",DF5FCFE948C6ADCC3B046E98D943F43B"
+msgid "Offline"
+msgstr "Offline"
+
+#. Key:	E1DB046F4D5552EFA268DF8827E1E546
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.TextBlock_59.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.TextBlock_59.Text
+msgctxt ",E1DB046F4D5552EFA268DF8827E1E546"
+msgid "PLAYER NAME"
+msgstr "PLAYER NAME"
+
+#. Key:	E66675C346CAABE5BEBDBF97B965DC2B
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(1 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_SettingsVideoOptions.Enum_SettingsVideoOptions.DisplayNameMap(1 - Value).DisplayNameMap
+msgctxt ",E66675C346CAABE5BEBDBF97B965DC2B"
+msgid "Video Resolution"
+msgstr "Video Resolution"
+
+#. Key:	E7626EE04A3305A2508F39955CDB87B8
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(8 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(8 - Value).DisplayNameMap
+msgctxt ",E7626EE04A3305A2508F39955CDB87B8"
+msgid "0.7"
+msgstr "0.7"
+
+#. Key:	EDAD928340EFDD9F2B35C8BC49708E6C
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu_Row.UMG_SettingsMenu_Row_C:SetAudioSettings [Script Bytecode]
+msgctxt ",EDAD928340EFDD9F2B35C8BC49708E6C"
+msgid "Voices"
+msgstr "Voices"
+
+#. Key:	EF71E68148F5AABB39B950A8DBD2FE4A
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Settings_Selected.Text
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:WidgetTree.Text_Settings_Selected.Text
+msgctxt ",EF71E68148F5AABB39B950A8DBD2FE4A"
+msgid "SETTINGS"
+msgstr "SETTINGS"
+
+#. Key:	F1EF46584C848A41355E2187999A1B6C
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",F1EF46584C848A41355E2187999A1B6C"
+msgid "ROLL UP WITH YOUR CREW AND KILL KILL KILL"
+msgstr "ROLL UP WITH YOUR CREW AND KILL KILL KILL"
+
+#. Key:	F1FA7BFA4E81B1607F787B98ABC07A30
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_4.Text
+#: /Game/MainMenu/Widget/Settings/UMG_SettingsMenu.UMG_SettingsMenu_C:WidgetTree.TextBlock_4.Text
+msgctxt ",F1FA7BFA4E81B1607F787B98ABC07A30"
+msgid "CANCEL"
+msgstr "CANCEL"
+
+#. Key:	F2008EB445245DBE1AD9ADA86299CDF8
+#. SourceLocation:	/Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.TextBlock_442.Text
+#: /Game/Arena/UI/WinScreen/WBP_WinScreen.WBP_WinScreen_C:WidgetTree.TextBlock_442.Text
+msgctxt ",F2008EB445245DBE1AD9ADA86299CDF8"
+msgid "P L A Y   A G A I N !"
+msgstr "P L A Y   A G A I N !"
+
+#. Key:	F2C650624925CB63C4C4B8ACD193EE65
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_Droids_Button2.Default__UMG_Droids_Button2_C.Local_TextDesc
+#: /Game/MainMenu/Widget/UMG_Droids_Button2.Default__UMG_Droids_Button2_C.Local_TextDesc
+msgctxt ",F2C650624925CB63C4C4B8ACD193EE65"
+msgid "BUTTON DESCRIPTION"
+msgstr "BUTTON DESCRIPTION"
+
+#. Key:	F3ADD8FB4138B60EA52554B285C17151
+#. SourceLocation:	/Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(5 - Value).DisplayNameMap
+#: /Game/MainMenu/Widget/Settings/Enum_Settings_0to1.Enum_Settings_0to1.DisplayNameMap(5 - Value).DisplayNameMap
+msgctxt ",F3ADD8FB4138B60EA52554B285C17151"
+msgid "0.4"
+msgstr "0.4"
+
+#. Key:	F77460FC47C6D26061EFC49516C5CDDA
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",F77460FC47C6D26061EFC49516C5CDDA"
+msgid "NORMAL GAME"
+msgstr "NORMAL GAME"
+
+#. Key:	F9C721E3489F4335468EFFAD6E8C494A
+#. SourceLocation:	/Game/MainMenu/Widget/UMG_UserIcon.UMG_UserIcon_C:WidgetTree.TextBlock_0.Text
+#: /Game/MainMenu/Widget/UMG_UserIcon.UMG_UserIcon_C:WidgetTree.TextBlock_0.Text
+msgctxt ",F9C721E3489F4335468EFFAD6E8C494A"
+msgid "A"
+msgstr "A"
+
+#. Key:	FBE604B4419F0634D40479A5CC1CCB41
+#. SourceLocation:	/Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+#: /Game/MainMenu/Widget/Widget_MainMenu.Widget_MainMenu_C:UpdateButtonVisualFX [Script Bytecode]
+msgctxt ",FBE604B4419F0634D40479A5CC1CCB41"
+msgid "STAND IN THE WAYPOINT TO SCORE POINTS."
+msgstr "STAND IN THE WAYPOINT TO SCORE POINTS."
+
