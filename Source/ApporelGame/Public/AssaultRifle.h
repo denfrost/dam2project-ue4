@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Weapon.h"
 #include "AssaultRifle.generated.h"
 

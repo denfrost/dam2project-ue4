@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Util/TeamUtils.h"
 #include "GameFramework/Actor.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"

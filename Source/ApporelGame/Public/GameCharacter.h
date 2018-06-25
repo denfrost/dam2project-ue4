@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Util/TeamUtils.h"
 #include "GameFramework/Character.h"
 #include "GameCharacter.generated.h"

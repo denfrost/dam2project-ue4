@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameCharacter.h"
 #include "Runtime/Engine/Classes/GameFramework/MovementComponent.h"
 #include "ArenaCharacter.generated.h"
