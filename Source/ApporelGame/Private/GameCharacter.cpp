@@ -10,8 +10,19 @@
 AGameCharacter::AGameCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
-
+	SetReplicates(true);
 	Team = ETeam::Neutral;
+}
+
+void AGameCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AGameCharacter, CurrentHealth);
+	DOREPLIFETIME(AGameCharacter, bIsDead);
+	DOREPLIFETIME(AGameCharacter, PrimaryAbility);
+	DOREPLIFETIME(AGameCharacter, SecondaryAbility);
+	DOREPLIFETIME(AGameCharacter, UltimateAbility);
 }
 
 // Called when the game starts or when spawned
@@ -34,14 +45,17 @@ void AGameCharacter::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("The character %s doesn't have an ultimate ability!"), *GetName());
 	}
 
-	PrimaryAbility = GetWorld()->SpawnActor<AAbility>(PrimaryAbilityClass->GetDefaultObject()->GetClass());
-	PrimaryAbility->SetOwner(this);
+	if (Role == ROLE_Authority)
+	{
+		PrimaryAbility = GetWorld()->SpawnActor<AAbility>(PrimaryAbilityClass->GetDefaultObject()->GetClass());
+		PrimaryAbility->SetOwner(this);
 
-	SecondaryAbility = GetWorld()->SpawnActor<AAbility>(SecondaryAbilityClass.GetDefaultObject()->GetClass());
-	SecondaryAbility->SetOwner(this);
+		SecondaryAbility = GetWorld()->SpawnActor<AAbility>(SecondaryAbilityClass.GetDefaultObject()->GetClass());
+		SecondaryAbility->SetOwner(this);
 
-	UltimateAbility = GetWorld()->SpawnActor<AAbility>(UltimateAbilityClass.GetDefaultObject()->GetClass());
-	UltimateAbility->SetOwner(this);
+		UltimateAbility = GetWorld()->SpawnActor<AAbility>(UltimateAbilityClass.GetDefaultObject()->GetClass());
+		UltimateAbility->SetOwner(this);
+	}
 
 	// Set the current health equal to max health at the beginning
 	CurrentHealth = MaxHealth;

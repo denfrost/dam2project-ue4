@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Util/TeamUtils.h"
+#include "Net/UnrealNetwork.h"
 #include "GameFramework/Character.h"
 #include "GameCharacter.generated.h"
 
@@ -28,35 +29,40 @@ protected:
 	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Stats" )
 	int32 MaxHealth;
 
+	UPROPERTY( Replicated )
 	int32 CurrentHealth;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Stats" )
 	int32 Armor;
 
+	UPROPERTY ( Replicated )
 	bool bIsDead;
 
 	UPROPERTY( EditAnywhere )
 	ETeam Team;
 
-	UPROPERTY(EditAnywhere, Category = "Game Character Setup | Sound")
+	UPROPERTY( EditAnywhere, Category = "Game Character Setup | Sound" )
 	TArray<USoundBase*> DeathSounds;
 
-	UPROPERTY(EditAnywhere, Category = "Game Character Setup | Sound")
+	UPROPERTY( EditAnywhere, Category = "Game Character Setup | Sound" )
 	TArray<USoundBase*> DamagedSounds;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> PrimaryAbilityClass = nullptr;
 
+	UPROPERTY( Replicated )
 	AAbility* PrimaryAbility;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> SecondaryAbilityClass = nullptr;
 
+	UPROPERTY( Replicated )
 	AAbility* SecondaryAbility;
 
 	UPROPERTY( EditDefaultsOnly, Category = "Game Character Setup | Abilities" )
 	TSubclassOf<AAbility> UltimateAbilityClass = nullptr;
 
+	UPROPERTY( Replicated )
 	AAbility* UltimateAbility;
 
 public:	

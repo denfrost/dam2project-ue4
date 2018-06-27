@@ -22,21 +22,24 @@ class APPORELGAME_API AArenaCharacter : public AGameCharacter
 
 private:
 
-	UPROPERTY(EditAnywhere, Category = "Arena Character Setup")
+	UPROPERTY( EditAnywhere, Category = "Arena Character Setup" )
 	TSubclassOf<AWeapon> WeaponToSpawn;
 
+	UPROPERTY( Replicated )
 	AWeapon* CurrentWeapon;
 
-	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
+	UPROPERTY( EditAnywhere, Category = "Arena Character Setup | Sound" )
 	TArray<USoundBase*> JumpSounds;
 
-	UPROPERTY(EditAnywhere, Category = "Arena Character Setup | Sound")
+	UPROPERTY( EditAnywhere, Category = "Arena Character Setup | Sound" )
 	TArray<USoundBase*> TauntSounds;
+
 protected:
 
 	// Called when spawned
 	virtual void BeginPlay() override;
 
+	// TODO move to AIController, as this is only useful for AI
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "Capturable")
 	TArray<AActor*> CapturableVolumes;
 

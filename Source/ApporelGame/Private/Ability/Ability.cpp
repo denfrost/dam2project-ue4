@@ -13,6 +13,11 @@ void AAbility::BeginPlay()
 	bHasCooldownEnded = true;
 }
 
+AAbility::AAbility()
+{
+	SetReplicates(true);
+}
+
 int32 AAbility::GetDamage() const
 {
 	return Damage;

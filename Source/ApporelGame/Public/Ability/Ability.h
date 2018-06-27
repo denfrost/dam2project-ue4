@@ -44,6 +44,8 @@ protected:
 
 public:
 
+	AAbility();
+
 	/**
 	* This defines the behavior the ability will have if it can be casted just by checking its cooldown.
 	* If further logic is involved in the implementation, the return value of this method must be used to notify

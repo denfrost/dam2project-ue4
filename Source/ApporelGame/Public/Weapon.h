@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Net/UnrealNetwork.h"
 #include "Weapon.generated.h"
 
 class AAbility;
@@ -16,11 +17,11 @@ class APPORELGAME_API AWeapon : public AActor
 	
 private:	
 	// The primary attack of this Weapon, which will be executed when the owner pawn receives the PrimaryAttack input
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
+	UPROPERTY( EditDefaultsOnly, Category = "Weapon Setup" )
 	TSubclassOf<AAbility> PrimaryAttackClass;
 
 	// The secondary attack of this Weapon, which will be executed when the owner pawn receives the SecondaryAttack input
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon Setup")
+	UPROPERTY( EditDefaultsOnly, Category = "Weapon Setup" )
 	TSubclassOf<AAbility> SecondaryAttackClass;
 
 	float LastTimeExecutedAbility;
@@ -29,11 +30,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Components" )
 	USkeletalMeshComponent* MeshComp;
 
+	UPROPERTY( Replicated )
 	AAbility* PrimaryAttack;
 
+	UPROPERTY( Replicated )
 	AAbility* SecondaryAttack;
 
 public:	

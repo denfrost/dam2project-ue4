@@ -14,6 +14,7 @@ AArenaCharacter::AArenaCharacter()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SetReplicates(true);
 
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
 	SpringArmComp->bUsePawnControlRotation = true;
@@ -25,11 +26,19 @@ AArenaCharacter::AArenaCharacter()
 	CameraComp->SetupAttachment(SpringArmComp);
 }
 
+void AArenaCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AArenaCharacter, CurrentWeapon);
+}
+
 // Called when the game starts or when spawned
 void AArenaCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	 
+	// TODO move this to AIController, as players don't need this cache
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACapturableVolume::StaticClass(), CapturableVolumes);
 
 	if (WeaponToSpawn == nullptr)
@@ -38,23 +47,26 @@ void AArenaCharacter::BeginPlay()
 		return;
 	}
 
-	// Spawn the Weapon and attach it to the player
-	CurrentWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponToSpawn.GetDefaultObject()->GetClass());
-	CurrentWeapon->SetOwner(this);
-
-	if (!CurrentWeapon)
+	if (Role == ROLE_Authority)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Not Current Weapon Available"));
-		return;
-	}
+		// Spawn the Weapon and attach it to the player
+		CurrentWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponToSpawn.GetDefaultObject()->GetClass());
+		CurrentWeapon->SetOwner(this);
 
-	CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
+		if (!CurrentWeapon)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Not Current Weapon Available"));
+			return;
+		}
 
-	//TODO Refactor this
-	if (CurrentWeapon->GetPrimaryAttackClass() == nullptr || CurrentWeapon->GetSecondaryAttackClass() == nullptr)
-	{
-		UE_LOG(LogTemp, Error, TEXT("The character %s is missing an ability!"), *GetName());
-		return;
+		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), GRAB_POINT_SOCKET_NAME);
+
+		// TODO Refactor this
+		if (CurrentWeapon->GetPrimaryAttackClass() == nullptr || CurrentWeapon->GetSecondaryAttackClass() == nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("The character %s is missing an ability!"), *GetName());
+			return;
+		}
 	}
 
 	// Notify BP that the character has been successfully initialized and its abilities/weapon are ready to use

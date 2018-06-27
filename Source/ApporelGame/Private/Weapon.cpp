@@ -9,9 +9,18 @@ AWeapon::AWeapon()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SetReplicates(true);
 
 	MeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComp"));
 	RootComponent = MeshComp;
+}
+
+void AWeapon::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AWeapon, PrimaryAttack);
+	DOREPLIFETIME(AWeapon, SecondaryAttack);
 }
 
 // Called when the game starts or when spawned
@@ -19,21 +28,24 @@ void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (PrimaryAttackClass)
+	if (Role == ROLE_Authority)
 	{
-		PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
-		PrimaryAttack->SetOwner(this);
-	}
+		if (PrimaryAttackClass)
+		{
+			PrimaryAttack = GetWorld()->SpawnActor<AAbility>(PrimaryAttackClass.GetDefaultObject()->GetClass());
+			PrimaryAttack->SetOwner(this);
+		}
 
-	if (SecondaryAttackClass)
-	{
-		SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
-		SecondaryAttack->SetOwner(this);
-	}
+		if (SecondaryAttackClass)
+		{
+			SecondaryAttack = GetWorld()->SpawnActor<AAbility>(SecondaryAttackClass.GetDefaultObject()->GetClass());
+			SecondaryAttack->SetOwner(this);
+		}
 
-	if (!(PrimaryAttackClass && SecondaryAttackClass))
-	{
-		UE_LOG(LogTemp, Error, TEXT("The weapon %s is missing an attack!"), *GetName());
+		if (!(PrimaryAttackClass && SecondaryAttackClass))
+		{
+			UE_LOG(LogTemp, Error, TEXT("The weapon %s is missing an attack!"), *GetName());
+		}
 	}
 }
 
